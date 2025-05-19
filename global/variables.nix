@@ -8,6 +8,9 @@
   # Waybar Settings
   clock24h = true;
 
+  # Setting networking
+  hostname = "nixvm";
+
   # Program Options
   browser = "firefox"; # Set Default Browser
   terminal = "kitty"; # Set Default System Terminal
