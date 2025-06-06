@@ -4,7 +4,7 @@
     vivaldi
     vivaldi-ffmpeg-codecs
     firefox
-    inputs.zen-browser.packages."${system}".specific
+    zen-browser
     git
     direnv
     vscodium 
