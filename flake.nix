@@ -18,19 +18,20 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       host = "desktop";
-      profile = "vm";
+      profile = "gnome";
     in
     {
       nixosConfigurations = {
-      vm = nixpkgs.lib.nixosSystem {
+      gnome = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
           inherit profile;
           inherit host;
         };
-        modules = [./profiles/vm];
+        modules = [./profiles/gnome];
       };
     };
+
   };
 }

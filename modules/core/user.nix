@@ -5,7 +5,7 @@
   profile,
   ...
 }: let
-  inherit (import ../../global/variables.nix) stateVersion username;
+  inherit (import ../../global/variables.nix) username;
 in {
   imports = [inputs.home-manager.nixosModules.home-manager];
   home-manager = {
@@ -18,7 +18,7 @@ in {
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
-        stateVersion = "${stateVersion}";
+        stateVersion = "25.05";
       };
     };
   };

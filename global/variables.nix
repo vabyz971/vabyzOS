@@ -2,14 +2,14 @@
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "vabyz971";
   gitEmail = "vabyz971@gmail.com";
-  username = "vabyz";
+  username = "vabyz971";
 
 
   # Waybar Settings
   clock24h = true;
 
   # Setting networking
-  hostname = "nixvm";
+  hostname = "nixos-vabyz971";
 
   # Program Options
   browser = "firefox"; # Set Default Browser
@@ -17,12 +17,9 @@
   fileSystem = "thunar";
   
   # Settings Language
-  i18nLocalLanguage = "fr_FR.UTF-8";
+  i18nLocalLanguage = "fr_CA.UTF-8";
   keyboardLayout = "fr";
   consoleKeyMap = "fr";
-
-  # Version Packages
-  stateVersion = "25.05";
 
 
   # Set Stylix Image

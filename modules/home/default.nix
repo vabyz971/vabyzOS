@@ -2,7 +2,7 @@
 {
   imports = [
     # ./amfora.nix
-    ./bash.nix
+    #./bash.nix
     # ./bashrc-personal.nix
     # ./bat.nix
     # ./btop.nix
@@ -12,11 +12,11 @@
     # ./gh.nix
     # ./ghostty.nix
     ./git.nix
-    ./gtk.nix
+    #./gtk.nix
     # ./htop.nix
-    ./hyprland
+    #./hyprland
     # ./waybar
-    ./kitty.nix
+    #./kitty.nix
     # ./nvf.nix
     # ./rofi
     # ./qt.nix
@@ -27,7 +27,7 @@
     # ./virtmanager.nix
     # ./wezterm.nix
     # ./wlogout
-    ./xdg.nix
+    #./xdg.nix
     # ./yazi
     # ./zoxide.nix
     ./zsh
