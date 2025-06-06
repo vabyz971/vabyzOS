@@ -16,7 +16,7 @@
     # ./htop.nix
     #./hyprland
     # ./waybar
-    #./kitty.nix
+    ./kitty.nix
     # ./nvf.nix
     # ./rofi
     # ./qt.nix
