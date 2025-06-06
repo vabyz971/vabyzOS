@@ -1,10 +1,10 @@
-{ pkgs, system, inputs, ... }: {
+{ pkgs, inputs, ... }: {
 
   environment.systemPackages = with pkgs; [
     vivaldi
     vivaldi-ffmpeg-codecs
     firefox
-    zen-browser
+    inputs.zen-browser.packages.${pkgs.system}.default
     git
     direnv
     vscodium 
