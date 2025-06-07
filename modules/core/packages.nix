@@ -7,10 +7,12 @@
     inputs.zen-browser.packages.${pkgs.system}.default
     git
     direnv
+    dconf
     vscodium
     discord
-
-    # Terminal
-    alacritty
+    stacer
+    mission-center
+    fastfetch
+    zsh-powerlevel10k
   ];
 }

@@ -27,6 +27,15 @@ in
   services.gvfs.enable = true;
 
 
+  # List Application Gnome exlude
+
+  environment.gnome.excludePackages = with pkgs; [
+    totem
+    decibels
+    epiphany
+    yelp
+    gnome-system-monitor
+  ];
 
   # List Application Gnome
   environment.systemPackages = with pkgs;[

@@ -30,10 +30,7 @@
     # ./yazi
     # ./zoxide.nix
     ./zsh
-  ];
-
-  imports = if profile == "gnome"
-  then [ ./gtk.nix]
-  else []
+  ] ++ 
+  (if profile == "gnome" then [ ./gtk.nix] else[]);
 
 }
