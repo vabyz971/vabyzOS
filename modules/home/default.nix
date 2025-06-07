@@ -1,4 +1,4 @@
-{host, ...}:
+{profile, ...}:
 {
   imports = [
     # ./amfora.nix
@@ -12,7 +12,6 @@
     # ./gh.nix
     # ./ghostty.nix
     ./git.nix
-    #./gtk.nix
     # ./htop.nix
     #./hyprland
     # ./waybar
@@ -32,4 +31,9 @@
     # ./zoxide.nix
     ./zsh
   ];
+
+  imports = if profile == "gnome"
+  then [ ./gtk.nix]
+  else []
+
 }

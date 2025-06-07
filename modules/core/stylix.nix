@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: let
+{ pkgs, inputs, profile, ... }: let
   inherit (import ../../global/variables.nix) stylixImage;
   
 in {
@@ -7,7 +7,9 @@ in {
 
   # Styling Options
   stylix = {
-    enable = true;
+    enable = if profile == "gnome"
+    then false
+    else true;
     image = stylixImage;
     polarity = "dark";
 

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   inherit (import ../../global/variables.nix) keyboardLayout;
 in
@@ -26,4 +26,20 @@ in
   # to work with the I/O abstraction of GIO
   services.gvfs.enable = true;
 
+
+
+  # List Application Gnome
+  environment.systemPackages = with pkgs;[
+    gnome-tweaks
+    showtime        # Video player gnome
+    keypunch
+    gnome-decoder
+    cartridges
+    amberol
+    fragments
+    warp
+    newsflash
+    tangram
+    gnome-secrets
+  ];
 }

@@ -7,7 +7,8 @@
     inputs.zen-browser.packages.${pkgs.system}.default
     git
     direnv
-    vscodium 
+    vscodium
+    discord
 
     # Terminal
     alacritty
