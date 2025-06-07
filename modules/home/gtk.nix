@@ -35,6 +35,7 @@ in
     "org/gnome/shell" = {
       enabled-extensions = [
       "user-theme@gnome-shell-extensions.gcampax.github.com"
+      "Bluetooth-Battery-Meter@maniacx.github.com"
       "trayIconsReloaded@selfmade.pl"
       "add-to-desktop@tommimon.github.com"
       "gtk4-ding@smedius.gitlab.com"
@@ -44,6 +45,7 @@ in
       "tilingshell@ferrarodomenico.com"
       "logomenu@aryan_k"
       "lockkeys@vaina.lt"
+      "mediacontrols@cliffniff.github.com"
       ];
     };
   };
@@ -54,6 +56,7 @@ in
   # To enable them the "Extensions" program can be used.
 
   home.packages = with pkgs.gnomeExtensions; [
+    user-themes
     tray-icons-reloaded
     add-to-desktop
     gtk4-desktop-icons-ng-ding
@@ -63,5 +66,7 @@ in
     tiling-shell
     logo-menu
     lock-keys
+    media-controls
+    bluetooth-battery-meter
   ];
 }

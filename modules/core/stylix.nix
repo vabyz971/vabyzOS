@@ -32,12 +32,6 @@ in {
         package = pkgs.montserrat;
         name = "Montserrat";
       };
-      sizes = {
-        applications = 12;
-        terminal = 15;
-        desktop = 11;
-        popups = 12;
-      };
     };
   };
 }
