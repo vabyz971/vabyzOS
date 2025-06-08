@@ -68,17 +68,19 @@ in
     };
 
 
-    "/org/gnome/shell/favorite-apps" = [
-      "vivaldi-stable.desktop", 
-      "re.sonny.Tangram.desktop",
-      "discord.desktop",
-      "codium.desktop",
-      "kitty.desktop",
-      "org.gnome.Nautilus.desktop",
-      "io.missioncenter.MissionCenter.desktop",
-      "org.gnome.World.Secrets.desktop",
+    "/org/gnome/shell/" = {
+      favorite-apps = [
+      "vivaldi-stable.desktop"
+      "re.sonny.Tangram.desktop"
+      "discord.desktop"
+      "codium.desktop"
+      "kitty.desktop"
+      "org.gnome.Nautilus.desktop"
+      "io.missioncenter.MissionCenter.desktop"
+      "org.gnome.World.Secrets.desktop"
       "org.gnome.Settings.desktop"
       ];
+    };
 
 
     # List extension activate 
