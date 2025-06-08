@@ -50,5 +50,8 @@ in
     newsflash
     tangram
     gnome-secrets
+    gjs
+    poppler
+    dconf-editor
   ];
 }

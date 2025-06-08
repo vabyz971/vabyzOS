@@ -14,5 +14,8 @@
     mission-center
     fastfetch
     zsh-powerlevel10k
+    python313Full
+    python313Packages.pip
+    nodejs_24
   ];
 }

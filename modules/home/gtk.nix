@@ -1,10 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, config,
+ ... }:
 let
   inherit (import ../../global/variables.nix) stylixImage;
 in
 {
   gtk = {
     enable = true;
+    theme = {
+      name = "Orchis-Dark";
+      package = pkgs.orchis-theme;
+    };
 
     iconTheme = {
       name = "Papirus-Dark";
@@ -14,7 +19,7 @@ in
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
       size = 24;
-    };
+    }; 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
@@ -24,14 +29,59 @@ in
   };
 
   dconf.settings = {
+
+
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
 
     "org/gnome/desktop/background" = {
       picture-url = "${stylixImage}";
+      show-desktop-icons = true;
     };
 
+    "org/gnome/desktop/default-applications/terminal" = {
+      exec = "kitty";
+    };
+
+    "/org/gnome/nautilus/list-view" = {
+      use-tree-view = true;
+    };
+
+    "/org/gnome/shell/extensions/Logo-menu/" = {
+      menu-button-terminal = "kitty";
+    };
+
+    "/org/gnome/shell/extensions/dash-to-dock/" = {
+      apply-custom-theme = true;
+      autohide-in-fullscreen = true;
+      background-opacity = "0,8";
+      click-action = "minimize-or-overview";
+      dance-urgent-applications = true;
+      dash-max-icon-size = "32";
+      disable-overview-on-startup = true;
+      dock-position = "BOTTOM";
+      show-favorites = true;
+      show-mounts-network = true;
+      show-trash = true;
+      transparency-mode = "DYNAMIC";
+    };
+
+
+    "/org/gnome/shell/favorite-apps" = [
+      "vivaldi-stable.desktop", 
+      "re.sonny.Tangram.desktop",
+      "discord.desktop",
+      "codium.desktop",
+      "kitty.desktop",
+      "org.gnome.Nautilus.desktop",
+      "io.missioncenter.MissionCenter.desktop",
+      "org.gnome.World.Secrets.desktop",
+      "org.gnome.Settings.desktop"
+      ];
+
+
+    # List extension activate 
     "org/gnome/shell" = {
       enabled-extensions = [
       "user-theme@gnome-shell-extensions.gcampax.github.com"
