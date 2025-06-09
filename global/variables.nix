@@ -8,8 +8,11 @@
   # Waybar Settings
   clock24h = true;
 
+  # Hardware
+  gpu = "nvidia";
+
   # Setting networking
-  hostname = "nixos-vabyz971";
+  hostname = "vabyznixos";
 
   # Program Options
   browser = "firefox"; # Set Default Browser

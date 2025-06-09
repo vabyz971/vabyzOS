@@ -4,6 +4,6 @@ let
 in {
 
   imports = [] ++ 
-  (if gpu == "nvidia" then [./nvidia] else[] );
+  (if gpu == "nvidia" then [./nvidia.nix] else[] );
 
 }
