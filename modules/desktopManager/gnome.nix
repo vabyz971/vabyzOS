@@ -18,6 +18,10 @@ in
   };
 
 
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.config.common.default = "gtk";
+
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
