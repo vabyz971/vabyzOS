@@ -17,5 +17,6 @@
     python313Full
     python313Packages.pip
     nodejs_24
+    corepack_24
   ];
 }
