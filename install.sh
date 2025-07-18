@@ -236,6 +236,7 @@ install(){
     add_value_config "gitEmail" "\"$gitEmail\""
     add_value_config "username" "\"$username\""
     add_value_config "hostname" "\"$hostname\""
+    add_value_config "gpu" "\"$gpu\""
     add_value_config "keyboardLayout" "\"$keyboardLayout\""
     add_value_config "consoleKeyMap" "\"$keyboardLayout\""
     add_value_config "i18nLocalLanguage" "\"$i18nLocalLanguage\""
