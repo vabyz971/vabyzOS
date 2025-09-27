@@ -5,5 +5,5 @@
     ./kitty.nix
     ./zsh
     ./gtk.nix
-  ]
+  ];
 }

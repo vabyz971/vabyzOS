@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, ... }:
+{ config, inputs , ... }:
 
 {
 
@@ -23,7 +23,7 @@
   # auto remove generation
   nix.gc = {
       automatic = true;
-      options = [ "--delete-older-than 7d" ]; # Keep generations from the last 7 days
+      options = "--delete-older-than 7d"; # Keep generations from the last 7 days
       # Or to keep the last 5 generations:
       # options = [ "+5" ];
     };

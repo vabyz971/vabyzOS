@@ -1,4 +1,4 @@
-{ pkgs, config,
+{ pkgs, config, lib,
  ... }:
 let
   inherit (import ../../global/variables.nix) stylixImage;
@@ -6,10 +6,6 @@ in
 {
   gtk = {
     enable = true;
-    theme = {
-      name = "Orchis-Dark";
-      package = pkgs.orchis-theme;
-    };
 
     iconTheme = {
       name = "Papirus-Dark";

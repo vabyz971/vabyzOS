@@ -20,15 +20,20 @@ in {
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrains Mono";
+        name = "JetBrainsMono Nerd Font Regular";
       };
       sansSerif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.roboto;
+        name = "Roboto Regular";
       };
       serif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.roboto;
+        name = "Roboto Regular";
+      };
+      sizes = {
+        applications = 11;
+        desktop = 11;
+        terminal = 12;
       };
     };
   };
