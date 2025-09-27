@@ -45,14 +45,9 @@ in
   environment.systemPackages = with pkgs;[
     gnome-tweaks
     showtime        # Video player gnome
-    keypunch
     gnome-decoder
-    cartridges
-    amberol
     fragments
     warp
-    newsflash
-    tangram
     gnome-secrets
     gjs
     poppler

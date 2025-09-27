@@ -7,13 +7,7 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
   };
 
@@ -22,18 +16,18 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       host = "desktop";
-      profile = "gnome";
+      profile = "vabyz971";
     in
     {
       nixosConfigurations = {
-      gnome = nixpkgs.lib.nixosSystem {
+      vabyz971 = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
           inherit profile;
           inherit host;
         };
-        modules = [./profiles/gnome];
+        modules = [./profiles/vabyz971];
       };
     };
 

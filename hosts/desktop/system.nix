@@ -9,6 +9,24 @@
  # Enable experimental-features
  nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  # Update system
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "-L" # print build logs
+    ];
+    dates = "14:00";
+    randomizedDelaySec = "45min";
+  };
+
+  # auto remove generation
+  nix.gc = {
+      automatic = true;
+      options = [ "--delete-older-than 7d" ]; # Keep generations from the last 7 days
+      # Or to keep the last 5 generations:
+      # options = [ "+5" ];
+    };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

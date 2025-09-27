@@ -7,16 +7,14 @@ in {
 
   # Styling Options
   stylix = {
-    enable = if profile == "gnome"
-    then false
-    else true;
+    enable = true;
     image = stylixImage;
     polarity = "dark";
 
     opacity.terminal = 1.0;
     cursor = {
-      package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
       size = 24;
     };
     fonts = {

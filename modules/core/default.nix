@@ -6,5 +6,6 @@
     ./game.nix
     ./stylix.nix
     ./fonts.nix
+    ./virtualisation.nix
   ];
 }

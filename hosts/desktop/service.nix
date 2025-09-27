@@ -6,6 +6,9 @@
   # SSD Optimizer
   services.fstrim.enable = true;
 
+  # Update firmware
+  services.fwupd.enable = true;
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -22,4 +25,9 @@
     #media-session.enable = true;
   };
 
+  # ollama and GPU acceleration for Nvidia graphic cards
+  services.ollama = {
+  enable = true;
+  acceleration = "cuda";
+};
 }

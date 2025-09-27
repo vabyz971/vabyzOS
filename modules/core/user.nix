@@ -29,6 +29,7 @@ in {
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
