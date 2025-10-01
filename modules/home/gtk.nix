@@ -31,7 +31,6 @@ in
     };
 
     "org/gnome/desktop/background" = {
-      picture-url = "${stylixImage}";
       show-desktop-icons = true;
     };
 

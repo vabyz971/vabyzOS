@@ -30,6 +30,7 @@ in {
       "networkmanager"
       "wheel"
       "docker"
+      "libvirtd" #Virt manager/QEMU access
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;

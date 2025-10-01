@@ -1,5 +1,7 @@
 { pkgs, inputs, ... }: {
 
+  programs.appimage.enable
+
   environment.systemPackages = with pkgs; [
     vivaldi
     vivaldi-ffmpeg-codecs
