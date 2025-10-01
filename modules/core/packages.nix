@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }: {
 
-  programs.appimage.enable
+  programs.appimage.enable = true;
 
   environment.systemPackages = with pkgs; [
     vivaldi

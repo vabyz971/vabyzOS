@@ -1,4 +1,4 @@
-{ ... }:
+{ config, pkgs, ... }:
 {
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
@@ -12,5 +12,5 @@
     loader.efi.canTouchEfiVariables = true;
 
     plymouth.enable = true;
-  }
+  };
 }
