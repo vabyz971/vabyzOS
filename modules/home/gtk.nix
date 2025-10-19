@@ -1,7 +1,7 @@
 { pkgs, config, lib,
  ... }:
 let
-  inherit (import ../../global/variables.nix) stylixImage;
+
 in
 {
   gtk = {

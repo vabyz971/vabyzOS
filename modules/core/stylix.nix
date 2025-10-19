@@ -1,16 +1,13 @@
-{ pkgs, inputs, profile, ... }: let
+{ pkgs, inputs, profile, ... }:
+let
   inherit (import ../../global/variables.nix) stylixImage;
-  
 in {
-
   imports = [ inputs.stylix.nixosModules.stylix ];
 
-  # Styling Options
   stylix = {
     enable = true;
     image = stylixImage;
     polarity = "dark";
-
     opacity.terminal = 1.0;
     cursor = {
       name = "Bibata-Modern-Ice";

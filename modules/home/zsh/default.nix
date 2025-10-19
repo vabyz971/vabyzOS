@@ -14,7 +14,10 @@
 
     shellAliases = {
       ll = "ls -l";
-      update = "sudo nixos-rebuild switch";
+      update = "
+      cd ~/vabyzOS/#vabyz971
+      sudo nix flake update
+      sudo nixos-rebuild switch --flake ~/vabyzOS/#vabyz971";
     };
 
     history.size = 10000;

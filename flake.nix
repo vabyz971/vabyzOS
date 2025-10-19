@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:nix-community/stylix/release-25.05";
   };
 
   outputs = { nixpkgs, ...} @ inputs:
