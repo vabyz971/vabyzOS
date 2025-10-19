@@ -12,6 +12,7 @@
     vscodium
     discord
     stacer
+    android-tools
     mission-center
     fastfetch
     python313Full

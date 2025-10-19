@@ -29,6 +29,7 @@ in {
     extraGroups = [
       "networkmanager"
       "wheel"
+      "adbusers"
       "docker"
       "libvirtd" #Virt manager/QEMU access
     ];
