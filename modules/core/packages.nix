@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }: {
 
   programs.appimage.enable = true;
-
+  
   environment.systemPackages = with pkgs; [
     vivaldi
     vivaldi-ffmpeg-codecs
@@ -20,5 +20,7 @@
     nodejs_24
     corepack_24
     bun
+    freerdp
+    inputs.winboat.packages.x86_64-linux.winboat
   ];
 }

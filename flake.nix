@@ -9,6 +9,10 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     stylix.url = "github:nix-community/stylix/release-25.05";
+    winboat = {
+      url = "github:TibixDev/winboat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, ...} @ inputs:
@@ -30,6 +34,5 @@
         modules = [./profiles/vabyz971];
       };
     };
-
   };
 }
