@@ -9,6 +9,9 @@
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
+  
+  # Enable dynamic CDI configuration for Nvidia devices by running nvidia-container-toolkit on boot.
+  hardware.nvidia-container-toolkit.enable = true;
 
   hardware.nvidia = {
     # Modesetting is required.

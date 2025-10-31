@@ -2,6 +2,9 @@
 
   programs.appimage.enable = true;
   
+  # Pour lire les binaires
+  programs.nix-ld.enable = true;
+  
   environment.systemPackages = with pkgs; [
     vivaldi
     vivaldi-ffmpeg-codecs
