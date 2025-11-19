@@ -24,6 +24,7 @@
     corepack_24
     bun
     freerdp
-    inputs.winboat.packages.x86_64-linux.winboat
+    winboat
+    nixfmt
   ];
 }
