@@ -15,7 +15,7 @@
     shellAliases = {
       ll = "ls -l";
       upgrade = "
-      cd ~/vabyzOS/#vabyz971
+      cd ~/vabyzOS/
       sudo nix flake update
       sudo nixos-rebuild switch --flake ~/vabyzOS/#vabyz971";
       update = "sudo nixos-rebuild switch --flake ~/vabyzOS/#vabyz971";
