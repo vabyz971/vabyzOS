@@ -1,10 +1,11 @@
-{pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-      extraCompatPackages = [pkgs.proton-ge-bin];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
     gamescope = {
@@ -15,7 +16,12 @@
         "--hdr-enabled"
         "--rt"
         "--steam"
-        "--expose-wayland"];
+        "--expose-wayland"
+      ];
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    lutris
+  ];
 }

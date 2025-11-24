@@ -2,16 +2,21 @@
   description = "HorizonOS by vabyz971";
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     # Specify the source of Home Manager and Nixpkgs.
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    stylix.url = "github:nix-community/stylix/release-25.05";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, ...} @ inputs:
+  outputs =
+    { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -20,15 +25,15 @@
     in
     {
       nixosConfigurations = {
-      vabyz971 = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit profile;
-          inherit host;
+        vabyz971 = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit profile;
+            inherit host;
+          };
+          modules = [ ./profiles/vabyz971 ];
         };
-        modules = [./profiles/vabyz971];
       };
     };
-  };
 }

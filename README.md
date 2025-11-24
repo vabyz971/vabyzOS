@@ -18,6 +18,7 @@
 
 ## Requirements
  - Version nixos : 25.05
+ - Version packages : unstable
  - Boot partition required
 
 
@@ -35,10 +36,10 @@
 |git            | |
 |vscodium       | |
 |discord        | |
-|stacer         | |
+|htop           | |
 |mission-center | |
 |fastfetch      | |
-|python 3.13    | |
+|python 3.15    | |
 |nodejs 24      | |
 |steam          | |
 |FlatHub        | |
@@ -56,15 +57,9 @@
 | Software      ||
 |---------------|---|
 |gnome-tweaks           | |
-|showtime               | |
-|keypunch               | |
 |gnome-decoder          | |
-|cartridges             | |
-|amberol                | |
 |fragments              | |
 |warp                   | |
-|newsflash              | |
-|tangram                | |
 |gnome-secrets          | |
 |gjs                    | |
 |poppler                | |
@@ -84,11 +79,7 @@
 |logomenu                   | |
 |lockkeys                   | |
 |mediacontrols              | |
-
-
 </details>
-
-
 
 
 ## Installation:

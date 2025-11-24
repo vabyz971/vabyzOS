@@ -1,7 +1,13 @@
-{ pkgs, inputs, profile, ... }:
+{
+  pkgs,
+  inputs,
+  profile,
+  ...
+}:
 let
   inherit (import ../../global/variables.nix) stylixImage;
-in {
+in
+{
   imports = [ inputs.stylix.nixosModules.stylix ];
 
   stylix = {

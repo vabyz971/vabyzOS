@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     # Virtual device
     kernelModules = [ "v4l2loopback" ];
@@ -10,7 +10,5 @@
     # Multiboot
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-
-    plymouth.enable = true;
   };
 }

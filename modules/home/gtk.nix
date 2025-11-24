@@ -1,8 +1,5 @@
 { pkgs, config, lib,
  ... }:
-let
-
-in
 {
   gtk = {
     enable = true;
@@ -16,14 +13,12 @@ in
       package = pkgs.bibata-cursors;
       size = 24;
     }; 
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
   };
 
+  dconf.enable = true;
   dconf.settings = {
 
     "org/gnome/desktop/interface" = {
@@ -37,7 +32,7 @@ in
     # List extension activate 
     "org/gnome/shell" = {
       enabled-extensions = [
-      "user-theme@gnome-shell-extensions.gcampax.github.com"
+      "user-theme@gnome-shell-extensions.gnome.gitlab.com"
       "Bluetooth-Battery-Meter@maniacx.github.com"
       "trayIconsReloaded@selfmade.pl"
       "add-to-desktop@tommimon.github.com"
@@ -60,7 +55,9 @@ in
 
   home.packages = with pkgs.gnomeExtensions; [
     user-themes
+    just-perfection
     tray-icons-reloaded
+    appindicator
     add-to-desktop
     gtk4-desktop-icons-ng-ding
     blur-my-shell

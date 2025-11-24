@@ -1,30 +1,28 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
 
   programs.appimage.enable = true;
-  
+
   # Pour lire les binaires
   programs.nix-ld.enable = true;
-  
+
   environment.systemPackages = with pkgs; [
     vivaldi
     vivaldi-ffmpeg-codecs
     firefox
     git
     direnv
-    dconf
+    btop
     vscodium
     discord
-    stacer
     android-tools
-    mission-center
     fastfetch
-    python313Full
-    python313Packages.pip
+    python315
     nodejs_24
     corepack_24
     bun
-    freerdp
-    winboat
     nixfmt
+    dconf
+    dconf-editor
   ];
 }

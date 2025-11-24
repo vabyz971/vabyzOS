@@ -4,11 +4,8 @@ let
 in
 {
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
@@ -17,21 +14,11 @@ in
     variant = "";
   };
 
-
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  xdg.portal.config.common.default = "gtk";
-
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-
-  # GVfs is a GNOME userspace virtual filesystem designed 
-  # to work with the I/O abstraction of GIO
-  services.gvfs.enable = true;
-
-
-  # List Application Gnome exlude
+  # To disable installing GNOME's suite of applications
+  # and only be left with GNOME shell.
+  services.gnome.core-apps.enable = true;
+  # services.gnome.core-developer-tools.enable = false;
+  # services.gnome.games.enable = false;
 
   environment.gnome.excludePackages = with pkgs; [
     totem
@@ -39,18 +26,18 @@ in
     epiphany
     yelp
     gnome-system-monitor
+    gnome-tour
+    gnome-user-docs
   ];
 
-  # List Application Gnome
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
+
+    # Application Gnome
     gnome-tweaks
-    showtime        # Video player gnome
     gnome-decoder
-    fragments
     warp
     gnome-secrets
     gjs
     poppler
-    dconf-editor
   ];
 }
