@@ -15,25 +15,40 @@
     };
   };
 
-  outputs =
-    { nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      host = "desktop";
-      profile = "vabyz971";
-    in
-    {
-      nixosConfigurations = {
-        vabyz971 = nixpkgs.lib.nixosSystem {
+      configuration = {
+        "gnome" = {
+          system = "x86_64-linux";
+          host = "desktop";
+          profile = "vabyz971";
+          modules = [ ./profiles/vabyz971 ];
+        };
+        "vm" = {
+          system = "x86_64-linux";
+          host = "vm";
+          profile = "vm";
+          modules = [ ./profiles/vm ];
+        };
+      };
+
+      mkNixosConfig = { configName, system, host, profile, modules}:
+        nixpkgs.lib.nixosSystem {
           inherit system;
+
           specialArgs = {
             inherit inputs;
             inherit profile;
             inherit host;
+            configName = configName;
           };
-          modules = [ ./profiles/vabyz971 ];
+
+          modules = modules;
         };
-      };
+    in {
+      nixosConfigurations = builtins.mapAttrs (configName: cfg: mkNixosConfig ({
+        inherit configName;
+      } // cfg)
+      ) configuration;
     };
 }

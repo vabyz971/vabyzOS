@@ -8,7 +8,7 @@
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
     # Multiboot
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    # loader.systemd-boot.enable = true;
+    # loader.efi.canTouchEfiVariables = true;
   };
 }

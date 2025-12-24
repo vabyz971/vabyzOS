@@ -9,10 +9,10 @@
   clock24h = true;
 
   # Hardware
-  gpu = "nvidia";
+  gpu = "vm";
 
   # Setting networking
-  hostname = "vabyznixos";
+  hostname = "nixos_config";
 
   # Program Options
   browser = "firefox"; # Set Default Browser
