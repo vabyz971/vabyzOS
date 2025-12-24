@@ -7,7 +7,6 @@ username=""
 gitUsername=""
 gitEmail=""
 hostname=""
-gpu=""
 keyboardLayout=""
 i18nLocalLanguage=""
 
@@ -101,7 +100,6 @@ function show_config(){
     echo -e "- gitUsername: ${GREEN}$gitUsername${NC}"
     echo -e "- gitEmail: ${GREEN}$gitEmail${NC}"
     echo -e "- hostname: ${GREEN}$hostname${NC}"
-    echo -e "- gpu driver: ${GREEN}$gpu${NC}"
     echo -e "- keyboardLayout: ${GREEN}$keyboardLayout${NC}"
     echo -e "- i18nLocalLanguage: ${GREEN}$i18nLocalLanguage${NC}"
 }
@@ -161,31 +159,6 @@ function config_install {
         hostname=${new_hostname:-$hostname}
     fi
 
-
-    echo
-    echo -e "-------------------------"
-
-    echo -e "Which ${BLUE}GPU${NC} are you using ?"
-    echo -e "- 1: NVIDIA"
-    echo -e "- 2: AMD"
-    echo -e "- 3: INTEL"
-    echo -e "- 4: VM"
-    read -p "Choose: " gpu_card
-    case $gpu_card in
-        1)
-            value="nvidia"
-            gpu=${value:-$gpu};;
-        2)
-            value="amd"
-            gpu=${value:-$gpu};;
-        3)
-            value="intel"
-            gpu=${value:-$gpu};;
-        4)
-            value="vm"
-            gpu=${value:-$gpu};;
-    esac
-
     echo
     echo -e "-------------------------"
     echo -e "Keyboard [fr, en]"
@@ -236,7 +209,6 @@ install(){
     add_value_config "gitEmail" "\"$gitEmail\""
     add_value_config "username" "\"$username\""
     add_value_config "hostname" "\"$hostname\""
-    add_value_config "gpu" "\"$gpu\""
     add_value_config "keyboardLayout" "\"$keyboardLayout\""
     add_value_config "consoleKeyMap" "\"$keyboardLayout\""
     add_value_config "i18nLocalLanguage" "\"$i18nLocalLanguage\""

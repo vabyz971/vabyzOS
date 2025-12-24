@@ -14,7 +14,6 @@
     direnv
     btop
     vscodium
-    discord
     android-tools
     fastfetch
     python315

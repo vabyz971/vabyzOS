@@ -2,7 +2,8 @@
 
   imports = [
     ../../hosts/${host}
-    ../../modules/desktopManager/gnome.nix
+    ../../modules/driver/nvidia.nix
+    ../../modules/desktopManager/gnome
     ../../modules/core
   ];
 }

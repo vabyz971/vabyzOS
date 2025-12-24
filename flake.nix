@@ -17,6 +17,8 @@
 
   outputs = { nixpkgs, ... }@inputs:
     let
+
+      # Définition des configuration disponible
       configuration = {
         "gnome" = {
           system = "x86_64-linux";
@@ -32,6 +34,7 @@
         };
       };
 
+      # Fonction de création de configuration Nixos
       mkNixosConfig = { configName, system, host, profile, modules}:
         nixpkgs.lib.nixosSystem {
           inherit system;
@@ -46,6 +49,8 @@
           modules = modules;
         };
     in {
+
+      # Fonction générale a tout les configuration
       nixosConfigurations = builtins.mapAttrs (configName: cfg: mkNixosConfig ({
         inherit configName;
       } // cfg)

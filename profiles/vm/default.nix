@@ -2,7 +2,7 @@
 
   imports = [
     ../../hosts/${host}
-    ../../modules/desktopManager/gnome.nix
+    ../../modules/desktopManager/gnome
     ../../modules/core
   ];
 }

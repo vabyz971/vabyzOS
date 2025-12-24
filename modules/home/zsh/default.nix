@@ -1,4 +1,4 @@
-{ pkgs, lib, ...}: {
+{ pkgs, lib, host, ...}: {
 
   programs.zsh = {
     enable = true;
@@ -17,8 +17,8 @@
       upgrade = "
       cd ~/vabyzOS/
       sudo nix flake update
-      sudo nixos-rebuild switch --flake ~/vabyzOS/#vabyz971";
-      update = "sudo nixos-rebuild switch --flake ~/vabyzOS/#vabyz971";
+      sudo nixos-rebuild switch --flake ~/vabyzOS/#${host}";
+      update = "sudo nixos-rebuild switch --flake ~/vabyzOS/#${host}";
     };
 
     history.size = 10000;

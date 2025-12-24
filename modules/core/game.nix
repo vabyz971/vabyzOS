@@ -20,8 +20,4 @@
       ];
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    lutris
-  ];
 }

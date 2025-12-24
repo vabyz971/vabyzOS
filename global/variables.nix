@@ -8,16 +8,8 @@
   # Waybar Settings
   clock24h = true;
 
-  # Hardware
-  gpu = "vm";
-
   # Setting networking
   hostname = "nixos_config";
-
-  # Program Options
-  browser = "firefox"; # Set Default Browser
-  terminal = "kitty"; # Set Default System Terminal
-  fileSystem = "thunar";
   
   # Settings Language
   i18nLocalLanguage = "fr_CA.UTF-8";
