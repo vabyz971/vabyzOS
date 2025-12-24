@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    # ./boot.nix
+    ./boot.nix
     ./user.nix
     ./packages.nix
     ./flatpak.nix

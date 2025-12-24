@@ -1,6 +1,16 @@
-{ pkgs, config, lib,
- ... }:
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
+
+  environment.systemPackages = with pkgs; [
+    dconf
+    dconf-editor
+  ];
+
   gtk = {
     enable = true;
 
@@ -12,7 +22,7 @@
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
       size = 24;
-    }; 
+    };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
@@ -29,28 +39,27 @@
       show-desktop-icons = true;
     };
 
-    # List extension activate 
+    # List extension activate
     "org/gnome/shell" = {
       enabled-extensions = [
-      "user-theme@gnome-shell-extensions.gnome.gitlab.com"
-      "Bluetooth-Battery-Meter@maniacx.github.com"
-      "trayIconsReloaded@selfmade.pl"
-      "add-to-desktop@tommimon.github.com"
-      "gtk4-ding@smedius.gitlab.com"
-      "blur-my-shell@aunetx"
-      "dash-to-dock@micxgx.gmail.com"
-      "Vitals@CoreCoding.com"
-      "tilingshell@ferrarodomenico.com"
-      "logomenu@aryan_k"
-      "lockkeys@vaina.lt"
-      "mediacontrols@cliffniff.github.com"
+        "user-theme@gnome-shell-extensions.gnome.gitlab.com"
+        "Bluetooth-Battery-Meter@maniacx.github.com"
+        "trayIconsReloaded@selfmade.pl"
+        "add-to-desktop@tommimon.github.com"
+        "gtk4-ding@smedius.gitlab.com"
+        "blur-my-shell@aunetx"
+        "dash-to-dock@micxgx.gmail.com"
+        "Vitals@CoreCoding.com"
+        "tilingshell@ferrarodomenico.com"
+        "logomenu@aryan_k"
+        "lockkeys@vaina.lt"
+        "mediacontrols@cliffniff.github.com"
       ];
     };
   };
 
-
-  # GNOME extensions are managed and configured by the program "Extensions" 
-  # that comes with GNOME. Some of them can be installed with Nix, however they aren't enabled by default. 
+  # GNOME extensions are managed and configured by the program "Extensions"
+  # that comes with GNOME. Some of them can be installed with Nix, however they aren't enabled by default.
   # To enable them the "Extensions" program can be used.
 
   home.packages = with pkgs.gnomeExtensions; [

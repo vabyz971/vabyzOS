@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./gtk.nix
+    ../../home./gtk.nix
     ./gnome.nix
   ];
 }

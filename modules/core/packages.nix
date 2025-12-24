@@ -21,7 +21,5 @@
     corepack_24
     bun
     nixfmt
-    dconf
-    dconf-editor
   ];
 }
