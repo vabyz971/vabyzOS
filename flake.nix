@@ -15,7 +15,8 @@
     };
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs =
+    { nixpkgs, ... }@inputs:
     let
 
       # Définition des configuration disponible
@@ -23,19 +24,35 @@
         "gnome" = {
           system = "x86_64-linux";
           host = "desktop";
-          profile = "vabyz971";
-          modules = [ ./profiles/vabyz971 ];
+          profile = "gnome";
+          modules = [
+            ./hosts/desktop
+            ./modules/core
+            ./modules/driver/nvidia.nix
+            ./modules/desktopManager/gnome.nix
+          ];
         };
         "vm" = {
           system = "x86_64-linux";
           host = "vm";
           profile = "vm";
-          modules = [ ./profiles/vm ];
+          modules = [
+            ./hosts/vm
+            ./modules/core
+            ./modules/desktopManager/gnome.nix
+          ];
         };
       };
 
       # Fonction de création de configuration Nixos
-      mkNixosConfig = { configName, system, host, profile, modules}:
+      mkNixosConfig =
+        {
+          configName,
+          system,
+          host,
+          profile,
+          modules,
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -48,12 +65,18 @@
 
           modules = modules;
         };
-    in {
+    in
+    {
 
       # Fonction générale a tout les configuration
-      nixosConfigurations = builtins.mapAttrs (configName: cfg: mkNixosConfig ({
-        inherit configName;
-      } // cfg)
+      nixosConfigurations = builtins.mapAttrs (
+        configName: cfg:
+        mkNixosConfig (
+          {
+            inherit configName;
+          }
+          // cfg
+        )
       ) configuration;
     };
 }

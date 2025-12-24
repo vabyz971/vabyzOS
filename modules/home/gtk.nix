@@ -5,12 +5,6 @@
   ...
 }:
 {
-
-  environment.systemPackages = with pkgs; [
-    dconf
-    dconf-editor
-  ];
-
   gtk = {
     enable = true;
 
@@ -33,10 +27,6 @@
 
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-    };
-
-    "org/gnome/desktop/background" = {
-      show-desktop-icons = true;
     };
 
     # List extension activate
