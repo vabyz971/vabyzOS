@@ -13,6 +13,14 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.Nixpkgs.follows = "nixpkgs";
+    };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -39,7 +47,7 @@
           modules = [
             ./hosts/vm
             ./modules/core
-            ./modules/desktopManager/gnome.nix
+            ./modules/desktopManager/niri.nix
           ];
         };
       };

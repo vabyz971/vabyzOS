@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
 
   programs.appimage.enable = true;
@@ -21,5 +21,17 @@
     corepack_24
     bun
     nixfmt
+    quickshell
+    gpu-screen-recorder
+    brightnessctl
+    ddcutil
+    cliphist
+    matugen
+    cava
+    wlsunset
+    xdg-desktop-portal
+    evolution-data-server
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+
   ];
 }

@@ -2,6 +2,9 @@
 
   # Bluetooth Support
   # services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   # SSD Optimizer
   # services.fstrim.enable = true;

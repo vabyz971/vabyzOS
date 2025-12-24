@@ -1,6 +1,7 @@
 { profile, ... }:
 {
   imports = [
+    ./noctalia
     ./git.nix
     ./kitty.nix
     ./zsh
