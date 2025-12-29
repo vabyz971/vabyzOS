@@ -5,5 +5,5 @@
     ../common/core
     ./config.nix
     ../common/optional/nvidia.nix
-  ]
+  ];
 }

@@ -5,6 +5,7 @@ in
 {
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.wayland = true;
   services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
@@ -15,9 +16,9 @@ in
 
   # To disable installing GNOME's suite of applications
   # and only be left with GNOME shell.
-  services.gnome.core-apps.enable = false;
-  services.gnome.core-developer-tools.enable = false;
-  services.gnome.games.enable = false;
+  services.gnome.core-apps.enable = true;
+  # services.gnome.core-developer-tools.enable = false;
+  # services.gnome.games.enable = false;
 
   environment.systemPackages = with pkgs; [
 
