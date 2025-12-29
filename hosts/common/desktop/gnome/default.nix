@@ -27,8 +27,4 @@ in
     gnome-secrets
     poppler
   ];
-
-  imports = [
-    ./gtk.nix
-  ];
 }

@@ -10,7 +10,7 @@
     ../common/optional/game.nix
     ../common/optional/fonts.nix
     ../common/optional/appimage.nix
-    ../common/optional/desktop/gnome
+    ../common/desktop/gnome
   ];
 
   boot = {

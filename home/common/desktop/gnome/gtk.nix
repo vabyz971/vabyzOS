@@ -50,7 +50,7 @@
   # that comes with GNOME. Some of them can be installed with Nix, however they aren't enabled by default.
   # To enable them the "Extensions" program can be used.
 
-  environment.systemPackages = with pkgs.gnomeExtensions; [
+  home.packages = with pkgs.gnomeExtensions; [
     user-themes
     tray-icons-reloaded
     appindicator
