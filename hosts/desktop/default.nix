@@ -1,10 +1,9 @@
-{pkgs, config, lib ... }:
+{ pkgs, config, ... }:
 {
-  
-  # Config require
+
   imports = [
-    "./hardware.nix"
-    "../common"
+    ./hardware.nix
+    ../common
   ];
 
   boot = {
@@ -19,7 +18,6 @@
 
   # SSD Optimizer
   services.fstrim.enable = true;
-
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -57,7 +55,6 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-
   # Driver GPU
 
   # Enable OpenGL
@@ -65,8 +62,6 @@
     enable = true;
     enable32Bit = true;
   };
-
-  services.cuda.enable = true;
 
   hardware.nvidia = {
     # Modesetting is required.

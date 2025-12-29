@@ -103,7 +103,7 @@ collect_user_info() {
 
 select_host() {
     print_menu "SÉLECTION DE L'HÔTE"
-    echo "1. Desktop (portable)"
+    echo "1. Desktop (Bureau)"
     echo "2. VM (machine virtuelle)"
     echo
     
@@ -168,13 +168,12 @@ generate_hardware_config() {
     
     print_info "Exécution de nixos-generate-config pour ${HOST_NAME}..."
     
-    if sudo nixos-generate-config --show-hardware-config --dir "${HARDWARE_DIR}"; then
+    if sudo nixos-generate-config --show-hardware-config > "${HARDWARE_FILE}"; then
         # Renommer le fichier généré
-        if [ -f "${HARDWARE_DIR}/hardware-configuration.nix" ]; then
-            mv "${HARDWARE_DIR}/hardware-configuration.nix" "${HARDWARE_FILE}"
+        if [ -f "${HARDWARE_DIR}/hardware.nix" ]; then
             print_success "Configuration matérielle générée: ${HARDWARE_FILE}"
         else
-            print_warning "Fichier hardware-configuration.nix non trouvé, création d'un template..."
+            print_warning "Fichier hardware.nix non trouvé, création d'un template..."
             create_hardware_template "${HARDWARE_FILE}"
         fi
     else

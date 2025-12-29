@@ -12,7 +12,12 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
 
       system = "x86_64-linux";
@@ -37,7 +42,7 @@
           modules = [
             ./hosts/desktop
 
-            home-manager.nixosModule.home-manager
+            home-manager.nixosModules.home-manager
             (
               homeManagerBase
               // {

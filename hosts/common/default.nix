@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   inherit (import ../../global/variables.nix) i18nLocalLanguage consoleKeyMap;
 in
@@ -20,7 +25,7 @@ in
 
   # ======= Packages =======
   nixpkgs.config.allowUnfree = true;
-  import = [ "./pkgs.nix" ];
+  imports = [ ./pkgs.nix ];
 
   # ======= Firmware =======
   services.fwupd.enable = true;
