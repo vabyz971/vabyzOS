@@ -16,9 +16,12 @@
   imports = [
 
     ../common/core
-    
+
     # Desktop
     ../common/desktop/gnome
+
+    # Virtualisation
+    ../common/optional/virtmanager.nix
 
   ];
 }
