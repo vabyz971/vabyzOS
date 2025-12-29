@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs = {
     steam = {
@@ -28,7 +28,7 @@
     };
   };
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     lutris
     protontricks
   ];

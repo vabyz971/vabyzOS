@@ -20,11 +20,6 @@
     ../common/optional/flatpak.nix
     ../common/optional/binaires.nix
 
-    # GAMING
-    ../common/optional/game.nix
-
-    ../common/optional/fonts.nix
-
     # VIRTUALISATION
     ../common/optional/docker.nix
     ../common/optional/qemu.nix

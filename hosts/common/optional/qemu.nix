@@ -5,7 +5,7 @@
     virt-manager.enable = true;
   };
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     qemu_kvm
   ];
 }
