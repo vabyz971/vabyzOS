@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 {
+  users.mutableUsers = true;
   users.users = {
     vabyz971 = {
       isNormalUser = true;
