@@ -1,5 +1,5 @@
 {
-  description = "HorizonOS by vabyz971";
+  description = "Configuration nixos by vabyz971";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,82 +9,61 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.Nixpkgs.follows = "nixpkgs";
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { self, nixpkgs, ... }@inputs:
     let
 
-      # Définition des configuration disponible
-      configuration = {
-        "gnome" = {
-          system = "x86_64-linux";
-          host = "desktop";
-          profile = "gnome";
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+
+      # Configuration de base Home Manager
+      homeManagerBase = {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "backup";
+        home-manager.sharedModules = [
+          # Modules GLOBAUX activés pour TOUS les utilisateurs
+          ./home/common/core
+        ];
+      };
+
+    in
+    {
+      nixosConfigurations = {
+        vabyz971 = nixpkgs.lib.nixosSystem {
+          inherit system;
           modules = [
             ./hosts/desktop
-            ./modules/core
-            ./modules/driver/nvidia.nix
-            ./modules/desktopManager/gnome.nix
+
+            home-manager.nixosModule.home-manager
+            (
+              homeManagerBase
+              // {
+                home-manager.users = {
+                  vabyz971 = import ./home/users/vabyz971.nix;
+                };
+              }
+            )
           ];
         };
-        "vm" = {
-          system = "x86_64-linux";
-          host = "vm";
-          profile = "vm";
+        vm = nixpkgs.lib.nixosSystem {
+          inherit system;
           modules = [
             ./hosts/vm
-            ./modules/core
-            ./modules/desktopManager/niri.nix
+
+            home-manager.nixosModule.home-manager
+            (
+              homeManagerBase
+              // {
+                home-manager.users = {
+                  vabyz971 = import ./home/users/vabyz971.nix;
+                };
+              }
+            )
           ];
         };
       };
-
-      # Fonction de création de configuration Nixos
-      mkNixosConfig =
-        {
-          configName,
-          system,
-          host,
-          profile,
-          modules,
-        }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            inherit inputs;
-            inherit profile;
-            inherit host;
-            configName = configName;
-          };
-
-          modules = modules;
-        };
-    in
-    {
-
-      # Fonction générale a tout les configuration
-      nixosConfigurations = builtins.mapAttrs (
-        configName: cfg:
-        mkNixosConfig (
-          {
-            inherit configName;
-          }
-          // cfg
-        )
-      ) configuration;
     };
 }

@@ -5,7 +5,14 @@
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+      extraPackages = with pkgs; [
+        gamescope
+        mangohud
+        goverlay
+      ];
     };
 
     gamescope = {
@@ -20,4 +27,9 @@
       ];
     };
   };
+
+  home.packages = with pkgs; [
+    lutris
+    protontricks
+  ];
 }
