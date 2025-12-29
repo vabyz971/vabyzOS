@@ -1,11 +1,9 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
-    ../hardware.nix
-    ./bootloader.nix
-    ./networking.nix
-    ./i18n.nix
-    ./service.nix
-    ./packages.nix
-    ./system.nix
+    ./hardware.nix
+    ../common/core
+    ./config.nix
+    ../common/optional/nvidia.nix
   ];
 }

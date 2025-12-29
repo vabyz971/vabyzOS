@@ -9,17 +9,12 @@
 
 </div>
 
-## DE (Desktop Environnement)
-
-### Gnome
-![exemple De gnome](/img/img_DE_gnome.png)
-
-#### - the gnome installation with software is more than 10gb+
 
 ## Requirements
- - Version nixos : 25.05
+ - Version nixos : 25.11
  - Version packages : unstable
- - Boot partition required
+ - Boot partition: 1Go required
+ - Space disk : 16go
 
 
 ## Logiciel
@@ -32,12 +27,10 @@
 |---------------|---|
 |vivaldi        | |
 |firefox        | |
-|zen-browser    | |
 |git            | |
 |vscodium       | |
 |discord        | |
 |htop           | |
-|mission-center | |
 |fastfetch      | |
 |python 3.15    | |
 |nodejs 24      | |
@@ -96,41 +89,14 @@ nix-shell -p git
 ```bash
 git clone https://github.com/vabyz971/vabyzOS
 ```
-
-### 3. Run the installation script
+### or
 ```bash
-./install.sh
+curl -L https://raw.githubusercontent.com/vabyz971/vabyzOS/main/install.sh | bash
 ```
-
-### 4. Enter username or default
-![step1](img/img_install_step_1.png)
-
-### 5. Enter your github username and email if you have one
-![step2](img/img_install_step_2.png)
-
-### 6. Enter a hostname or leave as default 
-![step3](img/img_install_step_3.png)
-
-### 7. What GPU are you using (Currently I only have NVIDIA GPUs)
-![step4](img/img_install_step_4.png)
-
-### 8. Enter your keyboard layout
-![step5](img/img_install_step_5.png)
-
-### 9. Enter yes or no to change language
-![step6](img/img_install_step_6.png)
-
-### 10. You will have a view of the configuration before validating
-#### y : install
-#### n : reconfigure
-#### q : exit the installation
-![step7](img/img_install_step_7.png)
-
-### 11. After installation restart your machine 
-
 </details>
 
 ## Crédit:
 Inspire projects: 
 - [ZaneyOS alias Zaney](https://gitlab.com/Zaney/zaneyos/)
 - [JaKooLit](https://github.com/JaKooLit/NixOS-Hyprland)
+- [EmergentMind](https://github.com/EmergentMind/nix-config)

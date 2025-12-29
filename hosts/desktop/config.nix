@@ -1,11 +1,18 @@
-{ ... }:
+{ pkgs, config, ... }:
 {
 
-  # Config require
-  imports = [
-    "./hardware.nix"
-    "../common"
-  ];
+  boot = {
+    # Virtual device
+    kernelModules = [ "v4l2loopback" ];
+    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+  };
+
+  # Bluetooth Support
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+  # SSD Optimizer
+  services.fstrim.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -23,8 +30,11 @@
     #media-session.enable = true;
   };
 
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
   # HostName
-  networking.hostName = "2B-vm"; # Define your hostname.
+  networking.hostName = "vabyznixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -39,4 +49,5 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
 }
