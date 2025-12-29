@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (import ../../global/variables.nix) i18nLocalLanguage consoleKeyMap;
+  inherit (import ../../../global/variables.nix) i18nLocalLanguage consoleKeyMap;
 in
 {
 

@@ -4,15 +4,7 @@
   imports = [
     ./hardware.nix
     ../common/core
-    ../common/desktop/gnome
     ../common/optional/nvidia.nix
-    ../common/optional/docker.nix
-    ../common/optional/qemu.nix
-    ../common/optional/game.nix
-    ../common/optional/fonts.nix
-    ../common/optional/appimage.nix
-    ../common/optional/flatpak.nix
-    
   ];
 
   boot = {

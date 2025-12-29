@@ -28,10 +28,6 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
-        home-manager.sharedModules = [
-          # Modules GLOBAUX activés pour TOUS les utilisateurs
-          ./home/common/core
-        ];
       };
 
     in
@@ -41,6 +37,7 @@
           inherit system;
           modules = [
             ./hosts/desktop
+            ./hosts/users/vabyz971.nix
 
             home-manager.nixosModules.home-manager
             (
