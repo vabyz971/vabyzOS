@@ -1,2 +1,3 @@
-hardware.nix
-configuration-hardware.nix
+**/hardware.nix
+**/hardware-configuration.nix
+hosts/*/hardware*.nix

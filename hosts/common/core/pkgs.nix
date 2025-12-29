@@ -7,6 +7,4 @@
     fastfetch
     btop
   ];
-
-  programe.zsh.enable = true;
 }

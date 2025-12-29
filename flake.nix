@@ -35,6 +35,7 @@
       nixosConfigurations = {
         vabyz971 = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/desktop
             ./hosts/users/vabyz971.nix
@@ -52,6 +53,7 @@
         };
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/vm
 

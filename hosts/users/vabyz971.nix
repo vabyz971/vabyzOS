@@ -12,6 +12,7 @@
         "libvirtd"
       ];
       shell = pkgs.zsh;
+      ignoreShellProgramCheck = true;
     };
   };
 
@@ -33,5 +34,7 @@
 
     # Etc...
     ../common/optional/fonts.nix
+    ../common/optional/browsers.nix
+    ../common/optional/development.nix
   ];
 }
