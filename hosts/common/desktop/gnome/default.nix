@@ -19,7 +19,7 @@ in
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
 
     # Application Gnome
     gnome-tweaks

@@ -18,12 +18,6 @@
 
     # STORE PACKAGES
     ../common/optional/flatpak.nix
-    ../common/optional/binaires.nix
-
-    # VIRTUALISATION
-    ../common/optional/docker.nix
-    ../common/optional/qemu.nix
-
 
     # Desktop
     ../common/desktop/gnome
