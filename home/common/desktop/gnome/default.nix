@@ -19,16 +19,6 @@ in
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;
 
-  environment.gnome.excludePackages = with pkgs; [
-    totem
-    decibels
-    epiphany
-    yelp
-    gnome-system-monitor
-    gnome-tour
-    gnome-user-docs
-  ];
-
   home.packages = with pkgs; [
 
     # Application Gnome
