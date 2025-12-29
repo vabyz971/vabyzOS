@@ -4,7 +4,7 @@
   users.users = {
     vabyz971 = {
       isNormalUser = true;
-      description = "Principal user (development, work, gaming)";
+      description = "vabyz971";
       extraGroups = [
         "wheel"
         "networkmanager"
