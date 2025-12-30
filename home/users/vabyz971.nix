@@ -18,7 +18,8 @@
     ../common/core
 
     # Desktop
-    ../common/desktop/gnome
+    # ../common/desktop/gnome
+    ../common/desktop/hyprland
 
     # Virtualisation
     ../common/optional/virtmanager.nix

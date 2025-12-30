@@ -20,7 +20,8 @@
   imports = [
 
     # Desktop Envirinement
-    ../common/desktop/gnome
+    # ../common/desktop/gnome
+    ../common/desktop/hyprland
 
     # Virtualisation
     ../common/optional/docker.nix

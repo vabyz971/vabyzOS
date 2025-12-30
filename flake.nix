@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -56,8 +60,9 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/vm
+            ./hosts/users/vabyz971.nix
 
-            home-manager.nixosModule.home-manager
+            home-manager.nixosModules.home-manager
             (
               homeManagerBase
               // {
