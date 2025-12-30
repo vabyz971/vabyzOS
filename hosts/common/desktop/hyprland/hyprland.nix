@@ -5,7 +5,6 @@
     waybar
     wofi
     nwg-look
-    quickshell
   ];
 
   programs.hyprland = {
