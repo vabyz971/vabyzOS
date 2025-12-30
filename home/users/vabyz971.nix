@@ -20,6 +20,7 @@
     # Desktop
     # ../common/desktop/gnome
     ../common/desktop/hyprland
+    ../common/desktop/noctalia
 
     # Virtualisation
     ../common/optional/virtmanager.nix

@@ -2,12 +2,17 @@
   description = "Configuration nixos by vabyz971";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Specify the source of Home Manager and Nixpkgs.
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
