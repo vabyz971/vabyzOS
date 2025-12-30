@@ -14,6 +14,9 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+    };
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,6 +28,8 @@
       self,
       nixpkgs,
       home-manager,
+      noctalia,
+      vicinae
       ...
     }@inputs:
     let

@@ -21,6 +21,7 @@
     # ../common/desktop/gnome
     ../common/desktop/hyprland
     ../common/desktop/noctalia
+    ../common/optional/vicinae.nix
 
     # Virtualisation
     ../common/optional/virtmanager.nix
