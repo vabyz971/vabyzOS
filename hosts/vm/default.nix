@@ -5,4 +5,3 @@
     ../common/core
     ./config.nix
   ];
-}
