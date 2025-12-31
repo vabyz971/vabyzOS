@@ -10,12 +10,24 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
     vicinae = {
       url = "github:vicinaehq/vicinae";
+    };
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
@@ -28,12 +40,9 @@
       self,
       nixpkgs,
       home-manager,
-      noctalia,
-      vicinae
       ...
     }@inputs:
     let
-
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
@@ -42,7 +51,6 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
-        home-manager.extraSpecialArgs = { inherit inputs; };
       };
 
     in
@@ -59,6 +67,7 @@
             (
               homeManagerBase
               // {
+                home-manager.extraSpecialArgs = { inherit inputs; };
                 home-manager.users = {
                   vabyz971 = import ./home/users/vabyz971.nix;
                 };

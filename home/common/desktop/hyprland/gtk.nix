@@ -5,20 +5,53 @@
   ...
 }:
 {
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 16;
+  };
+
   gtk = {
     enable = true;
+
+    theme = {
+      package = pkgs.dracula-theme;
+      name = "Dracula";
+    };
 
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
+
     cursorTheme = {
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
       size = 24;
     };
+
+    font = {
+      name = "JetBrainsMono Nerd Font Regular";
+      size = 11;
+    };
+
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
+    };
+  };
+
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        gtk-theme = "Dracula";
+        icon-theme = "Papirus-Dark";
+        document-font-name = "JetBrainsMono Nerd Font Medium 11";
+        monospace-font-name = "JetBrainsMono Nerd Font Medium 11";
+        color-scheme = "prefer-dark";
+      };
     };
   };
 }

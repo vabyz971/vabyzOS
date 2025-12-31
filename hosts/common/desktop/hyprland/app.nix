@@ -6,9 +6,12 @@
 
     # Application Gnome
     gnome-software
+    gnome-secrets
+    gnome-nettool
     nautilus
     warp
-    gnome-secrets
     poppler
+    vesktop
+    showtime
   ];
 }
