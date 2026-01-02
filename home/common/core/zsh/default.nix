@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  inputs,
+  config,
   ...
 }:
 let
@@ -9,11 +9,19 @@ let
 in
 {
 
+  home.packages = with pkgs; [
+    eza
+  ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    history = {
+      size = 10000;
+      path = "${config.xdg.dataHome}/zsh/history";
+    };
 
     oh-my-zsh = {
       enable = true;
@@ -22,7 +30,9 @@ in
     };
 
     shellAliases = {
-      ll = "ls -l";
+      ll = "eza -la --icons --git";
+      lt = "eza --tree --level=2";
+      c = "clear";
       upgrade = "
       cd ~/vabyzOS/
       sudo nix flake update
@@ -30,13 +40,21 @@ in
       update = "sudo nixos-rebuild switch --flake ~/vabyzOS/#${host.flakeProfile}";
     };
 
-    history.size = 10000;
-
     plugins = [
       {
         name = "powerlevel10k-config";
-        src = lib.cleanSource ./config;
-        file = ".p10k.zsh";
+        # src = lib.cleanSource ./config;
+        src = pkgs.zsh-powerlevel10k;
+        # file = "p10k.zsh";
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.zsh-autosuggestions;
+      }
+      {
+        name = "zsh-syntax-highlighting";
+        src = pkgs.zsh-syntax-highlighting;
       }
     ];
   };

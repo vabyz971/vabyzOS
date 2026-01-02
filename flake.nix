@@ -20,7 +20,7 @@
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     vicinae = {
       url = "github:vicinaehq/vicinae";
@@ -31,6 +31,10 @@
     };
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -51,6 +55,7 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
+
       };
 
     in

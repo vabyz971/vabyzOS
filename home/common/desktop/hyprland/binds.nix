@@ -1,69 +1,58 @@
 { ... }:
 {
   # Raccourci pour clavier AZERTY
-
-
-  # ================= NOCTALIA =================
-    bindNoctalia = [
-      "$modifier,V, Noctalia Clipboard, exec, qs -c noctalia-shell ipc call launcher clipboard"
-      "$modifier ALT,L, Noctalia Lock Screen, exec, qs -c noctalia-shell ipc call sessionMenu lockAndSuspend"
-      "$modifier,X, Noctalia Power Menu, exec, qs -c noctalia-shell ipc call sessionMenu toggle"
-      "$modifier CTRL,R, Noctalia Screen Recorder, exec, qs -c noctalia-shell ipc call screenRecorder toggle"
-    ];
-
   # ================= HYPRLAND =================
   wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
-    bind = bindNoctalia ++ [
+    bind = [
 
+      # ================= NOCTALIA =================
+      "$mod ALT, L, exec, qs -c noctalia-shell ipc call sessionMenu lockAndSuspend"
+      "$mod ,X, exec, qs -c noctalia-shell ipc call sessionMenu toggle"
+      "$mod CTRL, R, exec, qs -c noctalia-shell ipc call screenRecorder toggle"
 
       # ============= BIND GENERAL =============
-      "$mainMod, A, exec, $terminal"
-      "$mainMod, Q, killactive,"
-      "$mainMod, B, exec, $browser"
-      "$mainMod, E, exec, $fileManager"
-      "$mainMod, V, togglefloating,k"
-      "$mainMod, P, pseudo, # dwindle"
-      "$mainMod, J, togglesplit, # dwindle"
-      "$mainMod, Space, exec, vicinae toggle"
-      "$mainMod, TAB, exec, overview:toggle"
-
-      # ============= MOVE/RESIZE WINDOWS =============
-      "$mainMod, mouse:272, movewindow"
-      "$mainMod, mouse:273, resizewindow"
+      "$mod, A, exec, $terminal"
+      "$mod, Q, killactive,"
+      "$mod, B, exec, $browser"
+      "$mod, E, exec, $fileManager"
+      "$mod, F, togglefloating,k"
+      "$mod, P, pseudo, # dwindle"
+      "$mod, S, togglesplit, # dwindle"
+      "$mod, Space, exec, vicinae toggle"
+      "$mod, TAB, exec, overview:toggle"
 
       # ============= MOVE FOCUS WINDOWS =============
-      "$mainMod, left, movefocus, l"
-      "$mainMod, right, movefocus, r"
-      "$mainMod, up, movefocus, u"
-      "$mainMod, down, movefocus, d"
+      "$mod, left, movefocus, l"
+      "$mod, right, movefocus, r"
+      "$mod, up, movefocus, u"
+      "$mod, down, movefocus, d"
 
       # ============= WORKSPACE SWITCH =============
-      "$mainMod SHIFT, ampersand, movetoworkspace, 1"
-      "$mainMod, eacute, workspace, 2"
-      "$mainMod, quotedbl, workspace, 3"
-      "$mainMod, apostrophe, workspace, 4"
-      "$mainMod, parenleft, workspace, 5"
-      "$mainMod, egrave, workspace, 6"
-      "$mainMod, minus, workspace, 7"
-      "$mainMod, underscore, workspace, 8"
-      "$mainMod, ccedilla, workspace, 9"
-      "$mainMod, agrave, workspace, 10"
+      "$mod SHIFT, ampersand, movetoworkspace, 1"
+      "$mod, eacute, workspace, 2"
+      "$mod, quotedbl, workspace, 3"
+      "$mod, apostrophe, workspace, 4"
+      "$mod, parenleft, workspace, 5"
+      "$mod, egrave, workspace, 6"
+      "$mod, minus, workspace, 7"
+      "$mod, underscore, workspace, 8"
+      "$mod, ccedilla, workspace, 9"
+      "$mod, agrave, workspace, 10"
 
-      "$mainMod, mouse_down, workspace, e+1"
-      "$mainMod, mouse_up, workspace, e-1"
+      "$mod, mouse_down, workspace, e+1"
+      "$mod, mouse_up, workspace, e-1"
 
       # ============= WORKSPACE MOVE APP =============
-      "$mainMod SHIFT, ampersand, movetoworkspace, 1"
-      "$mainMod SHIFT, eacute, movetoworkspace, 2"
-      "$mainMod SHIFT, quotedbl, movetoworkspace, 3"
-      "$mainMod SHIFT, apostrophe, movetoworkspace, 4"
-      "$mainMod SHIFT, parenleft, movetoworkspace, 5"
-      "$mainMod SHIFT, egrave, movetoworkspace, 6"
-      "$mainMod SHIFT, minus, movetoworkspace, 7"
-      "$mainMod SHIFT, underscore, movetoworkspace, 8"
-      "$mainMod SHIFT, ccedilla, movetoworkspace, 9"
-      "$mainMod SHIFT, agrave, movetoworkspace, 10"
+      "$mod SHIFT, ampersand, movetoworkspace, 1"
+      "$mod SHIFT, eacute, movetoworkspace, 2"
+      "$mod SHIFT, quotedbl, movetoworkspace, 3"
+      "$mod SHIFT, apostrophe, movetoworkspace, 4"
+      "$mod SHIFT, parenleft, movetoworkspace, 5"
+      "$mod SHIFT, egrave, movetoworkspace, 6"
+      "$mod SHIFT, minus, movetoworkspace, 7"
+      "$mod SHIFT, underscore, movetoworkspace, 8"
+      "$mod SHIFT, ccedilla, movetoworkspace, 9"
+      "$mod SHIFT, agrave, movetoworkspace, 10"
 
       # ============= MULTIMEDIA KEYS =============
       ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
@@ -78,6 +67,13 @@
       ", XF86AudioPause, exec, playerctl play-pause"
       ", XF86AudioPlay, exec, playerctl play-pause"
       ", XF86AudioPrev, exec, playerctl previous"
-    ]
+
+    ];
+
+    # ============= MOVE/RESIZE WINDOWS =============
+    bindm = [
+      "$modifier, mouse:272, movewindow"
+      "$modifier, mouse:273, resizewindow"
+    ];
   };
 }

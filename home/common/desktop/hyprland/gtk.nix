@@ -10,7 +10,7 @@
     gtk.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
-    size = 16;
+    size = 24;
   };
 
   gtk = {
@@ -33,7 +33,7 @@
     };
 
     font = {
-      name = "JetBrainsMono Nerd Font Regular";
+      name = "Liberation Sans Regular";
       size = 11;
     };
 
@@ -48,8 +48,8 @@
       "org/gnome/desktop/interface" = {
         gtk-theme = "Dracula";
         icon-theme = "Papirus-Dark";
-        document-font-name = "JetBrainsMono Nerd Font Medium 11";
-        monospace-font-name = "JetBrainsMono Nerd Font Medium 11";
+        document-font-name = "Liberation Sans Medium 11";
+        monospace-font-name = "Liberation Sans Medium 11";
         color-scheme = "prefer-dark";
       };
     };

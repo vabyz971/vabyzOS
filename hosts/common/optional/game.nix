@@ -10,8 +10,8 @@
       ];
       extraPackages = with pkgs; [
         gamescope
+        gamemode
         mangohud
-        goverlay
       ];
     };
 
@@ -19,7 +19,6 @@
       enable = true;
       capSysNice = true;
       args = [
-        "--adaptive-sync"
         "--hdr-enabled"
         "--rt"
         "--steam"
@@ -30,6 +29,7 @@
 
   environment.systemPackages = with pkgs; [
     lutris
-    protontricks
+    protonplus
+    bottles
   ];
 }

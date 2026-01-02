@@ -19,6 +19,8 @@
 
   imports = [
 
+    ../common/core/sops.nix
+
     # Desktop Envirinement
     # ../common/desktop/gnome
     ../common/desktop/hyprland
@@ -39,5 +41,6 @@
     ../common/optional/fonts.nix
     ../common/optional/browsers.nix
     ../common/optional/development.nix
+    ../common/optional/socialNetwork.nix
   ];
 }
