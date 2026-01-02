@@ -13,6 +13,7 @@
     warp
     poppler
     showtime
+    gnome-keyring
 
     # App for Hyrpland
     wl-clipboard # Presse-papiers Wayland
