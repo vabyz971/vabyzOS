@@ -28,7 +28,7 @@
       "$mod, down, movefocus, d"
 
       # ============= WORKSPACE SWITCH =============
-      "$mod SHIFT, ampersand, movetoworkspace, 1"
+      "$mod, ampersand, workspace, 1"
       "$mod, eacute, workspace, 2"
       "$mod, quotedbl, workspace, 3"
       "$mod, apostrophe, workspace, 4"
