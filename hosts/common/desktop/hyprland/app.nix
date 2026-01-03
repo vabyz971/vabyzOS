@@ -13,7 +13,7 @@
     warp
     poppler
     showtime
-    gnome-keyring
+    seahorse
 
     # App for Hyrpland
     wl-clipboard # Presse-papiers Wayland
@@ -23,7 +23,9 @@
     hyprpolkitagent
   ];
 
-  # Support pour Nautilus (et autres apps GTK/Gnome)
+  # Support pour Nautilus et trousseau de clés (et autres apps GTK/Gnome)
   services.gvfs.enable = true; # Trash, volumes réseaux
   services.tumbler.enable = true; # Prévisualisation des miniatures
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.SDDM.enableGnomeKeyring = true;
 }
