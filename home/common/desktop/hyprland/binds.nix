@@ -6,6 +6,7 @@
     bind = [
 
       # ================= NOCTALIA =================
+      "ALT, Space, exec, qs -c noctalia-shell ipc call launcher toggle"
       "$mod ALT, L, exec, qs -c noctalia-shell ipc call sessionMenu lockAndSuspend"
       "$mod ,X, exec, qs -c noctalia-shell ipc call sessionMenu toggle"
       "$mod CTRL, R, exec, qs -c noctalia-shell ipc call screenRecorder toggle"

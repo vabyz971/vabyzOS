@@ -43,12 +43,14 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
 
       # Configuration de base Home Manager
       homeManagerBase = {
@@ -63,7 +65,7 @@
       nixosConfigurations = {
         vabyz971 = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs pkgs-unstable; };
           modules = [
             ./hosts/desktop
             ./hosts/users/vabyz971.nix
@@ -82,7 +84,7 @@
         };
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs pkgs-unstable; };
           modules = [
             ./hosts/vm
             ./hosts/users/vabyz971.nix
