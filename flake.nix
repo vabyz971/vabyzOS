@@ -14,8 +14,8 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
     noctalia = {
@@ -45,6 +45,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+
       ...
     }@inputs:
     let

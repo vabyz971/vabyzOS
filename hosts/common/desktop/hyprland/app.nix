@@ -8,8 +8,12 @@
     gnome-software
     gnome-secrets
     gnome-nettool
+    gnome-disk-utility
     nautilus
     nautilus-python
+    nautilus-open-any-terminal
+    sushi
+    image-roll
     warp
     poppler
     showtime
@@ -21,6 +25,7 @@
     easyeffects # Audio effects for PipeWire applications
     hyprlandPlugins.hyprspace # Workspace overview plugin for Hyprland
     hyprpolkitagent
+    hyprshot
   ];
 
   # Support pour Nautilus et trousseau de clés (et autres apps GTK/Gnome)

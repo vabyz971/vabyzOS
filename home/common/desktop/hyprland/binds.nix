@@ -22,6 +22,10 @@
       "$mod, Space, exec, vicinae toggle"
       "$mod, TAB, exec, overview:toggle"
 
+      "$mod SHIFT, W, exec, hyprshot -m window -o ~/Pictures/Screenshots/"
+      "$mod SHIFT, S, exec, hyprshot -m region -o ~/Pictures/Screenshots/"
+      ", PRINT, exec, hyprshot -m output -o ~/Pictures/Screenshots/"
+
       # ============= MOVE FOCUS WINDOWS =============
       "$mod, left, movefocus, l"
       "$mod, right, movefocus, r"

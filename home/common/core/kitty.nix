@@ -3,7 +3,7 @@
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
     settings = {
       font_family = "JetBrainsMono Nerd Font Mono";
       font_size = "12.0";

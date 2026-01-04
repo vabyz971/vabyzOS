@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   config,
   ...
 }:
@@ -20,8 +21,9 @@
       monitor = ",preferred,auto,auto";
 
       exec-once = [
-        "vicinae server"
         "systemctl --user start hyprpolkitagent"
+        "udiskie"
+        "vicinae server"
       ];
 
       # Input (clavier/souris)
@@ -47,8 +49,6 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-        "col.inactive_border" = "rgba(626880aa)";
         layout = "dwindle";
         resize_on_border = true;
         allow_tearing = false;
@@ -99,6 +99,14 @@
 
       # See https://wiki.hypr.land/Configuring/Gestures
       gesture = "3, horizontal, workspace";
+
+      source = [
+        "~/.config/hypr/noctalia/noctalia-colors.conf"
+      ];
+
     };
+    # plugins = [
+    #   inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+    # ];
   };
 }
