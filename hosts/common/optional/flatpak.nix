@@ -1,13 +1,9 @@
 { pkgs, ... }:
 {
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-    configPackages = [ pkgs.hyprland ];
-
-  };
-
   services = {
     flatpak.enable = true;
   };
+  environment.systemPackages = with pkgs; [
+    flatpak-xdg-utils
+  ];
 }

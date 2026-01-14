@@ -3,7 +3,7 @@
 {
 
   environment.systemPackages = with pkgs; [
-
+    
     # Application Gnome
     gnome-software
     gnome-secrets
@@ -18,12 +18,11 @@
     poppler
     showtime
     seahorse
-
+    
     # App for Hyrpland
     wl-clipboard # Presse-papiers Wayland
     wluma # tool Wayland compositors to automatically adjust screen brightness
     easyeffects # Audio effects for PipeWire applications
-    hyprlandPlugins.hyprspace # Workspace overview plugin for Hyprland
     hyprpolkitagent
     hyprshot
   ];
@@ -33,4 +32,5 @@
   services.tumbler.enable = true; # Prévisualisation des miniatures
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.SDDM.enableGnomeKeyring = true;
+  security.rtkit.enable = true;
 }

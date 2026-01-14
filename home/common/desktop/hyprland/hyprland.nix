@@ -1,6 +1,6 @@
 {
-  pkgs,
   inputs,
+  pkgs,
   config,
   ...
 }:
@@ -22,7 +22,6 @@
 
       exec-once = [
         "systemctl --user start hyprpolkitagent"
-        "udiskie"
         "vicinae server"
       ];
 
@@ -103,10 +102,10 @@
       source = [
         "~/.config/hypr/noctalia/noctalia-colors.conf"
       ];
-
     };
-    # plugins = [
-    #   inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-    # ];
+
+    plugins = [
+      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+    ];
   };
 }

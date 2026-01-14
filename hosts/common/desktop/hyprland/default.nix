@@ -5,5 +5,6 @@
     ./sddm.nix
     ./hyprland.nix
     ./app.nix
+    ./xdg.nix
   ];
 }
