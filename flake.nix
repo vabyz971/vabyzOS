@@ -75,7 +75,7 @@
             (
               homeManagerBase
               // {
-                home-manager.extraSpecialArgs = { inherit inputs; };
+                home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
                 home-manager.users = {
                   vabyz971 = import ./home/users/vabyz971.nix;
                 };
