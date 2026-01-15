@@ -103,6 +103,13 @@
       source = [
         "~/.config/hypr/noctalia/noctalia-colors.conf"
       ];
+      plugin = {
+        hyprspace = {
+          overview_gaps = 5;
+          workspace_gaps = 3;
+          window_scale = 0.9;
+        };
+      };
     };
 
     plugins = [
