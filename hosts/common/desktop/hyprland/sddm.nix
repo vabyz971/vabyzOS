@@ -14,7 +14,7 @@ in
   imports = [ inputs.silentSDDM.nixosModules.default ];
   programs.silentSDDM = {
     enable = true;
-    theme = "catppuccin-mocha";
+    theme = "default";
     # settings = { ... }; see example in module
   };
 }

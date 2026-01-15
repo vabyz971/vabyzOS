@@ -14,8 +14,8 @@
       # ============= BIND GENERAL =============
       "$mod, A, exec, $terminal"
       "$mod, Q, killactive,"
-      "$mod, B, exec, $browser"
-      "$mod, E, exec, $fileManager"
+      "$mod, B, exec, xdg-open https://"
+      "$mod, E, exec, nautilus --new-window"
       "$mod, F, togglefloating,k"
       "$mod, P, pseudo, # dwindle"
       "$mod, S, togglesplit, # dwindle"

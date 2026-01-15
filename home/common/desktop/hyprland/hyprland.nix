@@ -13,8 +13,6 @@
       # Variables
       "$mod" = "SUPER";
       "$terminal" = "kitty";
-      "$fileManager" = "nautilus --new-window";
-      "$browser" = "vivaldi";
       "$menu" = "vicinae toggle";
 
       # Auto-détection
@@ -22,6 +20,8 @@
 
       exec-once = [
         "systemctl --user start hyprpolkitagent"
+        "systemctl --user restart xdg-desktop-portal-gtk"
+        "systemctl --user restart xdg-desktop-portal"
         "vicinae server"
       ];
 
@@ -93,7 +93,8 @@
       # https://wiki.hypr.land/Configuring/Variables/#misc
       misc = {
         force_default_wallpaper = "-1"; # Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo = false; # If true disables the random hyprland logo / anime girl background. :(
+        disable_hyprland_logo = true; # If true disables the random hyprland logo / anime girl background. :(
+        middle_click_paste = true;
       };
 
       # See https://wiki.hypr.land/Configuring/Gestures

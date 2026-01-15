@@ -2,10 +2,11 @@
 {
   imports = [
     ./hyprland.nix
+    ./env.nix
     ./animations.nix
     ./binds.nix
     ./windowrules.nix
-    ./env.nix
     ./gtk.nix
+    ./xdg.nix
   ];
 }
