@@ -1,31 +1,33 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     
     # Application Gnome
-    gnome-software
-    gnome-secrets
-    gnome-nettool
-    gnome-disk-utility
-    nautilus
-    nautilus-python
-    nautilus-open-any-terminal
-    sushi
-    image-roll
-    warp
-    poppler
-    showtime
-    seahorse
+    pkgs-unstable.bazaar
+    pkgs.gnome-secrets
+    pkgs.gnome-nettool
+    pkgs.gnome-disk-utility
+    pkgs.nautilus
+    pkgs.nautilus-python
+    pkgs.nautilus-open-any-terminal
+    pkgs.sushi
+    pkgs.image-roll
+    pkgs.warp
+    pkgs.poppler
+    pkgs.showtime
+    pkgs.seahorse
     
     # App for Hyrpland
-    wl-clipboard # Presse-papiers Wayland
-    wluma # tool Wayland compositors to automatically adjust screen brightness
-    easyeffects # Audio effects for PipeWire applications
-    hyprpolkitagent
-    hyprshot
+    pkgs.wl-clipboard # Presse-papiers Wayland
+    pkgs.wluma # tool Wayland compositors to automatically adjust screen brightness
+    pkgs.easyeffects # Audio effects for PipeWire applications
+    pkgs.hyprpolkitagent
+    pkgs.hyprshot
   ];
+
+
 
   # Support pour Nautilus et trousseau de clés (et autres apps GTK/Gnome)
   services.gvfs.enable = true; # Trash, volumes réseaux
