@@ -3,7 +3,6 @@
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
-    themeFile = "Catppuccin-Mocha";
     settings = {
       font_family = "JetBrainsMono Nerd Font Mono";
       font_size = "12.0";
@@ -15,5 +14,6 @@
       confirm_os_window_close = 0;
       enable_audio_bell = false;
     };
+    extraConfig = "include ~/.config/kitty/themes/noctalia.conf";
   };
 }

@@ -12,11 +12,7 @@
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
@@ -94,6 +90,7 @@
             (
               homeManagerBase
               // {
+                home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
                 home-manager.users = {
                   vabyz971 = import ./home/users/vabyz971.nix;
                 };

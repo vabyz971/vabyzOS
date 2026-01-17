@@ -104,16 +104,17 @@
         "~/.config/hypr/noctalia/noctalia-colors.conf"
       ];
       plugin = {
-        hyprspace = {
-          overview_gaps = 5;
-          workspace_gaps = 3;
-          window_scale = 0.9;
+        hyprexpo = {
+          columns = 2;
+          gap_size = 5;
+          workspace_method = "center current";
+          gesture_distance = 300;
         };
       };
     };
 
     plugins = [
-      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      pkgs.hyprlandPlugins.hyprexpo
     ];
   };
 }
