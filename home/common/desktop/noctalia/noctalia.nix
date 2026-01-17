@@ -1,12 +1,13 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   inputs,
   lib,
   ...
 }:
 let
-  system = pkgs.stdenv.hostPlatform.system;
+  system = pkgs-unstable.stdenv.hostPlatform.system;
   noctaliaPath = inputs.noctalia.packages.${system}.default;
   configDir = "${noctaliaPath}/share/noctalia-shell";
 in
@@ -40,7 +41,7 @@ in
       Wants = [ "graphical-session-target" ];
     };
     Service = {
-      ExecStart = "${pkgs.quickshell}/bin/quickshell --path %h/.config/quickshell/noctalia-shell";
+      ExecStart = "${pkgs-unstable.quickshell}/bin/quickshell --path %h/.config/quickshell/noctalia-shell";
       Restart = "always";
       RestartSec = 5;
       Environment = [
