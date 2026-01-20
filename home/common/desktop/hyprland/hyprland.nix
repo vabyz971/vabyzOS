@@ -105,16 +105,24 @@
       ];
       plugin = {
         hyprexpo = {
-          columns = 2;
+          columns = 3;
           gap_size = 5;
-          workspace_method = "center current";
+          workspace_method = "first 1";
           gesture_distance = 300;
+        };
+        overview = {
+          gapsIn = 5;
+          gapsOut = 2;
+          dragAlpha = 1;
+          disableBlur = true;
+          centerAligned = true;
         };
       };
     };
 
     plugins = [
       pkgs.hyprlandPlugins.hyprexpo
+      pkgs.hyprlandPlugins.hyprspace
     ];
   };
 }

@@ -20,7 +20,8 @@
       "$mod, P, pseudo, # dwindle"
       "$mod, S, togglesplit, # dwindle"
       "$mod, Space, exec, vicinae toggle"
-      "ALT, TAB, hyprexpo:expo, toggle"
+      "$mod, TAB, hyprexpo:expo, toggle"
+      "ALT, TAB, overview:toggle, toggle"
 
       "$mod SHIFT, W, exec, hyprshot -m window -o ~/Pictures/Screenshots/"
       "$mod SHIFT, S, exec, hyprshot -m region -o ~/Pictures/Screenshots/"
