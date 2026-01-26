@@ -21,14 +21,20 @@
 
     ../common/core/sops.nix
 
-    # Desktop Envirinement
+    # Desktop Environement
     # ../common/desktop/gnome
-    ../common/desktop/hyprland
-    ../common/desktop/noctalia
+    # ../common/desktop/hyprland
+    ../common/desktop/niri
+
+    # Shell Environement
+    ../common/optional/noctalia.nix
 
     # Virtualisation
     ../common/optional/docker.nix
     ../common/optional/qemu.nix
+
+    # Session manager
+    ../common/optional/sddm.nix
 
     # Gaming
     ../common/optional/game.nix

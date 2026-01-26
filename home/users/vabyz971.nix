@@ -7,20 +7,15 @@
     stateVersion = "25.11";
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    BROWSER = "vivaldi";
-    TERMINAL = "kitty";
-  };
-
   imports = [
 
     ../common/core
 
     # Desktop
     # ../common/desktop/gnome
-    ../common/desktop/hyprland
-    ../common/desktop/noctalia
+    # ../common/desktop/hyprland
+    # ../common/desktop/noctalia
+    ../common/desktop/niri
     ../common/optional/vicinae.nix
 
     # Virtualisation

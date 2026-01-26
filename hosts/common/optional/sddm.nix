@@ -3,7 +3,7 @@
   ...
 }:
 let
-  inherit (import ../../../../global/variables.nix) keyboardLayout;
+  inherit (import ../../../global/variables.nix) keyboardLayout;
 in
 {
   services.xserver.xkb = {

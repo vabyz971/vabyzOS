@@ -2,6 +2,7 @@
 
 {
   imports = [
-    ./noctalia.nix
+    ./app.nix
+    ./niri.nix
   ];
 }
