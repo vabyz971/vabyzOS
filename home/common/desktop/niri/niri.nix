@@ -1,5 +1,10 @@
 { config, ... }:
 {
+
+home.sessionVariables = {
+  QT_QPA_PLATFORMTHEME = "gtk3";
+};
+
   programs.niri = {
     settings = {
 
@@ -9,7 +14,8 @@
         XDG_SESSION_TYPE = "wayland";
         XDG_SESSION_DESKTOP = "niri";
         XDG_CURRENT_DESKTOP = "niri";
-        QT_QPA_PLATFORMTHEME = "gtk3";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
         MOZ_ENABLE_WAYLAND = "1";
         GDK_BACKEND = "wayland";
         SDL_VIDEODRIVER = "wayland";

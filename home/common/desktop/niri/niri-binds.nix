@@ -46,6 +46,13 @@
         "launcher"
         "toggle"
       ];
+      "Mod+X".action.spawn = [
+        "noctalia-shell"
+        "ipc"
+        "call"
+        "sessionMenu"
+        "toggle"
+      ];
       "Mod+Shift+D".action.spawn = [
         "noctalia-shell"
         "ipc"
@@ -114,18 +121,18 @@
 
       # --- Système & Médias ---
       "XF86AudioRaiseVolume".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "volume"
-        "increase"
+        "wpctl"
+        "set-volume"
+        "-l"
+        "1"
+        "@DEFAULT_AUDIO_SINK@"
+        "5%+"
       ];
       "XF86AudioLowerVolume".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "volume"
-        "decrease"
+        "wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "5%-"
       ];
       "XF86AudioMute".action.spawn = [
         "wpctl"
