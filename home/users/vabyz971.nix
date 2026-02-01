@@ -12,9 +12,6 @@
     ../common/core
 
     # Desktop
-    # ../common/desktop/gnome
-    # ../common/desktop/hyprland
-    # ../common/desktop/noctalia
     ../common/desktop/niri
     ../common/optional/vicinae.nix
 

@@ -22,8 +22,6 @@
     ../common/core/sops.nix
 
     # Desktop Environement
-    # ../common/desktop/gnome
-    # ../common/desktop/hyprland
     ../common/desktop/niri
 
     # Shell Environement
@@ -48,5 +46,6 @@
     ../common/optional/browsers.nix
     ../common/optional/development.nix
     ../common/optional/socialNetwork.nix
+    ../common/optional/mpvpaper.nix
   ];
 }

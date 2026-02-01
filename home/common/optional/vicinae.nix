@@ -9,8 +9,8 @@
 
     enable = true;
     systemd = {
-      enable = true;
-      autoStart = true; # default: false
+      enable = false;
+      autoStart = false; # default: false
       environment = {
         USE_LAYER_SHELL = 1;
       };
