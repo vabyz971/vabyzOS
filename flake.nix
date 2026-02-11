@@ -31,7 +31,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
@@ -55,9 +54,9 @@
     {
       nixosConfigurations = {
         vabyz971 = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = { inherit inputs pkgs-unstable; };
           modules = [
+            { nixpkgs.hostPlatform = system; }
             ./hosts/desktop
             ./hosts/users/vabyz971.nix
 
@@ -74,9 +73,9 @@
           ];
         };
         vm = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = { inherit inputs pkgs-unstable; };
           modules = [
+            { nixpkgs.hostPlatform = system; }
             ./hosts/vm
             ./hosts/users/vabyz971.nix
 

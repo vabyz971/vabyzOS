@@ -1,11 +1,13 @@
-{ ... }:
+{ pkgs, inputs, ... }:
 {
+  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "gtk3";
   };
 
   programs.niri = {
+    package = pkgs.niri-unstable;
     settings = {
       environment = {
         NIXOS_OZONE_WL = "1";
