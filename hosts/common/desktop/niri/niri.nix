@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -17,4 +17,8 @@
 
   # Polkit et agent d'authentification
   security.polkit.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite
+  ];
 }

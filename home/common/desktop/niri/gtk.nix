@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 {
 
   home.pointerCursor = {

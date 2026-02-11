@@ -5,5 +5,6 @@
   };
   environment.systemPackages = with pkgs; [
     flatpak-xdg-utils
+    gnome-software
   ];
 }

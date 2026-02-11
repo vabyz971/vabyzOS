@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   users.mutableUsers = true;
   users.users = {
@@ -21,6 +21,9 @@
 
     ../common/core/sops.nix
 
+    # Session manager
+    ../common/optional/sddm.nix
+
     # Desktop Environement
     ../common/desktop/niri
 
@@ -31,15 +34,12 @@
     ../common/optional/docker.nix
     ../common/optional/qemu.nix
 
-    # Session manager
-    ../common/optional/sddm.nix
-
     # Gaming
     ../common/optional/game.nix
 
     # Store Packages
     ../common/optional/appimage.nix
-    ../common/optional/flatpak.nix
+    ../common/optional/pkgs-store.nix
 
     # Etc...
     ../common/optional/fonts.nix
@@ -47,5 +47,7 @@
     ../common/optional/development.nix
     ../common/optional/socialNetwork.nix
     ../common/optional/mpvpaper.nix
+    ../common/optional/nautilus.nix
+    ../common/optional/gnome-app.nix
   ];
 }

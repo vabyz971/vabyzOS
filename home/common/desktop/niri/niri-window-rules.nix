@@ -18,10 +18,10 @@
       {
         # Règles visuelles générales
         geometry-corner-radius = {
-          top-left = 10.0;
-          top-right = 10.0;
-          bottom-left = 10.0;
-          bottom-right = 10.0;
+          top-left = 0.0;
+          top-right = 0.0;
+          bottom-left = 0.0;
+          bottom-right = 0.0;
         };
         clip-to-geometry = true;
       }

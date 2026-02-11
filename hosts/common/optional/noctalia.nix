@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  pkgs-unstable,
   inputs,
   ...
 }:
@@ -21,8 +19,7 @@
     cliphist
     cava
     wlsunset
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
+    xdg-desktop-portal-gnome
     evolution-data-server
   ];
 

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
 
   home = {
@@ -14,6 +14,7 @@
     # Desktop
     ../common/desktop/niri
     ../common/optional/vicinae.nix
+    ../common/optional/nautilus.nix
 
     # Virtualisation
     ../common/optional/virtmanager.nix

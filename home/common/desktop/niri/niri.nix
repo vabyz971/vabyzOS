@@ -1,13 +1,12 @@
-{ config, ... }:
+{ ... }:
 {
 
-home.sessionVariables = {
-  QT_QPA_PLATFORMTHEME = "gtk3";
-};
+  home.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "gtk3";
+  };
 
   programs.niri = {
     settings = {
-
       environment = {
         NIXOS_OZONE_WL = "1";
         ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -26,7 +25,6 @@ home.sessionVariables = {
       spawn-at-startup = [
         {
           command = [
-            "vicinae server"
             "xwayland-satellite"
           ];
         }
