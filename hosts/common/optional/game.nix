@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs = {
     steam = {
@@ -10,8 +10,8 @@
       ];
       extraPackages = with pkgs; [
         gamescope
+        gamemode
         mangohud
-        goverlay
       ];
     };
 
@@ -19,7 +19,6 @@
       enable = true;
       capSysNice = true;
       args = [
-        "--adaptive-sync"
         "--hdr-enabled"
         "--rt"
         "--steam"
@@ -28,8 +27,13 @@
     };
   };
 
+  # 1. Activez le support matériel pour Steam
+  hardware.steam-hardware.enable = true;
+
   environment.systemPackages = with pkgs; [
     lutris
-    protontricks
+    protonplus
+    bottles
+    game-devices-udev-rules
   ];
 }

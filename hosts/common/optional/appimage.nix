@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Appimage
   programs.appimage.enable = true;

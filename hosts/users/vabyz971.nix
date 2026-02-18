@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   users.mutableUsers = true;
   users.users = {
@@ -19,8 +19,16 @@
 
   imports = [
 
-    # Desktop Envirinement
-    ../common/desktop/gnome
+    ../common/core/sops.nix
+
+    # Session manager
+    ../common/optional/sddm.nix
+
+    # Desktop Environement
+    ../common/desktop/niri
+
+    # Shell Environement
+    ../common/optional/noctalia.nix
 
     # Virtualisation
     ../common/optional/docker.nix
@@ -31,11 +39,15 @@
 
     # Store Packages
     ../common/optional/appimage.nix
-    ../common/optional/flatpak.nix
+    ../common/optional/pkgs-store.nix
 
     # Etc...
     ../common/optional/fonts.nix
     ../common/optional/browsers.nix
     ../common/optional/development.nix
+    ../common/optional/socialNetwork.nix
+    ../common/optional/mpvpaper.nix
+    ../common/optional/nautilus.nix
+    ../common/optional/gnome-app.nix
   ];
 }

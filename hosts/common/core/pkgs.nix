@@ -1,10 +1,14 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
 
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
+    age
+    sops
     fastfetch
     btop
+    udisks # Gestion des disques
+    udiskie
+    ntfs3g # lire les clés formatées en NTFS
+    cifs-utils # Samba/CIFS (Windows, Synology, etc.)
   ];
 }

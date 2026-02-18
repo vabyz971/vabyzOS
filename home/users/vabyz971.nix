@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
 
   home = {
@@ -7,18 +7,14 @@
     stateVersion = "25.11";
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    BROWSER = "vivaldi";
-    TERMINAL = "kitty";
-  };
-
   imports = [
 
     ../common/core
 
     # Desktop
-    ../common/desktop/gnome
+    ../common/desktop/niri
+    ../common/optional/vicinae.nix
+    ../common/optional/nautilus.nix
 
     # Virtualisation
     ../common/optional/virtmanager.nix
