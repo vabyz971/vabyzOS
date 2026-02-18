@@ -27,9 +27,13 @@
     };
   };
 
+  # 1. Activez le support matériel pour Steam
+  hardware.steam-hardware.enable = true;
+
   environment.systemPackages = with pkgs; [
     lutris
     protonplus
     bottles
+    game-devices-udev-rules
   ];
 }
