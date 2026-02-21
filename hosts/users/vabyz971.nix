@@ -49,5 +49,6 @@
     ../common/optional/mpvpaper.nix
     ../common/optional/nautilus.nix
     ../common/optional/gnome-app.nix
+    ../common/optional/vpn.nix
   ];
 }

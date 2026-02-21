@@ -13,6 +13,7 @@
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite
+    gpu-screen-recorder
   ];
 
   services.upower.enable = true;
