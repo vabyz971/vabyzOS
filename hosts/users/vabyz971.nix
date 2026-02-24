@@ -50,5 +50,6 @@
     ../common/optional/nautilus.nix
     ../common/optional/gnome-app.nix
     ../common/optional/vpn.nix
+    ../common/optional/spicetify.nix
   ];
 }

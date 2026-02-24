@@ -12,8 +12,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    xwayland-satellite
     gpu-screen-recorder
+
+    # pkgs pour OCR et traduction utiliser dans plugins noctalia
+    tesseract
+    translate-shell
   ];
 
   services.upower.enable = true;

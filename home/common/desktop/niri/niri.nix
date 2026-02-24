@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
@@ -22,15 +26,7 @@
         SDL_VIDEODRIVER = "wayland";
 
       };
-
-      # Lancement au démarrage
-      spawn-at-startup = [
-        {
-          command = [
-            "xwayland-satellite"
-          ];
-        }
-      ];
+      xwayland-satellite.enable = true;
 
       # Animations fluides avec ressorts
       animations = {

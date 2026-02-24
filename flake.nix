@@ -14,6 +14,7 @@
     niri.url = "github:sodiboo/niri-flake";
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     vicinae.url = "github:vicinaehq/vicinae";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";

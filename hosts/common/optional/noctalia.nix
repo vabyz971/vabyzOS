@@ -1,26 +1,21 @@
 {
   pkgs,
+  pkgs-unstable,
   inputs,
   ...
 }:
 {
   # install package
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
 
     # Dependencies Required
-    quickshell
-    brightnessctl
-    imagemagick
+    pkgs-unstable.quickshell
 
-    # Hardware
-    ddcutil
+    # Polkit authentication dialogs
+    pkgs.polkit_gnome
 
     # Optional
-    cliphist
-    cava
-    wlsunset
-    xdg-desktop-portal-gnome
-    evolution-data-server
+    pkgs.xdg-desktop-portal-gnome
   ];
 
   imports = [
