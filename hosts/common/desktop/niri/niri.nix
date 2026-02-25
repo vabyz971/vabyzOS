@@ -13,6 +13,7 @@
 
   environment.systemPackages = with pkgs; [
     gpu-screen-recorder
+    xwayland-satellite
 
     # pkgs pour OCR et traduction utiliser dans plugins noctalia
     tesseract
