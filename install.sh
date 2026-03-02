@@ -147,7 +147,7 @@ select_flake_profile() {
         read -p "Choix [1-5]: " profile_choice
         case $profile_choice in
             1) FLAKE_PROFILE="vabyz971"; valid=1 ;;
-            2) FLAKE_PROFILE="chrombook"; valid=1 ;;
+            2) FLAKE_PROFILE="chromebook"; valid=1 ;;
             3) FLAKE_PROFILE="vm"; valid=1 ;;
             *) print_error "Choix invalide. Réessayez." ;;
         esac
