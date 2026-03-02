@@ -34,6 +34,7 @@ in
   services.fstrim.enable = true;
 
   # Enable sound with pipewire.
+  hardware.firmware = [ pkgs.sof-firmware ];
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
