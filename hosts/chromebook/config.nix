@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  inherit (import ../../global/variables.nix) hostname;
+in
 {
 
   boot = {
@@ -49,7 +52,7 @@
   services.printing.enable = true;
 
   # HostName
-  networking.hostName = "chromebook_nixos"; # Define your hostname.
+  networking.hostName = "${hostname}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

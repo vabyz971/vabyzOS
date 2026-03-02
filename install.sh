@@ -76,8 +76,12 @@ collect_user_info() {
 
     # Valeurs par défaut
     CURRENT_USER=$(whoami)
+    CURRENT_HOSTNAME=$(hostname)
     DEFAULT_GIT_EMAIL="${CURRENT_USER}@gmail.com"
     CURRENT_LAYOUT="fr"
+
+    read -p "Nom de la machine [${CURRENT_HOSTNAME}]: " HOSTNAME
+    HOSTNAME=${HOSTNAME:-$CURRENT_HOSTNAME}
 
     # Nom d'utilisateur système
     read -p "Nom d'utilisateur système [${CURRENT_USER}]: " SYS_USERNAME
@@ -95,7 +99,7 @@ collect_user_info() {
     print_info "Disposition du clavier: fr (azerty), ca (qwerty Canadian), en (qwerty), be (azerty belge)"
     read -p "Disposition [${CURRENT_LAYOUT}]: " KEYBOARD_LAYOUT
     KEYBOARD_LAYOUT=${KEYBOARD_LAYOUT:-$CURRENT_LAYOUT}
-    
+
     # Clavier console
     print_info "Disposition du clavier console: fr (azerty), cf (qwerty canadian), en (qwerty), be (azerty belge)"
     read -p "Disposition [${CURRENT_KEYMAP}]: " CONSOLE_KEYMAP
@@ -242,6 +246,7 @@ update_variables_nix() {
     cat > global/variables.nix << EOF
 # Fichier généré automatiquement par install.sh
 {
+  hostname = "${HOSTNAME}";
   gitUsername = "${GIT_USERNAME}";
   gitEmail = "${GIT_EMAIL}";
   username = "${SYS_USERNAME}";
