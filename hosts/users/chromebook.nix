@@ -29,13 +29,11 @@
     ../common/optional/noctalia.nix
 
     # Store Packages
-    ../common/optional/appimage.nix
     ../common/optional/pkgs-store.nix
 
     # Etc...
     ../common/optional/fonts.nix
     ../common/optional/browsers.nix
-    ../common/optional/socialNetwork.nix
     ../common/optional/superfile.nix
     ../common/optional/vpn.nix
   ];
