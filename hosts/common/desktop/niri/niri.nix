@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 let
-  inherit (import ../../../../../global/variables.nix) host;
+  inherit (import ../../../../global/variables.nix) host;
 in
 {
   # DOC : https://github.com/sodiboo/niri-flake/blob/main/docs.md#programsnirisettings
