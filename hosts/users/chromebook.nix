@@ -32,12 +32,11 @@
     ../common/optional/appimage.nix
     ../common/optional/pkgs-store.nix
 
-    # Etc...<
+    # Etc...
     ../common/optional/fonts.nix
     ../common/optional/browsers.nix
     ../common/optional/socialNetwork.nix
     ../common/optional/superfile.nix
-    ../common/optional/gnome-app.nix
     ../common/optional/vpn.nix
   ];
 }
