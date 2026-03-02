@@ -123,7 +123,7 @@ select_host() {
         read -p "Choix [1-5]: " host_choice
         case $host_choice in
             1) HOST_TYPE="desktop"; HOST_NAME="desktop"; valid=1 ;;
-            2) HOST_TYPE="chromebook"; HOST_NAME="chromebook"; valid=1 ;;
+            2) HOST_TYPE="laptop"; HOST_NAME="chromebook"; valid=1 ;;
             3) HOST_TYPE="vm"; HOST_NAME="vm"; valid=1 ;;
             *) print_error "Choix invalide. Réessayez." ;;
         esac

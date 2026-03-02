@@ -1,5 +1,7 @@
 { inputs, pkgs, ... }:
-
+let
+  inherit (import ../../../../../global/variables.nix) host;
+in
 {
   # DOC : https://github.com/sodiboo/niri-flake/blob/main/docs.md#programsnirisettings
 
@@ -21,7 +23,7 @@
   ];
 
   services.upower.enable = true;
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = if host.type == "laptop" then false else true;
 
   # Polkit et agent d'authentification
   security.polkit.enable = true;
