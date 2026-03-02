@@ -28,9 +28,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    superfile = {
-      url = "github:yorukot/superfile";
-    };
   };
 
   outputs =
