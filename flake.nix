@@ -64,15 +64,12 @@
             ./hosts/users/vabyz971.nix
 
             home-manager.nixosModules.home-manager
-            (
-              homeManagerBase
-              // {
-                home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
-                home-manager.users = {
-                  vabyz971 = import ./home/users/vabyz971.nix;
-                };
-              }
-            )
+            (homeManagerBase {
+              home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
+              home-manager.users = {
+                vabyz971 = import ./home/users/vabyz971.nix;
+              };
+            })
           ];
         };
         vm = nixpkgs.lib.nixosSystem {
@@ -83,15 +80,12 @@
             ./hosts/users/vabyz971.nix
 
             home-manager.nixosModules.home-manager
-            (
-              homeManagerBase
-              // {
-                home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
-                home-manager.users = {
-                  vabyz971 = import ./home/users/vabyz971.nix;
-                };
-              }
-            )
+            (homeManagerBase {
+              home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
+              home-manager.users = {
+                vabyz971 = import ./home/users/vabyz971.nix;
+              };
+            })
           ];
         };
         chromebook = nixpkgs.lib.nixosSystem {
@@ -102,17 +96,14 @@
             ./hosts/users/chromebook.nix
 
             home-manager.nixosModules.home-manager
-            (
-              homeManagerBase
-              // {
-                home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
-                home-manager = {
-                  users = {
-                    vabyz971 = import ./home/users/chromebook.nix;
-                  };
+            (homeManagerBase {
+              home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
+              home-manager = {
+                users = {
+                  vabyz971 = import ./home/users/chromebook.nix;
                 };
-              }
-            )
+              };
+            })
           ];
         };
       };
