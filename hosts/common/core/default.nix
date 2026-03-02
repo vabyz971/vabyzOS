@@ -50,6 +50,7 @@ in
   # auto remove generation
   nix.gc = {
     automatic = true;
+    dates = "weekly";
     options = "--delete-older-than 7d"; # Keep generations from the last 7 days
     # Or to keep the last 5 generations:
     # options = [ "+5" ];

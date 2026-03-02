@@ -28,6 +28,9 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    superfile = {
+      url = "github:yorukot/superfile";
+    };
   };
 
   outputs =
@@ -48,7 +51,6 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
-
       };
 
     in
@@ -86,6 +88,24 @@
               // {
                 home-manager.users = {
                   vabyz971 = import ./home/users/vabyz971.nix;
+                };
+              }
+            )
+          ];
+        };
+        chromebook = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs pkgs-unstable; };
+          modules = [
+            { nixpkgs.hostPlatform = system; }
+            ./hosts/chromebook
+            ./hosts/users/chromebook.nix
+
+            home-manager.nixosModules.home-manager
+            (
+              homeManagerBase
+              // {
+                home-manager.users = {
+                  vabyz971 = import ./home/users/chromebook.nix;
                 };
               }
             )

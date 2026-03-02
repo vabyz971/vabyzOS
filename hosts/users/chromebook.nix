@@ -9,9 +9,6 @@
         "wheel"
         "networkmanager"
         "video"
-        "adbusers"
-        "docker"
-        "libvirtd"
       ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
@@ -31,26 +28,16 @@
     # Shell Environement
     ../common/optional/noctalia.nix
 
-    # Virtualisation
-    ../common/optional/docker.nix
-    ../common/optional/qemu.nix
-
-    # Gaming
-    ../common/optional/game.nix
-
     # Store Packages
     ../common/optional/appimage.nix
     ../common/optional/pkgs-store.nix
 
-    # Etc...
+    # Etc...<
     ../common/optional/fonts.nix
     ../common/optional/browsers.nix
-    ../common/optional/development.nix
     ../common/optional/socialNetwork.nix
-    ../common/optional/mpvpaper.nix
-    ../common/optional/nautilus.nix
+    ../common/optional/superfile.nix
     ../common/optional/gnome-app.nix
     ../common/optional/vpn.nix
-    ../common/optional/spicetify.nix
   ];
 }

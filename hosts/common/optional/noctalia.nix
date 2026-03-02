@@ -11,6 +11,8 @@
     # Dependencies Required
     pkgs-unstable.quickshell
 
+    pkgs.brightnessctl
+
     # Polkit authentication dialogs
     pkgs.polkit_gnome
 
