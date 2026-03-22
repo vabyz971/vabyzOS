@@ -12,6 +12,7 @@
         "adbusers"
         "docker"
         "libvirtd"
+        "i2c"
       ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
