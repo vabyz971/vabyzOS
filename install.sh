@@ -1,343 +1,213 @@
 #!/usr/bin/env bash
 
-# ============================================
-# INSTALLATION SCRIPT FOR MODULAR NIXOS CONFIG
-# Usage: curl -L https://raw.githubusercontent.com/vabyz971/vabyzOS/main/install.sh | bash
-# ============================================
+# ==============================================================================
+# INSTALLATION SCRIPT FOR MODULAR NIXOS CONFIG (vabyzOS)
+# ==============================================================================
 
-# Configuration
+# Variables par défaut
 REPO_URL="https://github.com/vabyz971/vabyzOS"
 CONFIG_DIR="${HOME}/vabyzOS"
 DEFAULT_BRANCH="main"
 
-# Couleurs
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-NC='\033[0m'
+# Couleurs et styles
+RESET='\e[0m'
+BOLD='\e[1m'
+DIM='\e[2m'
+RED='\e[38;5;196m'
+GREEN='\e[38;5;46m'
+YELLOW='\e[38;5;226m'
+BLUE='\e[38;5;39m'
+MAGENTA='\e[38;5;201m'
+CYAN='\e[38;5;51m'
+WHITE='\e[38;5;231m'
 
-# ==================== FONCTIONS D'AFFICHAGE ====================
+# ==================== FONCTIONS D'AFFICHAGE UI ====================
+
+draw_line() { echo -e "${BLUE}├──────────────────────────────────────────────────────────────┤${RESET}"; }
+draw_top() { echo -e "${BLUE}╭──────────────────────────────────────────────────────────────╮${RESET}"; }
+draw_bottom() { echo -e "${BLUE}╰──────────────────────────────────────────────────────────────╯${RESET}"; }
 
 print_header() {
     clear
-    echo -e "${CYAN}"
-    echo "=========================================="
-    echo "   VABYZOS - NIXOS CONFIGURATION INSTALLER"
-    echo "=========================================="
-    echo -e "${NC}"
+    draw_top
+    echo -e "${BLUE}│${RESET} 🚀 ${BOLD}${CYAN}VABYZOS${RESET} - INSTALLATEUR DE CONFIGURATION NIXOS          ${BLUE}│${RESET}"
+    draw_bottom
+    echo ""
 }
 
-print_success() { echo -e "${GREEN}[✓] $1${NC}"; }
-print_error() { echo -e "${RED}[✗] $1${NC}"; }
-print_info() { echo -e "${BLUE}[i] $1${NC}"; }
-print_warning() { echo -e "${YELLOW}[!] $1${NC}"; }
-
-print_menu() {
-    echo -e "${CYAN}"
-    echo "=========================================="
-    echo "$1"
-    echo "=========================================="
-    echo -e "${NC}"
+print_step() {
+    echo ""
+    echo -e "${BOLD}${MAGENTA}▶ $1${RESET}"
+    echo -e "${DIM}  ----------------------------------------${RESET}"
 }
 
-# ==================== FONCTIONS UTILITAIRES ====================
+print_success() { echo -e "  ${GREEN}✔${RESET} $1"; }
+print_error()   { echo -e "  ${RED}✖${RESET} $1"; }
+print_info()    { echo -e "  ${CYAN}ℹ${RESET} $1"; }
+print_warning() { echo -e "  ${YELLOW}⚠${RESET} $1"; }
+
+ask_input() {
+    local prompt="$1"
+    local default="$2"
+    local result_var="$3"
+
+    echo -ne "  ${BOLD}${WHITE}❯ ${prompt}${RESET} ${DIM}[${default}]${RESET}: "
+    read -r user_input
+
+    if [ -z "$user_input" ]; then
+        eval $result_var="'$default'"
+    else
+        eval $result_var="'$user_input'"
+    fi
+}
+
+# ==================== LOGIQUE ====================
 
 check_nixos() {
+    print_step "Vérification du système"
     if [ ! -f /etc/os-release ] || ! grep -qi "nixos" /etc/os-release; then
         print_error "Ce script est compatible uniquement avec NixOS."
         exit 1
     fi
-    print_success "Système NixOS détecté"
+    print_success "Système NixOS détecté avec succès"
 }
-
-clone_or_update_repo() {
-    if [ -d "${CONFIG_DIR}/.git" ]; then
-        print_info "Mise à jour du dépôt existant..."
-        cd "${CONFIG_DIR}" && git pull origin "${DEFAULT_BRANCH}"
-    else
-        print_info "Clonage du dépôt..."
-        git clone --branch "${DEFAULT_BRANCH}" "${REPO_URL}" "${CONFIG_DIR}"
-    fi
-
-    if [ $? -ne 0 ]; then
-        print_error "Échec du clonage/mise à jour du dépôt"
-        exit 1
-    fi
-    cd "${CONFIG_DIR}"
-    print_success "Dépôt prêt dans ${CONFIG_DIR}"
-}
-
-# ==================== CONFIGURATION ====================
 
 collect_user_info() {
-    print_menu "CONFIGURATION UTILISATEUR"
+    print_step "Configuration de l'utilisateur"
 
-    # Valeurs par défaut
     CURRENT_USER=$(whoami)
-    CURRENT_HOSTNAME=$(hostname)
     DEFAULT_GIT_EMAIL="${CURRENT_USER}@gmail.com"
-    CURRENT_LAYOUT="fr"
 
-    read -p "Nom de la machine [${CURRENT_HOSTNAME}]: " HOSTNAME
-    HOSTNAME=${HOSTNAME:-$CURRENT_HOSTNAME}
-
-    # Nom d'utilisateur système
-    read -p "Nom d'utilisateur système [${CURRENT_USER}]: " SYS_USERNAME
-    SYS_USERNAME=${SYS_USERNAME:-$CURRENT_USER}
-
-    # Configuration Git
-    read -p "Nom d'utilisateur Git [${SYS_USERNAME}]: " GIT_USERNAME
-    GIT_USERNAME=${GIT_USERNAME:-$SYS_USERNAME}
-
-    read -p "Email Git [${DEFAULT_GIT_EMAIL}]: " GIT_EMAIL
-    GIT_EMAIL=${GIT_EMAIL:-$DEFAULT_GIT_EMAIL}
-
-
-    # Clavier
-    print_info "Disposition du clavier: fr (azerty), ca (qwerty Canadian), en (qwerty), be (azerty belge)"
-    read -p "Disposition [${CURRENT_LAYOUT}]: " KEYBOARD_LAYOUT
-    KEYBOARD_LAYOUT=${KEYBOARD_LAYOUT:-$CURRENT_LAYOUT}
-
-    # Clavier console
-    print_info "Disposition du clavier console: fr (azerty), cf (qwerty canadian), en (qwerty), be (azerty belge)"
-    read -p "Disposition [${CURRENT_KEYMAP}]: " CONSOLE_KEYMAP
-    CONSOLE_KEYMAP=${CONSOLE_KEYMAP:-$CURRENT_KEYMAP}
-
-    # Langue
-    print_info "Langue du système (ex: fr_FR.UTF-8, en_US.UTF-8)"
-    read -p "Langue [fr_FR.UTF-8]: " LOCALE
-    LOCALE=${LOCALE:-"fr_FR.UTF-8"}
+    ask_input "Nom d'utilisateur système" "$CURRENT_USER" SYS_USERNAME
+    ask_input "Nom d'utilisateur Git" "$SYS_USERNAME" GIT_USERNAME
+    ask_input "Email Git" "$DEFAULT_GIT_EMAIL" GIT_EMAIL
+    ask_input "Disposition clavier système" "fr" KEYBOARD_LAYOUT
+    ask_input "Disposition clavier console" "fr" CONSOLE_KEYMAP
+    ask_input "Langue système (ex: fr_FR.UTF-8)" "fr_FR.UTF-8" LOCALE
 }
 
-select_host() {
-    print_menu "SÉLECTION DE L'HÔTE"
-    echo "1. Desktop (Bureau)"
-    echo "2. Laptop (Chromebook)"
-    echo "3. VM (machine virtuelle)"
-    echo
+select_profile() {
+    print_step "Sélection du profil d'installation (Flake)"
+
+    echo -e "  ${CYAN}1)${RESET} Workstation ${DIM}(Configuration principale Infographie/Dev)${RESET}"
+    echo -e "  ${CYAN}2)${RESET} Chromebook  ${DIM}(Laptop allégé)${RESET}"
+    echo -e "  ${CYAN}3)${RESET} VM          ${DIM}(Machine virtuelle de test)${RESET}"
+    echo ""
 
     local valid=0
     while [ $valid -eq 0 ]; do
-        read -p "Choix [1-5]: " host_choice
-        case $host_choice in
-            1) HOST_TYPE="desktop"; HOST_NAME="desktop"; valid=1 ;;
-            2) HOST_TYPE="laptop"; HOST_NAME="chromebook"; valid=1 ;;
-            3) HOST_TYPE="vm"; HOST_NAME="vm"; valid=1 ;;
-            *) print_error "Choix invalide. Réessayez." ;;
+        echo -ne "  ${BOLD}❯ Choix [1-3]: ${RESET}"
+        read -r choice
+        case $choice in
+            1) FLAKE_PROFILE="workstation"; HOST_TYPE="desktop"; valid=1 ;;
+            2) FLAKE_PROFILE="chromebook"; HOST_TYPE="laptop"; valid=1 ;;
+            3) FLAKE_PROFILE="vm"; HOST_TYPE="vm"; valid=1 ;;
+            *) print_error "Choix invalide." ;;
         esac
     done
-
-    # Créer le répertoire hôte s'il n'existe pas
-    mkdir -p "hosts/${HOST_NAME}"
-    print_success "Hôte sélectionné: ${HOST_NAME}"
+    print_success "Profil sélectionné : ${BOLD}${FLAKE_PROFILE}${RESET}"
 }
 
-select_flake_profile() {
-    print_menu "SÉLECTION DU PROFIL FLAKE"
-    echo "Profils disponibles:"
-    echo "1. vabyz971 (configuration principale)"
-    echo "2. Chromebook (configuration minimale)"
-    echo "3. vm (configuration minimale)"
-    echo
+generate_variables_file() {
+    print_step "Génération de variables.nix"
 
-    local valid=0
-    while [ $valid -eq 0 ]; do
-        read -p "Choix [1-5]: " profile_choice
-        case $profile_choice in
-            1) FLAKE_PROFILE="vabyz971"; valid=1 ;;
-            2) FLAKE_PROFILE="chromebook"; valid=1 ;;
-            3) FLAKE_PROFILE="vm"; valid=1 ;;
-            *) print_error "Choix invalide. Réessayez." ;;
-        esac
-    done
-    print_success "Profil flake sélectionné: ${FLAKE_PROFILE}"
-}
+    # Écriture à la racine du projet
+    local var_file="${CONFIG_DIR}/variables.nix"
 
-show_summary() {
-    print_menu "RÉSUMÉ DE LA CONFIGURATION"
-    echo -e "• Utilisateur système: ${GREEN}${SYS_USERNAME}${NC}"
-    echo -e "• Utilisateur Git: ${GREEN}${GIT_USERNAME}${NC}"
-    echo -e "• Email Git: ${GREEN}${GIT_EMAIL}${NC}"
-    echo -e "• Hostname: ${GREEN}${HOSTNAME}${NC}"
-    echo -e "• Disposition clavier: ${GREEN}${KEYBOARD_LAYOUT}${NC}"
-    echo -e "• Langue système: ${GREEN}${LOCALE}${NC}"
-    echo -e "• Profil Flake: ${GREEN}${FLAKE_PROFILE}${NC}"
-    echo
-}
-
-confirm_installation() {
-    read -p "Procéder à l'installation? (o/N): " confirm
-    [[ $confirm =~ ^[OoYy]$ ]] || exit 0
-}
-
-# ==================== GÉNÉRATION ====================
-
-generate_hardware_config() {
-    print_info "Génération de la configuration matérielle..."
-
-    HARDWARE_DIR="hosts/${HOST_NAME}"
-    HARDWARE_FILE="${HARDWARE_DIR}/hardware.nix"
-
-    print_info "Exécution de nixos-generate-config pour ${HOST_NAME}..."
-
-    if sudo nixos-generate-config --show-hardware-config > "${HARDWARE_FILE}"; then
-        # Renommer le fichier généré
-        if [ -f "${HARDWARE_DIR}/hardware.nix" ]; then
-            print_success "Configuration matérielle générée: ${HARDWARE_FILE}"
-        else
-            print_warning "Fichier hardware.nix non trouvé, création d'un template..."
-            create_hardware_template "${HARDWARE_FILE}"
-        fi
-    else
-        print_error "Échec de la génération de la configuration matérielle"
-        print_warning "Création d'un fichier hardware template..."
-        create_hardware_template "${HARDWARE_FILE}"
-    fi
-}
-
-
-add_hardware_git() {
-    print_info "Ajout de la configuration matérielle à git"
-
-    HARDWARE_DIR="hosts/${HOST_NAME}"
-    HARDWARE_FILE="${HARDWARE_DIR}/hardware.nix"
-
-    if [ -f "${HARDWARE_DIR}/hardware.nix" ]; then
-        git add "${HARDWARE_FILE}"
-    fi
-}
-
-create_hardware_template() {
-    local file="$1"
-    cat > "${file}" << 'EOF'
-# Configuration matérielle générée pour ${HOST_NAME}
-{ config, lib, pkgs, modulesPath, ... }:
-{
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
-  boot.initrd.availableKernelModules = [ ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/CHANGEME";
-    fsType = "ext4";
-  };
-
-  swapDevices = [ ];
-
-  # Activer le microcode si nécessaire
-  # hardware.cpu.intel.updateMicrocode = true;
-  # hardware.cpu.amd.updateMicrocode = true;
-}
-EOF
-    print_info "Template hardware créé. Pensez à mettre à jour les UUID des disques!"
-}
-
-update_variables_nix() {
-    print_info "Mise à jour des variables globales..."
-
-    # Créer le répertoire global s'il n'existe pas
-    mkdir -p global
-
-    cat > global/variables.nix << EOF
+    cat > "$var_file" << EOF
 # Fichier généré automatiquement par install.sh
-{
-  hostname = "${HOSTNAME}";
+inputs: {
+  username = "${SYS_USERNAME}";
+
   gitUsername = "${GIT_USERNAME}";
   gitEmail = "${GIT_EMAIL}";
-  username = "${SYS_USERNAME}";
+
   keyboardLayout = "${KEYBOARD_LAYOUT}";
   consoleKeyMap = "${CONSOLE_KEYMAP}";
   i18nLocalLanguage = "${LOCALE}";
 
-  # Informations sur l'hôte
-  host = {
-    name = "${HOST_NAME}";
-    type = "${HOST_TYPE}";
-    flakeProfile = "${FLAKE_PROFILE}";
-  };
+  # Fonction utilitaire pour les imports absolus
+  basePath = path: inputs.self + "/\${path}";
+
+  # Informations sur la machine courante
+  profile = "${FLAKE_PROFILE}";
+  host = "${HOST_TYPE}";
 }
 EOF
-    print_success "Variables globales mises à jour"
+    print_success "Fichier racine créé : ${BOLD}variables.nix${RESET}"
 }
 
-# ==================== INSTALLATION ====================
+generate_hardware_config() {
+    print_step "Génération matérielle"
+
+    local hardware_dir="${CONFIG_DIR}/hosts/${FLAKE_PROFILE}"
+    local hardware_file="${hardware_dir}/hardware.nix"
+
+    mkdir -p "$hardware_dir"
+
+    if sudo nixos-generate-config --show-hardware-config > "$hardware_file"; then
+        print_success "Configuration matérielle détectée et sauvegardée dans hosts/${FLAKE_PROFILE}/hardware.nix"
+    else
+        print_error "Échec de nixos-generate-config."
+        exit 1
+    fi
+}
+
+show_summary() {
+    print_step "Récapitulatif avant déploiement"
+
+    draw_top
+    echo -e "${BLUE}│${RESET} Utilisateur   : ${CYAN}${SYS_USERNAME}${RESET}"
+    echo -e "${BLUE}│${RESET} Git Account   : ${CYAN}${GIT_USERNAME} <${GIT_EMAIL}>${RESET}"
+    echo -e "${BLUE}│${RESET} Clavier/Langue: ${CYAN}${KEYBOARD_LAYOUT} / ${LOCALE}${RESET}"
+    echo -e "${BLUE}│${RESET} Profil Cible  : ${GREEN}${BOLD}${FLAKE_PROFILE}${RESET} (${HOST_TYPE})"
+    draw_bottom
+    echo ""
+
+    echo -ne "  ${BOLD}${YELLOW}❯ Appliquer cette configuration maintenant ? (o/N) : ${RESET}"
+    read -r confirm
+    [[ $confirm =~ ^[OoYy]$ ]] || { print_info "Installation annulée par l'utilisateur."; exit 0; }
+}
 
 run_nixos_rebuild() {
-    print_menu "INSTALLATION FINALE"
-    print_info "Exécution de nixos-rebuild avec le profil ${FLAKE_PROFILE}..."
-    echo
+    print_step "Installation en cours..."
 
-    print_warning "Cette étape nécessite les privilèges sudo."
-    read -p "Continuer avec nixos-rebuild switch? (o/N): " rebuild_confirm
+    cd "${CONFIG_DIR}" || exit 1
 
-    if [[ $rebuild_confirm =~ ^[OoYy]$ ]]; then
-        if sudo nixos-rebuild switch --flake ".#${FLAKE_PROFILE}"; then
-            print_success "Installation terminée avec succès!"
-            print_info "Redémarrez si nécessaire pour appliquer tous les changements."
-        else
-            print_error "L'installation a échoué. Vérifiez les erreurs ci-dessus."
-            exit 1
-        fi
+    # On ajoute les fichiers générés à Git pour que le Flake les détecte
+    print_info "Ajout des fichiers à Git..."
+    git add variables.nix "hosts/${FLAKE_PROFILE}/hardware.nix"
+
+    print_info "Lancement de nixos-rebuild (sudo requis)..."
+    if sudo nixos-rebuild switch --flake ".#${FLAKE_PROFILE}"; then
+        echo ""
+        draw_top
+        echo -e "${BLUE}│${RESET} 🎉 ${BOLD}${GREEN}INSTALLATION TERMINÉE AVEC SUCCÈS !${RESET}              ${BLUE}│${RESET}"
+        draw_bottom
     else
-        print_info "Installation annulée. Vous pouvez exécuter manuellement:"
-        echo -e "  ${CYAN}sudo nixos-rebuild switch --flake .#${FLAKE_PROFILE}${NC}"
+        echo ""
+        print_error "Le déploiement a échoué. Vérifie les logs Nix ci-dessus."
+        exit 1
     fi
 }
 
-# ==================== FONCTION PRINCIPALE ====================
+# ==================== MAIN EXÉCUTION ====================
 
 main() {
-    print_header
-    check_nixos
-    clone_or_update_repo
-
-    # Collecte des informations
-    collect_user_info
-    select_host
-    select_flake_profile
-    show_summary
-    confirm_installation
-
-    # Génération et installation
-    generate_hardware_config
-    add_hardware_git
-    update_variables_nix
-    run_nixos_rebuild
-
-    print_menu "INSTALLATION TERMINÉE"
-    echo -e "${GREEN}Configuration réussie!${NC}"
-    echo
-    echo "Récapitulatif:"
-    echo -e "• Hôte configuré: ${CYAN}${HOST_NAME}${NC}"
-    echo -e "• Profil activé: ${CYAN}${FLAKE_PROFILE}${NC}"
-    echo -e "• Configuration matérielle: ${CYAN}hosts/${HOST_NAME}/hardware.nix${NC}"
-    echo -e "• Variables globales: ${CYAN}global/variables.nix${NC}"
-    echo
-    echo "Pour modifier la configuration:"
-    echo "  cd ${CONFIG_DIR}"
-    echo "  ./install.sh  # Ré-exécuter ce script"
-}
-
-# ==================== POINT D'ENTRÉE ====================
-
-# Vérifier si le script est exécuté directement
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    # Gérer les arguments de ligne de commande
-    if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-        echo "Usage:"
-        echo "  ./install.sh                    # Mode interactif"
-        echo "  curl -L ${REPO_URL}/main/install.sh | bash  # Depuis GitHub"
-        echo
-        echo "Options:"
-        echo "  --help, -h      Afficher cette aide"
-        exit 0
+    # S'assurer d'être dans le répertoire de config s'il existe déjà
+    if [ -d "${CONFIG_DIR}" ]; then
+        cd "${CONFIG_DIR}" || exit 1
     fi
 
-    # Exécuter la fonction principale
-    main
-fi
+    print_header
+    check_nixos
+    collect_user_info
+    select_profile
+    show_summary
+
+    generate_variables_file
+    generate_hardware_config
+    run_nixos_rebuild
+}
+
+main
