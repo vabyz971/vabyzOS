@@ -32,9 +32,13 @@
   # Update system
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
+    flake = "github:vabyz971/vabyzOS#${variables.profile}";
     flags = [
-      "-L" # print build logs
+      "-L"
+      "--update-input"
+      "nixpkgs"
+      "--update-input"
+      "home-manager"
     ];
     dates = "12:00";
     randomizedDelaySec = "45min";
