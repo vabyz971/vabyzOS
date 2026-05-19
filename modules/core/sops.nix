@@ -1,9 +1,21 @@
-{ inputs, variables, ...}:
+{ inputs, ... }:
 {
+  imports = [ inputs.sops-nix.nixosModules.sops ];
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/var/lib/sops-nix/key.txt";
 
-  imports = [inputs.sops-nix.nixosModules.sops];
+    secrets = {
+      # Secret pour utilisateur principal
+      "secret/users/vabyz971" = {
+        neededForUsers = true;
+      };
 
-  sops.defaultSopsFormat = "yaml";
-
-  sops.age.keyFile = "/home/${variables.username}/.config/sops/age/keys.txt";
+      # Secret pour un futur utilisateur (exemple)
+      # "secret/users/mika" = {
+      #   neededForUsers = true;
+      # };
+    };
+  };
 }

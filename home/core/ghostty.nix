@@ -4,7 +4,6 @@
     enable = true;
     package = pkgs.ghostty;
     settings = {
-      "command" = ["${pkgs.zsh}/bin/zsh"];
       # 1. On retire "theme" et on pointe vers le fichier généré par Noctalia.
       # Le "?" au début est TRÈS important : il indique à Ghostty que le fichier est optionnel.
       # Cela évite que ton terminal crash si Noctalia n'a pas encore généré les couleurs au premier boot.

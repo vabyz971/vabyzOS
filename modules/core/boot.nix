@@ -1,4 +1,10 @@
-{ pkgs, inputs, variables, ... }:{
+{
+  pkgs,
+  inputs,
+  variables,
+  ...
+}:
+{
 
   # ======= Bootloader =======
   boot.loader.systemd-boot.enable = true;

@@ -1,10 +1,17 @@
-{ pkgs, lib, inputs, variables, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  variables,
+  config,
+  ...
+}:
 
 let
   userRegistry = {
-    # Premier utilisateur
+    # Utilisateur 1
     vabyz971 = {
-      description = "Principal";
+      description = "vabyz971";
       extraGroups = [
         "wheel"
         "networkmanager"
@@ -18,7 +25,6 @@ let
       shell = pkgs.zsh;
       homeModules = [
         (variables.basePath "home/core")
-
         (variables.basePath "home/optional/niri")
         (variables.basePath "home/optional/noctalia.nix")
         (variables.basePath "home/optional/nautilus.nix")
@@ -26,23 +32,44 @@ let
         (variables.basePath "home/optional/virtmanager.nix")
       ];
     };
+
+    # Exemple d'un deuxième utilisateur
+    # mika = {
+    #   description = "Mikael";
+    #   extraGroups = [ "wheel" "networkmanager" "video" ];
+    #   isNormalUser = true;
+    #   shell = pkgs.zsh;
+    #   homeModules = [ (variables.basePath "home/core") ];
+    # };
   };
 in
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
+  users.mutableUsers = false;
+
+  # Génération dynamique des utilisateurs NixOS
   users.users = lib.mapAttrs (username: userConfig: {
-    inherit (userConfig) description isNormalUser extraGroups;
-    # Utilise sops-nix ici pour associer un mot de passe chiffré si besoin :
-    # passwordFile = config.sops.secrets."password-${username}".path;
+    inherit (userConfig)
+      description
+      isNormalUser
+      extraGroups
+      shell
+      ;
+
+    # Le chemin du mot de passe est dynamique !
+    hashedPasswordFile = config.sops.secrets."secret/users/${username}".path;
+
   }) userRegistry;
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; inherit variables; };
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit variables;
+    };
 
-    # On boucle sur notre registre pour injecter les modules HM correspondants
     users = lib.mapAttrs (username: userConfig: {
       imports = userConfig.homeModules;
 

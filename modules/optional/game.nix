@@ -33,6 +33,7 @@
   environment.systemPackages = with pkgs; [
     lutris
     protonplus
+    protontricks
     openxr-loader
     bottles
     game-devices-udev-rules

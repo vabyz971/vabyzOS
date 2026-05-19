@@ -48,8 +48,10 @@ in
     # Prise en charge du stockage eMMC et du clavier Chromebook
     initrd.availableKernelModules = [
       "mmc_block"
+      "usb_storage"
       "sdhci_pci"
       "i8042"
+      "uas"
     ];
   };
 
@@ -69,6 +71,32 @@ in
     ];
   };
 
+  disko.devices.disk.main = {
+      device = "/dev/mmcblk1";
+      type = "disk";
+      content = {
+        type = "gpt";
+        partitions = {
+          ESP = {
+            type = "EF00";
+            size = "500M";
+            content = {
+              type = "filesystem";
+              format = "vfat";
+              mountpoint = "/boot";
+            };
+          };
+          root = {
+            size = "100%";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/";
+            };
+          };
+        };
+      };
+    };
 
   # Pour l'audio SOF sur Chromebooks, adapté de https://github.com/WeirdTreeThing/chromebook-linux-audio
   # environment.sessionVariables.ALSA_CONFIG_UCM2 = "${chromebook-ucm-conf}/share/alsa/ucm2";

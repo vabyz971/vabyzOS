@@ -33,6 +33,7 @@
     # Virtual device
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    blacklistedKernelModules = [ "nova_core" ];
   };
 
   networking.hostName = "workstation-vabyz";

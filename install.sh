@@ -169,6 +169,28 @@ show_summary() {
     [[ $confirm =~ ^[OoYy]$ ]] || { print_info "Installation annulée par l'utilisateur."; exit 0; }
 }
 
+setup_sops_key() {
+    print_step "Configuration de la clé SOPS / Age"
+
+    if [ -f "/var/lib/sops-nix/key.txt" ]; then
+        print_success "Clé SOPS détectée dans /var/lib/sops-nix/key.txt"
+    else
+        print_warning "Aucune clé de déchiffrement trouvée dans /var/lib/sops-nix/key.txt"
+        echo -e "  Pour installer le système, tu dois fournir ta clé privée Age (Master Key)."
+        echo -ne "  ${BOLD}❯ Colle ta clé privée (commence par AGE-SECRET-KEY-) : ${RESET}"
+        read -r sops_key
+
+        if [[ $sops_key == AGE-SECRET-KEY-* ]]; then
+            sudo mkdir -p /var/lib/sops-nix
+            echo "$sops_key" | sudo tee /var/lib/sops-nix/key.txt > /dev/null
+            sudo chmod 600 /var/lib/sops-nix/key.txt
+            print_success "Clé privée configurée avec succès !"
+        else
+            print_error "Format de clé invalide. L'installation risque d'échouer au build."
+        fi
+    fi
+}
+
 run_nixos_rebuild() {
     print_step "Installation en cours..."
 
@@ -204,7 +226,7 @@ main() {
     collect_user_info
     select_profile
     show_summary
-
+    setup_sops_key
     generate_variables_file
     generate_hardware_config
     run_nixos_rebuild
