@@ -1,102 +1,185 @@
-<div align="center"> 
+<div align="center">
 
-<h1>VABYZ OS <img width="25vh" src="img/logo_nixos.png" /> Nixos Configs</h1>
+```
+██╗   ██╗ █████╗ ██████╗ ██╗   ██╗███████╗ ██████╗ ███████╗
+██║   ██║██╔══██╗██╔══██╗╚██╗ ██╔╝╚══███╔╝██╔═══██╗██╔════╝
+██║   ██║███████║██████╔╝ ╚████╔╝   ███╔╝ ██║   ██║███████╗
+╚██╗ ██╔╝██╔══██║██╔══██╗  ╚██╔╝   ███╔╝  ██║   ██║╚════██║
+ ╚████╔╝ ██║  ██║██████╔╝   ██║   ███████╗╚██████╔╝███████║
+  ╚═══╝  ╚═╝  ╚═╝╚═════╝    ╚═╝   ╚══════╝ ╚═════╝ ╚══════╝
+```
 
- ![nixos](https://img.shields.io/badge/nixpkgs-unstable-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8aadf4)
- ![nixpkgs](https://img.shields.io/badge/nixpkgs-unstable-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8aadf4)
- 
-<h3>Welcome to my nixos setup.</h3>
+**Ma configuration NixOS personnelle — reproductible, modulaire et prête à l'emploi.**
+
+[![NixOS](https://img.shields.io/badge/NixOS-25.11-informational?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8aadf4)](https://nixos.org)
+[![nixpkgs](https://img.shields.io/badge/nixpkgs-unstable-informational?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8aadf4)](https://github.com/NixOS/nixpkgs)
+[![License: MIT](https://img.shields.io/badge/License-MIT-informational?style=flat&colorA=24273A&colorB=a6da95)](LICENSE)
+[![Flakes](https://img.shields.io/badge/Flakes-enabled-informational?style=flat&colorA=24273A&colorB=f5a97f)](https://nixos.wiki/wiki/Flakes)
 
 </div>
 
+---
 
-## Requirements
- - Version nixos : 25.11
- - Version packages : stable and unstable
- - Boot partition: 1Go required
- - Space disk : 20go
- - GPU : Nvidia
+## ✦ Aperçu
 
+> vabyzOS est une configuration NixOS complète basée sur **Nix Flakes** et **Home Manager**. Elle vise une expérience de bureau cohérente, reproductible et facile à déployer sur une nouvelle machine.
 
-## WM Niri
-|Dependencies|
-|---|
-|[gpu-screen-recorder](https://search.nixos.org/packages?channel=25.11&query=gpu-screen-recorder)|
+L'environnement s'articule autour du **compositeur Wayland Niri** avec le shell **Noctalia** (Quickshell), une gestion des secrets via **SOPS-nix**, et un ensemble d'outils de développement prêts à l'emploi.
 
+---
 
-## Shell Noctalia
-|Dependencies|
-|---|
-|[quickshell](https://search.nixos.org/packages?channel=25.11&query=quickshell)|
-|[brightnessctl](https://search.nixos.org/packages?channel=25.11&query=brightnessctl)|
-|[imagemagick](https://search.nixos.org/packages?channel=25.11&query=imagemagick)|
-|[ddcutil](https://search.nixos.org/packages?channel=25.11&query=ddcutil)|
-|[polkit_gnome](https://search.nixos.org/packages?channel=25.11&query=polkit_gnome)|
-|[cliphist](https://search.nixos.org/packages?channel=25.11&query=cliphist)|
-|[cava](https://search.nixos.org/packages?channel=25.11&query=cava)|
-|[wlsunset](https://search.nixos.org/packages?channel=25.11&query=wlsunset )|
-|[xdg-desktop-portal-gnome](https://search.nixos.org/packages?channel=25.11&query=xdg-desktop-portal-gnome)|
-|[evolution-data-server](https://search.nixos.org/packages?channel=25.11&query=evolution-data-server)|
+## ⚙️ Configuration requise
 
-## Software
+| Composant | Minimum |
+|-----------|---------|
+| **OS** | NixOS 25.11 |
+| **GPU** | Nvidia |
+| **Boot** | 1 Go |
+| **Espace disque** | 20 Go |
+| **Packages** | Stable + Unstable |
 
-|               |
-|---------------|
-|[vivaldi](https://search.nixos.org/packages?channel=25.11&query=vivaldi)        |
-|[firefox](https://search.nixos.org/packages?channel=25.11&query=firefox)        |
-|[git](https://search.nixos.org/packages?channel=25.11&query=git)            |
-|[zed-editor](https://search.nixos.org/packages?channel=25.11&query=zed-editor)     |
-|[appimage](https://search.nixos.org/packages?channel=25.11&query=appimage)       |
-|[discord](https://search.nixos.org/packages?channel=25.11&query=discord)        |
-|[htop](https://search.nixos.org/packages?channel=25.11&query=htop)           |
-|[fastfetch](https://search.nixos.org/packages?channel=25.11&query=fastfetch)      |
-|python 3.15    |
-|nodejs 24      |
-|[bun](https://search.nixos.org/packages?channel=25.11&query=bun)            |
-|[steam](https://search.nixos.org/packages?channel=25.11&query=steam)          |
-|FlatHub        |
-|[software](https://search.nixos.org/packages?channel=25.11&query=gnome-software)       |
-|[zsh](https://search.nixos.org/packages?channel=25.11&query=zsh)            |
-|[kitty](https://search.nixos.org/packages?channel=25.11&query=kitty)          |
-|[neovim](https://search.nixos.org/packages?channel=25.11&query=neovim)         |
-|[docker](https://search.nixos.org/packages?channel=25.11&query=docker)         |
-|[docker-compose](https://search.nixos.org/packages?channel=25.11&query=docker-compose) |
-|[lutris](https://search.nixos.org/packages?channel=25.11&query=lutris)        |
-|[protonplus](https://search.nixos.org/packages?channel=25.11&query=protonplus)     |
-|[bottles](https://search.nixos.org/packages?channel=25.11&query=bottles)        |
-|[secrects](https://search.nixos.org/packages?channel=25.11&query=secrects)       |
-|[seahorse](https://search.nixos.org/packages?channel=25.11&query=seahorse)        |
-|[warp](https://search.nixos.org/packages?channel=25.11&query=warp)           |
-|[poppler](https://search.nixos.org/packages?channel=25.11&query=poppler)        |
-|[mpvpaper](https://search.nixos.org/packages?channel=25.11&query=mpvpaper)       |
-|[qemu](https://search.nixos.org/packages?channel=25.11&query=qemu)           |
-|[virt-manager](https://search.nixos.org/packages?channel=25.11&query=virt-manager)   |
-|[tailscale](https://search.nixos.org/packages?channel=25.11&query=tailscale)      |
-|[wireguard-tools](https://search.nixos.org/packages?channel=25.11&query=wireguard-tools)      |
+---
 
+## 🗂️ Structure du projet
 
-## Installation:
+```
+vabyzOS/
+├── flake.nix          # Point d'entrée principal (Flakes)
+├── variables.nix      # Variables globales (hostname, user…)
+├── hosts/             # Configurations par machine
+├── modules/           # Modules NixOS réutilisables
+├── home/              # Configuration Home Manager
+├── secrets/           # Secrets chiffrés (SOPS)
+└── install.sh         # Script d'installation automatisé
+```
+
+---
+
+## 🖥️ Environnement
+
+### Window Manager — Niri
+Compositeur Wayland tiling minimaliste, orienté clavier.
+
+| Dépendances |
+|-------------|
+| `gpu-screen-recorder` — Enregistrement d'écran via GPU |
+
+### Shell — Noctalia (Quickshell)
+Shell graphique moderne construit avec Quickshell.
+
+| Dépendances |
+|-------------|
+| `quickshell` — Base du shell |
+| `brightnessctl` — Contrôle de la luminosité |
+| `imagemagick` — Manipulation d'images |
+| `ddcutil` — Contrôle moniteur externe |
+| `polkit_gnome` — Authentification graphique |
+| `cliphist` — Historique du presse-papier |
+| `cava` — Visualiseur audio |
+| `wlsunset` — Filtre de lumière bleue |
+| `xdg-desktop-portal-gnome` — Portails desktop |
+| `evolution-data-server` — Calendrier et contacts |
+
+---
+
+## 📦 Logiciels inclus
 
 <details>
-<summary><strong> ⬇️ Install with script </strong></summary>
+<summary><strong>🌐 Navigateurs</strong></summary>
 
-### 1. Install dependencies
-```bash
-nix-shell -p git
-```
+- `vivaldi` — Navigateur principal
+- `firefox` — Navigateur secondaire
 
-### 2. Clone the project
-```bash
-git clone https://github.com/vabyz971/vabyzOS
-```
-### or
+</details>
+
+<details>
+<summary><strong>🛠️ Développement</strong></summary>
+
+- `git`, `zed-editor`, `neovim`
+- `python 3.15`, `nodejs 24`, `bun`
+- `docker`, `docker-compose`
+- `kitty`, `zsh`
+
+</details>
+
+<details>
+<summary><strong>🎮 Gaming</strong></summary>
+
+- `steam`, `lutris`, `bottles`, `protonplus`
+
+</details>
+
+<summary><strong>💻 Virtualisation</strong></summary>
+
+- `qemu`, `virt-manager`
+
+</details>
+
+<details>
+<summary><strong>🔧 Utilitaires</strong></summary>
+
+- `htop`, `fastfetch`, `warp`
+- `tailscale`,`poppler`, `appimage`
+- `seahorse`, `gnome-software`, `flathub`
+- `discord`
+
+</details>
+
+---
+
+## 🚀 Installation
+
+### Option 1 — Script automatique
+
 ```bash
 curl -L https://raw.githubusercontent.com/vabyz971/vabyzOS/main/install.sh | bash
 ```
-</details>
 
-## Crédit:
-Inspire projects: 
-- [ZaneyOS alias Zaney](https://gitlab.com/Zaney/zaneyos/)
-- [JaKooLit](https://github.com/JaKooLit/NixOS-Hyprland)
-- [EmergentMind](https://github.com/EmergentMind/nix-config)
+### Option 2 — Manuelle
+
+```bash
+# 1. Ouvrir un shell avec git
+nix-shell -p git
+
+# 2. Cloner le dépôt
+git clone https://github.com/vabyz971/vabyzOS
+
+# 3. Adapter variables.nix à ta machine
+# (hostname, username, GPU…)
+
+# 4. Appliquer la configuration
+sudo nixos-rebuild switch --flake .#<ton-hostname>
+```
+
+> [!NOTE]
+> Pense à adapter `variables.nix` avec ton nom d'utilisateur et ton nom de machine avant d'appliquer la configuration.
+
+---
+
+## 🔐 Secrets (SOPS)
+
+Les secrets sont gérés via [SOPS-nix](https://github.com/Mic92/sops-nix) et chiffrés avec une clé Age. La configuration se trouve dans `.sops.yaml`.
+
+---
+
+## 💡 Inspiration
+
+Ce projet s'inspire des dotfiles suivants :
+
+- [ZaneyOS](https://gitlab.com/Zaney/zaneyos/) — by **Zaney**
+- [NixOS-Hyprland](https://github.com/JaKooLit/NixOS-Hyprland) — by **JaKooLit**
+- [nix-config](https://github.com/EmergentMind/nix-config) — by **EmergentMind**
+
+---
+
+## 📄 Licence
+
+Distribué sous licence **MIT**. Voir [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+<div align="center">
+
+*Fait avec ❄️ et NixOS*
+
+</div>
