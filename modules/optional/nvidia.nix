@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
 
   # Enable OpenGL
@@ -9,6 +9,8 @@
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -37,7 +39,17 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # package = config.boot.kernelPackages.nvidiaPackages.latest;
 
+    gsp.enable = false;
+
+    # Version spécifique du driver nvidia
+    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "595.71.05";
+      sha256_64bit = "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=";
+
+      # Si tu utilises le panneau de configuration nvidia-settings
+      settingsSha256 = "sha256-mXnf3jyvznfB3OfKd657rxv0rYHQb/dX/Riw/+N9EKU=";
+    };
   };
 }
