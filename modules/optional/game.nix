@@ -32,9 +32,7 @@
 
   environment.systemPackages = with pkgs; [
     lutris
-    openxr-loader
     bottles
     game-devices-udev-rules
-    linux-wallpaperengine
   ];
 }

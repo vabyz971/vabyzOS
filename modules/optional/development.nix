@@ -1,17 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    android-tools
-    python315
-    nodejs_24
-    corepack_24
-    bun
-    openssl
-    nixfmt
-    nixd
-    zed-editor
+  environment.systemPackages = [
+    pkgs.android-tools
+    pkgs.python315
+    pkgs.nodejs_24
+    pkgs.corepack_24
+    pkgs.bun
+    pkgs.openssl
+    pkgs.nixfmt
+    pkgs.nixd
+    pkgs-unstable.zed-editor
   ];
 
+  programs.nix-ld.enable = true;
   programs.direnv = {
     enable = true;
     package = pkgs.direnv;

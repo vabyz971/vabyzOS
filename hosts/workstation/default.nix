@@ -20,8 +20,6 @@
     (variables.basePath "modules/optional/nautilus.nix")
     (variables.basePath "modules/optional/pkgs-store.nix")
     (variables.basePath "modules/optional/gdm.nix")
-    (variables.basePath "modules/optional/socialNetwork.nix")
-    (variables.basePath "modules/optional/spicetify.nix")
     (variables.basePath "modules/optional/vpn.nix")
     (variables.basePath "modules/optional/qemu.nix")
     (variables.basePath "modules/optional/noctalia.nix")

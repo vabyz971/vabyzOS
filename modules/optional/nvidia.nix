@@ -45,11 +45,11 @@
 
     # Version spécifique du driver nvidia
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "595.71.05";
-      sha256_64bit = "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=";
-
+      version = "610.43.02";
+      sha256_64bit = "sha256-MDSgVLtM33dS/43CclZMsQVROAS/9TU4lFkBsWyndGM=";
+      persistencedSha256 = lib.fakeHash;
       # Si tu utilises le panneau de configuration nvidia-settings
-      settingsSha256 = "sha256-mXnf3jyvznfB3OfKd657rxv0rYHQb/dX/Riw/+N9EKU=";
+      settingsSha256 = "sha256-0YAhufRgjDW+uR+kjaTb154fibpcDw8QowfrucoZsKE=";
     };
   };
 }

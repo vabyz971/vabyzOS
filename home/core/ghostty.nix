@@ -12,7 +12,7 @@
       # 2. Le reste de tes configurations graphiques
       "font-family" = "JetBrainsMono Nerd Font Mono";
       "font-size" = 12;
-      "background-opacity" = 0.95;
+      "background-opacity" = 0.75;
       "window-padding-x" = 10;
       "window-padding-y" = 10;
       "confirm-close-surface" = false;
