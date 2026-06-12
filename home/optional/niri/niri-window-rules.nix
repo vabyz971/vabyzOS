@@ -7,12 +7,22 @@
         block-out-from = "screencast";
       }
       {
+        matches = [ { app-id = "dev.noctalia.Noctalia.Settings"; } ];
+        open-floating = true;
+        default-column-width = {
+          fixed = 1080;
+        };
+        default-window-height = {
+          fixed = 920;
+        };
+      }
+      {
         # Règles visuelles générales
         geometry-corner-radius = {
-          top-left = 5.0;
-          top-right = 5.0;
-          bottom-left = 5.0;
-          bottom-right = 5.0;
+          top-left = 15.0;
+          top-right = 15.0;
+          bottom-left = 15.0;
+          bottom-right = 15.0;
         };
         clip-to-geometry = true;
       }

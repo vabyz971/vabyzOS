@@ -2,6 +2,9 @@
 {
   programs.niri.settings = {
     input = {
+      # focalise la fenêtre sous la souris lorsque la souris bouge.
+      focus-follows-mouse.enable = true;
+
       keyboard.xkb = {
         layout = "fr";
         variant = "azerty";
@@ -23,43 +26,38 @@
         "xdg-open"
         "https://"
       ];
-      "Mod+Space" = {
-        repeat = false;
-        action.spawn = [
-          "vicinae"
-          "toggle"
-        ];
-      };
+      "Mod+Space".action.spawn = [
+        "noctalia"
+        "msg"
+        "panel-toggle"
+        "launcher"
+      ];
+      "Mod+Escape".action.spawn = [
+        "niri"
+        "msg"
+        "action"
+        "toggle-overview"
+      ];
+      "Mod+Ctrl+F".action.spawn = [
+        "niri"
+        "msg"
+        "action"
+        "toggle-window-floating"
+      ];
       "Mod+Shift+L".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "lockScreen"
+        "noctalia"
+        "msg"
+        "session"
         "lock"
       ];
 
-      # Binds spécifiques Noctalia Shell (IPC)
-      "Alt+Space".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "launcher"
-        "toggle"
-      ];
       "Mod+X".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "sessionMenu"
-        "toggle"
+        "noctalia"
+        "msg"
+        "panel-toggle"
+        "session"
       ];
-      "Mod+Shift+D".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "controlCenter"
-        "toggle"
-      ];
+
       "Mod+Shift+S".action.spawn = [
         "niri"
         "msg"

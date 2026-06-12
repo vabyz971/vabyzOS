@@ -1,23 +1,35 @@
 {
   pkgs,
-  pkgs-unstable,
+  inputs,
+  variables,
   ...
 }:
+let
+  noctalia-greeter-pkg = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
+in
 {
+  services = {
+    xserver.xkb = {
+      layout = "${variables.keyboardLayout}";
+      variant = "";
+    };
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${noctalia-greeter-pkg}/bin/noctalia-greeter-session";
+          user = "greeter";
+        };
+      };
+    };
+  };
+
   # install package
   environment.systemPackages = [
-
-    # Dependencies Required
-    pkgs-unstable.quickshell
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     pkgs.brightnessctl
     pkgs.ddcutil
-
-    # Polkit authentication dialogs
-    pkgs.polkit_gnome
-
-    # Optional
-    pkgs.xdg-desktop-portal-gnome
   ];
 
   # Required for ddcutil

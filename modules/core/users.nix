@@ -28,7 +28,6 @@ let
         (variables.basePath "home/optional/niri")
         (variables.basePath "home/optional/noctalia.nix")
         (variables.basePath "home/optional/nautilus.nix")
-        (variables.basePath "home/optional/vicinae.nix")
         (variables.basePath "home/optional/virtmanager.nix")
       ];
     };
@@ -76,7 +75,7 @@ in
       home = {
         inherit username;
         homeDirectory = "/home/${username}";
-        stateVersion = "25.11"; # Définit l'ancre de version pour tous profils
+        stateVersion = "26.05"; # Définit l'ancre de version pour tous profils
       };
     }) userRegistry;
   };
