@@ -12,13 +12,13 @@
     enable = true;
 
     theme = {
-      package = pkgs.dracula-theme;
-      name = "Dracula";
+      package = pkgs.whitesur-gtk-theme;
+      name = "WhiteSur";
     };
 
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "WhiteSur-dark";
+      package = pkgs.whitesur-icon-theme;
     };
 
     cursorTheme = {
@@ -44,8 +44,8 @@
     enable = true;
     settings = {
       "org/gnome/desktop/interface" = {
-        gtk-theme = "Dracula";
-        icon-theme = "Papirus-Dark";
+        gtk-theme = "WhiteSur";
+        icon-theme = "WhiteSur-dark";
         document-font-name = "Liberation Sans Medium 11";
         monospace-font-name = "Liberation Sans Medium 11";
         color-scheme = "prefer-dark";

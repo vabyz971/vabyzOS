@@ -19,7 +19,7 @@
     (variables.basePath "modules/optional/gnome-app.nix")
     (variables.basePath "modules/optional/nautilus.nix")
     (variables.basePath "modules/optional/pkgs-store.nix")
-    (variables.basePath "modules/optional/vpn.nix")
+    # (variables.basePath "modules/optional/vpn.nix")
     (variables.basePath "modules/optional/qemu.nix")
     (variables.basePath "modules/optional/noctalia.nix")
     (variables.basePath "modules/optional/niri.nix")
