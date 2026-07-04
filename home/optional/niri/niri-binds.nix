@@ -3,11 +3,11 @@
   programs.niri.settings = {
     input = {
       # focalise la fenêtre sous la souris lorsque la souris bouge.
-      focus-follows-mouse.enable = true;
+      focus-follows-mouse.enable = false;
 
       keyboard.xkb = {
-        layout = "fr";
-        variant = "azerty";
+        layout = "fr,us";
+        options = "grp:alt_shift_toggle";
       };
       # Recommandé pour 60% : transformer Caps Lock en Ctrl ou Fn via DIP switch 3
       # ou via logiciel ici :
@@ -83,8 +83,8 @@
       "Mod+quotedbl".action.focus-workspace = 3;
       "Mod+apostrophe".action.focus-workspace = 4;
       "Mod+parenleft".action.focus-workspace = 5;
-      "Mod+egrave".action.focus-workspace = 6;
-      "Mod+minus".action.focus-workspace = 7;
+      "Mod+minus".action.focus-workspace = 6;
+      "Mod+egrave".action.focus-workspace = 7;
       "Mod+underscore".action.focus-workspace = 8;
       "Mod+ccedilla".action.focus-workspace = 9;
       "Mod+agrave".action.focus-workspace = 10;
@@ -95,8 +95,8 @@
       "Mod+Shift+quotedbl".action.move-window-to-workspace = 3;
       "Mod+Shift+apostrophe".action.move-window-to-workspace = 4;
       "Mod+Shift+parenleft".action.move-window-to-workspace = 5;
-      "Mod+Shift+egrave".action.move-window-to-workspace = 6;
-      "Mod+Shift+minus".action.move-window-to-workspace = 7;
+      "Mod+Shift+minus".action.move-window-to-workspace = 6;
+      "Mod+Shift+egrave".action.move-window-to-workspace = 7;
       "Mod+Shift+underscore".action.move-window-to-workspace = 8;
       "Mod+Shift+ccedilla".action.move-window-to-workspace = 9;
       "Mod+Shift+agrave".action.move-window-to-workspace = 10;

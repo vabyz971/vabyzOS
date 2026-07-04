@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  variables,
   ...
 }:
 let
@@ -9,10 +8,6 @@ let
 in
 {
   services = {
-    xserver.xkb = {
-      layout = "${variables.keyboardLayout}";
-      variant = "";
-    };
     greetd = {
       enable = true;
       settings = {

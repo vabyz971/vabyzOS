@@ -13,10 +13,13 @@
       "font-family" = "JetBrainsMono Nerd Font Mono";
       "font-size" = 12;
       "background-opacity" = 0.75;
+      "background-blur" = true;
       "window-padding-x" = 10;
       "window-padding-y" = 10;
       "confirm-close-surface" = false;
       "bell-features" = "no-audio";
+
+      "window-colorspace" = "srgb";
     };
   };
 }

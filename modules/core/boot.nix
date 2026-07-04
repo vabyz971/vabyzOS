@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   variables,
   ...
 }:
@@ -17,11 +16,22 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "${variables.i18nLocalLanguage}";
 
-  # ======= Firmware =======
-  services.fwupd.enable = true;
+  services = {
 
-  # ======= SSD Optimizer =======
-  services.fstrim.enable = true;
+    # ======= Firmware =======
+    fwupd.enable = true;
+
+    # ======= SSD Optimizer =======
+    fstrim.enable = true;
+
+    xserver.xkb = {
+      layout = "fr,us";
+      options = "grp:alt_shift_toggle";
+    };
+  };
+
+  # Forcez la console TTY à réutiliser configuration XKB
+  console.useXkbConfig = true;
 
   # Enable experimental-features
   nix.settings.experimental-features = [

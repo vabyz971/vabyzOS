@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     gnome-secrets
+    gnome-keyring
     gnome-nettool
     gnome-disk-utility
     seahorse
