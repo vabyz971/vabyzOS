@@ -10,6 +10,7 @@
     pkgs.nixfmt
     pkgs.nixd
     pkgs-unstable.zed-editor
+    pkgs.luau # Pour crée des plugins noctalia V5
   ];
 
   programs.nix-ld.enable = true;

@@ -73,11 +73,10 @@ Shell graphique moderne construit avec Quickshell.
 | `brightnessctl` — Contrôle de la luminosité |
 | `imagemagick` — Manipulation d'images |
 | `ddcutil` — Contrôle moniteur externe |
-| `polkit_gnome` — Authentification graphique |
+| `polkit` — Authentification graphique |
 | `cliphist` — Historique du presse-papier |
 | `cava` — Visualiseur audio |
 | `wlsunset` — Filtre de lumière bleue |
-| `xdg-desktop-portal-gnome` — Portails desktop |
 | `evolution-data-server` — Calendrier et contacts |
 
 ---

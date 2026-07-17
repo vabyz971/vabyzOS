@@ -5,6 +5,8 @@
     nautilus-python
     gnomeExtensions.flickernaut
     image-roll
+    xdg-desktop-portal-gtk
+    nwg-look
   ];
 
   services.gnome.sushi.enable = true; # Prévisualisation des miniatures
