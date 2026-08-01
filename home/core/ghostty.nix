@@ -18,7 +18,7 @@
       "window-padding-y" = 10;
       "confirm-close-surface" = false;
       "bell-features" = "no-audio";
-
+      "gtk-single-instance" = false;
       "window-colorspace" = "srgb";
     };
   };

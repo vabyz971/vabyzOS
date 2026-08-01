@@ -1,6 +1,7 @@
 { ... }:
 {
   programs.niri.settings = {
+    prefer-no-csd = true;
     window-rules = [
       {
         matches = [ { app-id = "org.keepassxc.KeePassXC"; } ];
@@ -37,6 +38,8 @@
     ];
     layout = {
       background-color = "transparent";
+      border.width = 2;
+      focus-ring.width = 2;
     };
     overview = {
       workspace-shadow.enable = false;

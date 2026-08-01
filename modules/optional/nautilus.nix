@@ -3,11 +3,15 @@
   environment.systemPackages = with pkgs; [
     nautilus
     nautilus-python
-    gnomeExtensions.flickernaut
     image-roll
-    xdg-desktop-portal-gtk
     nwg-look
+    glib
+    gsettings-desktop-schemas
   ];
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "ghostty";
+  };
 
   services.gnome.sushi.enable = true; # Prévisualisation des miniatures
   services.gvfs.enable = true; # Trash, volumes réseaux
