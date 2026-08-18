@@ -54,14 +54,23 @@
     randomizedDelaySec = "45min";
   };
 
-  # auto remove generation
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d"; # Keep generations from the last 7 days
-    # Or to keep the last 5 generations:
-    # options = [ "+5" ];
+
+  # Modern helper utility
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 3";
+    flake = "~/vabyzOS"; # sets NH_OS_FLAKE variable for you
   };
+
+  # auto remove generation
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 7d"; # Keep generations from the last 7 days
+  #   # Or to keep the last 5 generations:
+  #   # options = [ "+5" ];
+  # };
   nix.settings.auto-optimise-store = true;
 
   # Allow unfree packages
