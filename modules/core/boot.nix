@@ -62,6 +62,7 @@
     # Or to keep the last 5 generations:
     # options = [ "+5" ];
   };
+  nix.settings.auto-optimise-store = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

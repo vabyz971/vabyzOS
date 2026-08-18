@@ -34,11 +34,27 @@
       ll = "eza -la --icons --git";
       lt = "eza --tree --level=2";
       c = "clear";
-      upgrade = "
+      vupgrade = "
       cd ~/vabyzOS/
       sudo nix flake update
-      sudo nixos-rebuild switch --flake ~/vabyzOS/#${variables.profile}";
-      update = "sudo nixos-rebuild switch --flake ~/vabyzOS/#${variables.profile}";
+      nh os switch";
+      vupdate = "nh os switch ~/vabyzOS#${variables.profile}";
+      vgens = "nh os info";
+      vcheck = "nix flake check";
+      vboot = "nh os boot";
+      vtest = "nh os test";
+      vgc = "nix store gc";
+      vhelp = "
+      echo '## Liste les commandes disponibles ##'
+      echo '# vupdate : Applique les changements'
+      echo '# vupgrade : Met à jour le système'
+      echo '# vhelp : Affiche cette liste'
+      echo '# vgc : Garbage collect du store Nix'
+      echo '# vcheck : Valide le flake'
+      echo '# vboot : Reboot le système'
+      echo '# vgens : Liste les générations du système'
+      echo '# vtest : Applique sans créer de génération'
+      ";
     };
 
     plugins = [
