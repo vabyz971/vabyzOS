@@ -37,7 +37,7 @@
       vupgrade = "
       cd ~/vabyzOS/
       sudo nix flake update
-      nh os switch";
+      nh os switch .#${variables.profile}";
       vupdate = "nh os switch ~/vabyzOS#${variables.profile}";
       vgens = "nh os info";
       vcheck = "nix flake check";
