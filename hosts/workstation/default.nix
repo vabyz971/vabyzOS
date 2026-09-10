@@ -22,6 +22,7 @@
     (variables.basePath "modules/optional/qemu.nix")
     (variables.basePath "modules/optional/openrgb.nix")
     (variables.basePath "modules/optional/noctalia.nix")
+    (variables.basePath "modules/optional/noctalia-greeter.nix")
     (variables.basePath "modules/optional/niri.nix")
 
   ];

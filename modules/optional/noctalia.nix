@@ -3,21 +3,7 @@
   inputs,
   ...
 }:
-let
-  noctalia-greeter-pkg = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
-in
 {
-  services = {
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${noctalia-greeter-pkg}/bin/noctalia-greeter-session";
-          user = "greeter";
-        };
-      };
-    };
-  };
 
   # install package
   environment.systemPackages = [

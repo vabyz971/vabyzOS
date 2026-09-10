@@ -24,7 +24,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noctalia.url = "github:noctalia-dev/noctalia";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
