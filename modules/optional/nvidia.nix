@@ -11,6 +11,12 @@
     __GL_SHADER_DISK_CACHE_SIZE = "12000000000";
   };
 
+  # Fix Nvidia 3000 Dec 2025
+  boot.blacklistedKernelModules = [
+    "nouveau"
+    "nova_core"
+  ];
+
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
