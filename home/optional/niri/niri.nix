@@ -6,13 +6,6 @@
   programs.niri = {
     package = pkgs.niri-unstable;
     settings = {
-      spawn-at-startup = [
-        {
-          command = [
-            "noctalia"
-          ];
-        }
-      ];
       environment = {
         NIXOS_OZONE_WL = "1";
         ELECTRON_OZONE_PLATFORM_HINT = "wayland";
