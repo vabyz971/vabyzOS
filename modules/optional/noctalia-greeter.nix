@@ -1,24 +1,28 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 
 {
-  services.displayManager.noctalia-greeter = {
+  imports = [
+    inputs.noctalia-greeter.nixosModules.default
+  ];
+
+  programs.noctalia-greeter = {
     enable = true;
     settings = {
-      cursor.size = 24;
       keyboard.layout = "fr";
-    };
-    cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
+      cursor = {
+        theme = "Bibata-Modern-Ice";
+        size = 24;
+        path = "${pkgs.bibata-cursors}/share/icons";
+      };
     };
   };
 
   # Synchronisation avec noctalia
   security.polkit = {
-    enablePkexecWrapper = true;
     enable = true;
     extraConfig = ''
       polkit.addRule(function(action, subject) {
