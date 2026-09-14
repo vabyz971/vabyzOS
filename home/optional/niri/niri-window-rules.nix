@@ -26,6 +26,7 @@
           bottom-right = 15.0;
         };
         clip-to-geometry = true;
+        draw-border-with-background = false;
       }
     ];
     layer-rules = [
@@ -38,8 +39,13 @@
     ];
     layout = {
       background-color = "transparent";
-      border.width = 2;
-      focus-ring.width = 2;
+      border = {
+          enable = true;
+          width = 2;
+        };
+        focus-ring = {
+          enable = false;
+        };
     };
     overview = {
       workspace-shadow.enable = false;
