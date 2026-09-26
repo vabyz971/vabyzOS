@@ -4,19 +4,19 @@
     ./hardware.nix
 
     # Core
-    (variables.basePath "modules/core")
-
+    variables.core
+  ]
+  ++ variables.mods [
     # Pkgs
-    (variables.basePath "modules/optional/appimage.nix")
-    (variables.basePath "modules/optional/pkgs-store.nix")
-    (variables.basePath "modules/optional/browsers.nix")
-    (variables.basePath "modules/optional/fonts.nix")
-    (variables.basePath "modules/optional/gnome-app.nix")
-    (variables.basePath "modules/optional/nautilus.nix")
-    (variables.basePath "modules/optional/gdm.nix")
-    (variables.basePath "modules/optional/noctalia.nix")
-    (variables.basePath "modules/optional/niri.nix")
-
+    "appimage"
+    "pkgs-store"
+    "browsers"
+    "fonts"
+    "gnome-app"
+    "nautilus"
+    "noctalia"
+    "noctalia-greeter"
+    "niri"
   ];
 
   networking.hostName = "vm-vabyz";

@@ -23,13 +23,7 @@ let
       ];
       isNormalUser = true;
       shell = pkgs.zsh;
-      homeModules = [
-        (variables.basePath "home/core")
-        (variables.basePath "home/optional/niri")
-        (variables.basePath "home/optional/noctalia.nix")
-        (variables.basePath "home/optional/nautilus.nix")
-        (variables.basePath "home/optional/virtmanager.nix")
-      ];
+      homeModules = [ variables.homeCore ] ++ variables.homeMods [ "niri" "noctalia" "nautilus" "virtmanager" ];
     };
 
     # Exemple d'un deuxième utilisateur
@@ -38,7 +32,7 @@ let
     #   extraGroups = [ "wheel" "networkmanager" "video" ];
     #   isNormalUser = true;
     #   shell = pkgs.zsh;
-    #   homeModules = [ (variables.basePath "home/core") ];
+    #   homeModules = [ variables.homeCore ];
     # };
   };
 in

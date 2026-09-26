@@ -4,27 +4,27 @@
     ./hardware.nix
 
     # Core
-    (variables.basePath "modules/core")
-
+    variables.core
+  ]
+  ++ variables.mods [
     # Driver
-    (variables.basePath "modules/optional/nvidia.nix")
+    "nvidia"
 
     # Pkgs
-    (variables.basePath "modules/optional/appimage.nix")
-    (variables.basePath "modules/optional/browsers.nix")
-    (variables.basePath "modules/optional/development.nix")
-    (variables.basePath "modules/optional/docker.nix")
-    (variables.basePath "modules/optional/fonts.nix")
-    (variables.basePath "modules/optional/game.nix")
-    (variables.basePath "modules/optional/gnome-app.nix")
-    (variables.basePath "modules/optional/nautilus.nix")
-    (variables.basePath "modules/optional/pkgs-store.nix")
-    (variables.basePath "modules/optional/qemu.nix")
-    (variables.basePath "modules/optional/openrgb.nix")
-    (variables.basePath "modules/optional/noctalia.nix")
-    (variables.basePath "modules/optional/noctalia-greeter.nix")
-    (variables.basePath "modules/optional/niri.nix")
-
+    "appimage"
+    "browsers"
+    "development"
+    "docker"
+    "fonts"
+    "game"
+    "gnome-app"
+    "nautilus"
+    "pkgs-store"
+    "qemu"
+    "openrgb"
+    "noctalia"
+    "noctalia-greeter"
+    "niri"
   ];
 
   boot = {

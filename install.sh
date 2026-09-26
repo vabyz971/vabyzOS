@@ -116,7 +116,7 @@ generate_variables_file() {
 
     cat > "$var_file" << EOF
 # Fichier généré automatiquement par install.sh
-inputs: {
+inputs: rec {
   username = "${SYS_USERNAME}";
 
   gitUsername = "${GIT_USERNAME}";
@@ -126,8 +126,21 @@ inputs: {
   consoleKeyMap = "${CONSOLE_KEYMAP}";
   i18nLocalLanguage = "${LOCALE}";
 
-  # Fonction utilitaire pour les imports absolus
+  # Fonction utilitaire pour les imports absolus (dépréciée, gardée en transitoire)
   basePath = path: inputs.self + "/\${path}";
+
+  core = inputs.self + "/modules/core";
+  homeCore = inputs.self + "/home/core";
+
+  mod = name: inputs.self + "/modules/optional/\${name}.nix";
+  mods = names: map mod names;
+
+  homeMod = name:
+    if builtins.pathExists (inputs.self + "/home/optional/\${name}.nix") then
+      inputs.self + "/home/optional/\${name}.nix"
+    else
+      inputs.self + "/home/optional/\${name}";
+  homeMods = names: map homeMod names;
 
   # Informations sur la machine courante
   profile = "${FLAKE_PROFILE}";
