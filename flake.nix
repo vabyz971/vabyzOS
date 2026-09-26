@@ -32,6 +32,11 @@
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
+    blip = {
+      url = "github:blip-net/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -46,6 +51,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       globalVars = import ./variables.nix inputs;
+      globalHelpers = import ./lib inputs;
 
     in
     {
@@ -54,6 +60,7 @@
           specialArgs = {
             inherit inputs pkgs-unstable;
             variables = globalVars;
+            helpers = globalHelpers;
           };
           modules = [
             { nixpkgs.hostPlatform = system; }
@@ -65,6 +72,7 @@
           specialArgs = {
             inherit inputs pkgs-unstable;
             variables = globalVars;
+            helpers = globalHelpers;
           };
           modules = [
             { nixpkgs.hostPlatform = system; }
@@ -76,6 +84,7 @@
           specialArgs = {
             inherit inputs pkgs-unstable;
             variables = globalVars;
+            helpers = globalHelpers;
           };
           modules = [
             { nixpkgs.hostPlatform = system; }

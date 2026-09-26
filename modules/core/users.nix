@@ -3,6 +3,7 @@
   lib,
   inputs,
   variables,
+  helpers,
   config,
   ...
 }:
@@ -23,7 +24,7 @@ let
       ];
       isNormalUser = true;
       shell = pkgs.zsh;
-      homeModules = [ variables.homeCore ] ++ variables.homeMods [ "niri" "noctalia" "nautilus" "virtmanager" ];
+      homeModules = [ helpers.homeCore ] ++ helpers.homeMods [ "niri" "noctalia" "nautilus" "virtmanager" ];
     };
 
     # Exemple d'un deuxième utilisateur
@@ -32,7 +33,7 @@ let
     #   extraGroups = [ "wheel" "networkmanager" "video" ];
     #   isNormalUser = true;
     #   shell = pkgs.zsh;
-    #   homeModules = [ variables.homeCore ];
+    #   homeModules = [ helpers.homeCore ];
     # };
   };
 in
@@ -61,6 +62,7 @@ in
     extraSpecialArgs = {
       inherit inputs;
       inherit variables;
+      inherit helpers;
     };
 
     users = lib.mapAttrs (username: userConfig: {

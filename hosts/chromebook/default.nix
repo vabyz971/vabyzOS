@@ -1,6 +1,6 @@
 # https://github.com/mkellyxp/nixbook/blob/main/chromebook.nix
 
-{ variables, pkgs, ... }:
+{ helpers, pkgs, ... }:
 let
 # Version corrigée du package alsa-ucm-conf pour fonctionner également sur de nombreux Chromebooks
 # L'inclusion de cela dans tous les ordinateurs ne devrait pas interrompre l'audio des non-Chromebooks
@@ -24,9 +24,9 @@ in
     ./hardware.nix
 
     # Core
-    variables.core
+    helpers.core
   ]
-  ++ variables.mods [
+  ++ helpers.mods [
     # Pkgs
     "appimage"
     "browsers"

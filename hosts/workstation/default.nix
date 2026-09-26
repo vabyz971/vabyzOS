@@ -1,12 +1,12 @@
-{ variables, config, ... }:
+{ helpers, config, ... }:
 {
   imports = [
     ./hardware.nix
 
     # Core
-    variables.core
+    helpers.core
   ]
-  ++ variables.mods [
+  ++ helpers.mods [
     # Driver
     "nvidia"
 
@@ -25,6 +25,7 @@
     "noctalia"
     "noctalia-greeter"
     "niri"
+    "blip"
   ];
 
   boot = {

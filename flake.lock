@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "blip": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790184534,
+        "narHash": "sha256-9qXS+2ld+GcBEpgLdjE5iyl7CRkPIY7yL8K6DgfxexM=",
+        "owner": "blip-net",
+        "repo": "nix",
+        "rev": "9197cde5fc401256f4ad4697937c9c86e0edec67",
+        "type": "github"
+      },
+      "original": {
+        "owner": "blip-net",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -213,6 +233,7 @@
     },
     "root": {
       "inputs": {
+        "blip": "blip",
         "disko": "disko",
         "home-manager": "home-manager",
         "niri": "niri",

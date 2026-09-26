@@ -1,12 +1,12 @@
-{ variables, pkgs, ... }:
+{ helpers, pkgs, ... }:
 {
   imports = [
     ./hardware.nix
 
     # Core
-    variables.core
+    helpers.core
   ]
-  ++ variables.mods [
+  ++ helpers.mods [
     # Pkgs
     "appimage"
     "pkgs-store"
