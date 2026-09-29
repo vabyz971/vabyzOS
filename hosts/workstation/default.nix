@@ -10,9 +10,13 @@
     # Driver
     "nvidia"
 
+    # Kernel
+    "zen-kernel"
+
     # Pkgs
     "appimage"
-    "browsers"
+    "vivaldi"
+    "zen-browser"
     "development"
     "docker"
     "fonts"

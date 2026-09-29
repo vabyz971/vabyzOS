@@ -10,7 +10,8 @@
     # Pkgs
     "appimage"
     "pkgs-store"
-    "browsers"
+    "vivaldi"
+    "zen-browser"
     "fonts"
     "gnome-app"
     "nautilus"

@@ -1,6 +1,6 @@
 # https://github.com/mkellyxp/nixbook/blob/main/chromebook.nix
 
-{ helpers, pkgs, ... }:
+{ helpers, pkgs, lib, ... }:
 let
 # Version corrigée du package alsa-ucm-conf pour fonctionner également sur de nombreux Chromebooks
 # L'inclusion de cela dans tous les ordinateurs ne devrait pas interrompre l'audio des non-Chromebooks
@@ -28,17 +28,30 @@ in
   ]
   ++ helpers.mods [
     # Pkgs
-    "appimage"
-    "browsers"
+    "zen-browser"
     "fonts"
     "gnome-app"
-    "nautilus"
+    "yazi"
     "pkgs-store"
-    "vpn"
     "noctalia"
     "noctalia-greeter"
     "niri"
+    "blip"
   ];
+
+  # Allègement 64 Go : pas de nautilus (yazi), pas de fwupd.
+  programs.niri.useNautilus = lib.mkForce false;
+  services.fwupd.enable = lib.mkForce false;
+
+  # Carte SD 512 Go (label SD512, ext4) : stockage bulk, boot OK même absente.
+  fileSystems."/mnt/sd" = {
+    device = "/dev/disk/by-label/SD512";
+    fsType = "ext4";
+    options = [
+      "nofail"
+      "x-systemd.device-timeout=10"
+    ];
+  };
 
   boot = {
     # Pour flasher le firmware sur les Chromebooks
@@ -97,7 +110,8 @@ in
     };
 
   # Pour l'audio SOF sur Chromebooks, adapté de https://github.com/WeirdTreeThing/chromebook-linux-audio
-  # environment.sessionVariables.ALSA_CONFIG_UCM2 = "${chromebook-ucm-conf}/share/alsa/ucm2";
+  # Expose les profils UCM du Chromebook à ALSA/PipeWire (cf. nixbook upstream).
+  environment.sessionVariables.ALSA_CONFIG_UCM2 = "${chromebook-ucm-conf}/share/alsa/ucm2";
     services.pipewire.wireplumber.configPackages = [
       (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-increase-headroom.conf" ''
         monitor.alsa.rules = [

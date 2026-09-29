@@ -8,7 +8,11 @@
   # ======= Bootloader =======
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  # ======= Kernel =======
+  # Pas de boot.kernelPackages ici : NixOS utilise son défaut (pkgs.linuxPackages).
+  # Machines voulant le kernel Zen : ajouter "zen-kernel" à leurs helpers.mods
+  # (cf. modules/optional/zen-kernel.nix, actuellement workstation seule).
 
   # ======= Time Zone =======
   time.timeZone = "America/Toronto";
