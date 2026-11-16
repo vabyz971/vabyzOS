@@ -40,12 +40,12 @@
     layout = {
       background-color = "transparent";
       border = {
-          enable = true;
-          width = 2;
-        };
-        focus-ring = {
-          enable = false;
-        };
+        enable = true;
+        width = 2;
+      };
+      focus-ring = {
+        enable = false;
+      };
     };
     overview = {
       workspace-shadow.enable = false;

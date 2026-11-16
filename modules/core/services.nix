@@ -1,11 +1,12 @@
-{ variables, ... } : {
+{ isLaptop, ... }:
+{
 
   # Bluetooth Support
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
   services.upower.enable = true;
-  services.power-profiles-daemon.enable = if variables.host == "laptop" then false else true;
+  services.power-profiles-daemon.enable = !isLaptop;
 
   security.rtkit.enable = true;
   security.polkit.enable = true;

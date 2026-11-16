@@ -1,6 +1,7 @@
 {
   pkgs,
   variables,
+  hostname,
   ...
 }:
 {
@@ -46,7 +47,7 @@
   # Update system
   system.autoUpgrade = {
     enable = true;
-    flake = "github:vabyz971/vabyzOS#${variables.profile}";
+    flake = "github:vabyz971/vabyzOS#${hostname}";
     flags = [
       "-L"
       "--update-input"
@@ -57,7 +58,6 @@
     dates = "12:00";
     randomizedDelaySec = "45min";
   };
-
 
   # Modern helper utility
   programs.nh = {
@@ -74,7 +74,7 @@
   #   # Or to keep the last 5 generations:
   #   # options = [ "+5" ];
   # };
-  nix.settings.auto-optimise-store = true;
+  nix.optimise.automatic = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

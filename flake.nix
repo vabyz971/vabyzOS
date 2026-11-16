@@ -28,9 +28,7 @@
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    noctalia.url = "github:noctalia-dev/noctalia";
-
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     blip = {
       url = "github:blip-net/nix";
@@ -49,56 +47,55 @@
     {
       nixpkgs,
       nixpkgs-unstable,
-      home-manager,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-      globalVars = import ./variables.nix inputs;
-      globalHelpers = import ./lib inputs;
 
+      # import (et non legacyPackages) pour que allowUnfree s'applique aussi à unstable
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      variables = import ./variables.nix inputs;
+      helpers = import ./lib inputs;
+
+      # hostname = nom de la sortie du flake (utilisé par autoUpgrade et les alias nh)
+      mkHost =
+        hostname:
+        {
+          isLaptop ? false,
+          extraModules ? [ ],
+        }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit
+              inputs
+              pkgs-unstable
+              variables
+              helpers
+              hostname
+              isLaptop
+              ;
+          };
+          modules = [
+            { nixpkgs.hostPlatform = system; }
+            ./hosts/${hostname}
+          ]
+          ++ extraModules;
+        };
     in
     {
       nixosConfigurations = {
-        workstation = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-            variables = globalVars;
-            helpers = globalHelpers;
-          };
-          modules = [
-            { nixpkgs.hostPlatform = system; }
-            inputs.home-manager.nixosModules.home-manager
-            ./hosts/workstation
-          ];
-        };
-        vm = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-            variables = globalVars;
-            helpers = globalHelpers;
-          };
-          modules = [
-            { nixpkgs.hostPlatform = system; }
-            inputs.home-manager.nixosModules.home-manager
-            ./hosts/vm
-          ];
-        };
-        chromebook = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-            variables = globalVars;
-            helpers = globalHelpers;
-          };
-          modules = [
-            { nixpkgs.hostPlatform = system; }
-            inputs.home-manager.nixosModules.home-manager
-            inputs.disko.nixosModules.disko
-            ./hosts/chromebook
-          ];
+        workstation = mkHost "workstation" { };
+        vm = mkHost "vm" { };
+        chromebook = mkHost "chromebook" {
+          isLaptop = true;
+          extraModules = [ inputs.disko.nixosModules.disko ];
         };
       };
+
+      formatter.${system} = pkgs.nixfmt-tree;
     };
 }

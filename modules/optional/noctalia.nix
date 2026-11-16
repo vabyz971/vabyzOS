@@ -4,18 +4,22 @@
   ...
 }:
 {
+  imports = [
+    inputs.noctalia.nixosModules.default
+  ];
 
-  # install package
+  programs.noctalia = {
+    enable = true;
+
+    # Enables NetworkManager, Bluetooth, UPower, and a power profile service.
+    recommendedServices.enable = true;
+  };
+
   environment.systemPackages = [
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-
     pkgs.brightnessctl
     pkgs.ddcutil
   ];
 
   # Required for ddcutil
   hardware.i2c.enable = true;
-
-  # Activation d'AccountsService pour les photos de profil (requis par Noctalia)
-  services.accounts-daemon.enable = true;
 }

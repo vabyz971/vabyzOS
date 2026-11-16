@@ -1,9 +1,14 @@
 # https://github.com/mkellyxp/nixbook/blob/main/chromebook.nix
 
-{ helpers, pkgs, lib, ... }:
+{
+  helpers,
+  pkgs,
+  lib,
+  ...
+}:
 let
-# Version corrigée du package alsa-ucm-conf pour fonctionner également sur de nombreux Chromebooks
-# L'inclusion de cela dans tous les ordinateurs ne devrait pas interrompre l'audio des non-Chromebooks
+  # Version corrigée du package alsa-ucm-conf pour fonctionner également sur de nombreux Chromebooks
+  # L'inclusion de cela dans tous les ordinateurs ne devrait pas interrompre l'audio des non-Chromebooks
   chromebook-ucm-conf =
     with pkgs;
     alsa-ucm-conf.overrideAttrs {
@@ -70,7 +75,6 @@ in
 
   # Paramètre spécifique a l'hosts
 
-
   hardware.firmware = [ pkgs.sof-firmware ];
   networking.networkmanager.wifi.powersave = true;
 
@@ -83,51 +87,51 @@ in
   };
 
   disko.devices.disk.main = {
-      device = "/dev/mmcblk1";
-      type = "disk";
-      content = {
-        type = "gpt";
-        partitions = {
-          ESP = {
-            type = "EF00";
-            size = "500M";
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
-            };
+    device = "/dev/mmcblk1";
+    type = "disk";
+    content = {
+      type = "gpt";
+      partitions = {
+        ESP = {
+          type = "EF00";
+          size = "500M";
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
           };
-          root = {
-            size = "100%";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-            };
+        };
+        root = {
+          size = "100%";
+          content = {
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/";
           };
         };
       };
     };
+  };
 
   # Pour l'audio SOF sur Chromebooks, adapté de https://github.com/WeirdTreeThing/chromebook-linux-audio
   # Expose les profils UCM du Chromebook à ALSA/PipeWire (cf. nixbook upstream).
   environment.sessionVariables.ALSA_CONFIG_UCM2 = "${chromebook-ucm-conf}/share/alsa/ucm2";
-    services.pipewire.wireplumber.configPackages = [
-      (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-increase-headroom.conf" ''
-        monitor.alsa.rules = [
-          {
-            matches = [
-              {
-                node.name = "~alsa_output.*"
-              }
-            ]
-            actions = {
-              update-props = {
-                api.alsa.headroom = 2048
-              }
+  services.pipewire.wireplumber.configPackages = [
+    (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-increase-headroom.conf" ''
+      monitor.alsa.rules = [
+        {
+          matches = [
+            {
+              node.name = "~alsa_output.*"
+            }
+          ]
+          actions = {
+            update-props = {
+              api.alsa.headroom = 2048
             }
           }
-        ]
-      '')
-    ];
+        }
+      ]
+    '')
+  ];
 }

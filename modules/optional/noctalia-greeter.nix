@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  variables,
   ...
 }:
 
@@ -9,7 +10,7 @@
     inputs.noctalia-greeter.nixosModules.default
   ];
 
-  programs.noctalia-greeter = {
+  services.displayManager.noctalia-greeter = {
     enable = true;
     settings = {
       keyboard.layout = "fr";
@@ -26,7 +27,7 @@
     enable = true;
     extraConfig = ''
       polkit.addRule(function(action, subject) {
-        var allowedUsers = ["alice"];
+        var allowedUsers = [ "${variables.username}" ];
 
         if (action.id == "org.noctalia.greeter.sync-appearance" &&
             action.lookup("program") == "${pkgs.noctalia-greeter}/bin/noctalia-greeter-apply-appearance" &&

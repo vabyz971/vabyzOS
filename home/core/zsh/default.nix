@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  variables,
+  hostname,
   ...
 }:
 {
@@ -26,7 +26,6 @@
 
     oh-my-zsh = {
       enable = true;
-      theme = "agnoster";
       plugins = [ "git" ];
     };
 
@@ -36,13 +35,13 @@
       c = "clear";
       vupgrade = "
       cd ~/vabyzOS/
-      sudo nix flake update
-      nh os switch .#${variables.profile}";
-      vupdate = "nh os switch ~/vabyzOS#${variables.profile}";
+      nix flake update
+      nh os switch .#${hostname}";
+      vupdate = "nh os switch ~/vabyzOS#${hostname}";
       vgens = "nh os info";
       vcheck = "nix flake check";
-      vboot = "nh os boot";
-      vtest = "nh os test";
+      vboot = "nh os boot ~/vabyzOS#${hostname}";
+      vtest = "nh os test ~/vabyzOS#${hostname}";
       vgc = "nix store gc";
       vhelp = "
       echo '## Liste les commandes disponibles ##'
@@ -51,7 +50,7 @@
       echo '# vhelp : Affiche cette liste'
       echo '# vgc : Garbage collect du store Nix'
       echo '# vcheck : Valide le flake'
-      echo '# vboot : Reboot le système'
+      echo '# vboot : Applique au prochain démarrage'
       echo '# vgens : Liste les générations du système'
       echo '# vtest : Applique sans créer de génération'
       ";
@@ -59,9 +58,14 @@
 
     plugins = [
       {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
         name = "powerlevel10k-config";
         src = lib.cleanSource ./config;
-        file = "p10k.zsh";
+        file = ".p10k.zsh";
       }
     ];
   };

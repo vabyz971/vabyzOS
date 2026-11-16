@@ -1,4 +1,9 @@
-{ inputs, helpers, pkgs, ... }:
+{
+  inputs,
+  helpers,
+  pkgs,
+  ...
+}:
 {
   imports = [
     inputs.blip.nixosModules.default
@@ -6,7 +11,6 @@
   ];
   programs.blip = {
     enable = true;
-    # Évite le `default` upstream qui utilise `pkgs.system` (déprécié).
     package = inputs.blip.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 }

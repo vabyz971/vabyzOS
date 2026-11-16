@@ -20,8 +20,6 @@
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  nixpkgs.config.nvidia.acceptLicense = true;
-
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -42,25 +40,16 @@
     # supported GPUs is at:
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    # package = config.boot.kernelPackages.nvidiaPackages.latest;
-
-    gsp.enable = false;
-
-    # Version spécifique du driver nvidia
-    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "615.71.09";
-      sha256_64bit = "sha256-zc7tIrvrYSSNGm3qvCWWZz46ZQFpjucayNL9wo87cP4=";
-      sha256_aarch64 = "";
-      openSha256 = "";
-      settingsSha256 = "sha256-LK1LU8mDkM/XVRKPBtuOZh9nIP/lGFLAJnmasEX8jhg=";
-      persistencedSha256 = "";
-    };
+    # Dernier driver packagé dans nixpkgs. Le kernel vient de nixpkgs-unstable
+    # (cf. zen-kernel.nix), donc `nix flake update nixpkgs-unstable` suffit
+    # pour récupérer les nouvelles versions, sans hash à gérer.
+    # Autres choix : .production (branche LTS NVIDIA), .beta
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 }

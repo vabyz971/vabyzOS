@@ -5,6 +5,7 @@
   variables,
   helpers,
   config,
+  hostname,
   ...
 }:
 
@@ -24,7 +25,15 @@ let
       ];
       isNormalUser = true;
       shell = pkgs.zsh;
-      homeModules = [ helpers.homeCore ] ++ helpers.homeMods [ "niri" "noctalia" "nautilus" "virtmanager" ];
+      homeModules = [
+        helpers.homeCore
+      ]
+      ++ helpers.homeMods [
+        "niri"
+        "noctalia"
+        "nautilus"
+        "virtmanager"
+      ];
     };
 
     # Exemple d'un deuxième utilisateur
@@ -63,6 +72,7 @@ in
       inherit inputs;
       inherit variables;
       inherit helpers;
+      inherit hostname;
     };
 
     users = lib.mapAttrs (username: userConfig: {

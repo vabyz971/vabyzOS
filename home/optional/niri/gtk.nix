@@ -34,7 +34,7 @@
     };
 
     font = {
-      name = "Liberation Sans Regular";
+      name = " JetBrainsMono Nerd Font Mono";
       size = 11;
     };
   };
@@ -45,8 +45,8 @@
       "org/gnome/desktop/interface" = {
         gtk-theme = "adw-gtk3-dark";
         icon-theme = "WhiteSur-dark";
-        document-font-name = "Liberation Sans Medium 11";
-        monospace-font-name = "Liberation Sans Medium 11";
+        document-font-name = " JetBrainsMono Nerd Font Mono";
+        monospace-font-name = " JetBrainsMono Nerd Font Mono";
         color-scheme = "prefer-dark";
       };
     };
