@@ -7,7 +7,6 @@
     gnome-nettool
     gnome-disk-utility
     seahorse
-    warp
     poppler
   ];
 }
