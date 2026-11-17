@@ -1,3 +1,4 @@
+# desc: Dev : Node, Python, Bun, Zed, nixd, direnv
 { pkgs, pkgs-unstable, ... }:
 {
   environment.systemPackages = [

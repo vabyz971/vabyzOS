@@ -1,3 +1,4 @@
+# desc: Driver NVIDIA propriétaire (dernière version)
 { config, ... }:
 {
 

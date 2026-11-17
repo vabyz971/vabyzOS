@@ -1,3 +1,4 @@
+# desc: Polices (Nerd Fonts, emoji, CJK)
 { pkgs, ... }:
 
 {

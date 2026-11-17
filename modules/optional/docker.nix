@@ -1,3 +1,4 @@
+# desc: Docker + docker-compose
 { pkgs, ... }:
 {
   virtualisation.docker = {

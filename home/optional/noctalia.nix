@@ -1,3 +1,4 @@
+# desc: Config Noctalia (service utilisateur)
 { inputs, ... }:
 
 {

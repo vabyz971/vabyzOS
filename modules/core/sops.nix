@@ -1,4 +1,9 @@
-{ inputs, ... }:
+{
+  inputs,
+  lib,
+  settings,
+  ...
+}:
 {
   imports = [ inputs.sops-nix.nixosModules.sops ];
   sops = {
@@ -6,16 +11,11 @@
     defaultSopsFormat = "yaml";
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
-    secrets = {
-      # Secret pour utilisateur principal
-      "secret/users/vabyz971" = {
+    # Mot de passe de l'utilisateur principal (uniquement en passwordMode = "sops")
+    secrets = lib.mkIf (settings.passwordMode == "sops") {
+      "secret/users/${settings.username}" = {
         neededForUsers = true;
       };
-
-      # Secret pour un futur utilisateur (exemple)
-      # "secret/users/mika" = {
-      #   neededForUsers = true;
-      # };
     };
   };
 }

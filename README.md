@@ -40,7 +40,7 @@
 
 > vabyzOS est une configuration NixOS complète basée sur **Nix Flakes** et **Home Manager**. Elle vise une expérience de bureau cohérente, reproductible et facile à déployer sur une nouvelle machine.
 
-L'environnement s'articule autour du **compositeur Wayland Niri** avec le shell **Noctalia** (Quickshell), une gestion des secrets via **SOPS-nix**, et un ensemble d'outils de développement prêts à l'emploi.
+L'environnement s'articule autour du **compositeur Wayland Niri** avec le shell **Noctalia V5**, une gestion des secrets via **SOPS-nix**, et un ensemble d'outils de développement prêts à l'emploi.
 
 ---
 
@@ -61,8 +61,10 @@ L'environnement s'articule autour du **compositeur Wayland Niri** avec le shell 
 ```
 vabyzOS/
 ├── flake.nix          # Point d'entrée principal (Flakes)
-├── variables.nix      # Variables globales (hostname, user…)
-├── hosts/             # Configurations par machine
+├── lib/               # Helpers d'import + réglages par défaut (defaultSettings)
+├── hosts/             # Une machine = un dossier (détecté automatiquement par le flake)
+│   │                  #   settings.nix : utilisateur, langue, modules… (généré par install.sh)
+│   │                  #   hardware.nix : matériel · default.nix : réglages propres à la machine
 │   ├── workstation/   # Poste principal (Nvidia, gaming, dev)
 │   ├── vm/            # Machine virtuelle (QEMU/Hyper-V/VMware)
 │   └── chromebook/    # Chromebook (disko, audio SOF, firmware)
@@ -73,6 +75,7 @@ vabyzOS/
 │   ├── core/            # Shell, git, éditeur, terminal
 │   └── optional/         # Niri, Noctalia, virt-manager…
 ├── secrets/             # Secrets chiffrés (SOPS, jamais en clair)
+├── ssh-keys/            # Clés SSH publiques autorisées par le module ssh (une par poste)
 └── install.sh           # Script d'installation automatisé
 ```
 
@@ -167,31 +170,46 @@ Shell graphique moderne construit avec Quickshell.
 
 ## 🚀 Installation
 
-### Option 1 — Script automatique
+### Option 1 — Installateur interactif (NixOS déjà installé)
 
 ```bash
 curl -L https://raw.githubusercontent.com/vabyz971/vabyzOS/main/install.sh | bash
+# ou, depuis le dépôt cloné :
+./install.sh
 ```
+
+L'installateur (interface [`gum`](https://github.com/charmbracelet/gum), récupéré via nix, rien n'est installé) :
+
+1. clone le dépôt dans `~/vabyzOS` s'il n'existe pas ;
+2. détecte le matériel (portable, VM, GPU NVIDIA) ;
+3. propose de **reconfigurer une machine existante** ou d'en **créer une nouvelle** à partir d'un préréglage (workstation, laptop, vm, minimal) ;
+4. demande l'identité, la langue, le fuseau horaire et le clavier ;
+5. affiche la liste des modules système et home-manager à cocher (la description vient de la ligne `# desc:` en tête de chaque module) ;
+6. configure le mot de passe :
+   - **sops** : même mot de passe sur toutes tes machines (clé age requise, vérifiée avant d'aller plus loin) ;
+   - **local** : mot de passe propre à la machine, hash stocké dans `/var/lib/vabyzos/password.hash`, jamais dans le dépôt ;
+7. écrit `hosts/<machine>/settings.nix` (+ `hardware.nix`), vérifie que la config s'évalue, puis lance `nixos-rebuild` (switch, boot, test ou rien) et propose un commit.
 
 ### Option 2 — Manuelle
 
 ```bash
-# 1. Ouvrir un shell avec git
-nix-shell -p git
+git clone https://github.com/vabyz971/vabyzOS ~/vabyzOS
+cd ~/vabyzOS
 
-# 2. Cloner le dépôt
-git clone https://github.com/vabyz971/vabyzOS
-cd vabyzOS
+# Copier un host existant et adapter ses réglages
+cp -r hosts/vm hosts/ma-machine
+$EDITOR hosts/ma-machine/settings.nix
+sudo nixos-generate-config --show-hardware-config > hosts/ma-machine/hardware.nix
+git add hosts/ma-machine
 
-# 3. Adapter variables.nix à ta machine
-# (hostname, username, GPU…)
-
-# 4. Appliquer la configuration
-sudo nixos-rebuild switch --flake .#<ton-hostname>
+sudo nixos-rebuild switch --flake .#ma-machine
 ```
 
 > [!NOTE]
-> Pense à adapter `variables.nix` avec ton nom d'utilisateur et ton nom de machine avant d'appliquer la configuration.
+> Le flake ne voit que les fichiers suivis par git : pense au `git add` après avoir créé une machine.
+
+> [!IMPORTANT]
+> Les utilisateurs sont entièrement gérés par la config (`users.mutableUsers = false`) : `passwd` n'a aucun effet durable. Change le mot de passe via sops ou en relançant `install.sh`.
 
 ---
 

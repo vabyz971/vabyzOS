@@ -1,7 +1,6 @@
 {
   pkgs,
-  variables,
-  hostname,
+  settings,
   ...
 }:
 {
@@ -16,10 +15,10 @@
   # (cf. modules/optional/zen-kernel.nix, actuellement workstation seule).
 
   # ======= Time Zone =======
-  time.timeZone = "America/Toronto";
+  time.timeZone = settings.timezone;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "${variables.i18nLocalLanguage}";
+  i18n.defaultLocale = settings.locale;
 
   services = {
 
@@ -30,8 +29,8 @@
     fstrim.enable = true;
 
     xserver.xkb = {
-      layout = "fr,us";
-      options = "grp:alt_shift_toggle";
+      layout = settings.keyboardLayout;
+      options = settings.keyboardOptions;
     };
   };
 
@@ -47,7 +46,7 @@
   # Update system
   system.autoUpgrade = {
     enable = true;
-    flake = "github:vabyz971/vabyzOS#${hostname}";
+    flake = "github:vabyz971/vabyzOS#${settings.hostname}";
     flags = [
       "-L"
       "--update-input"

@@ -1,3 +1,4 @@
+# desc: OpenRGB (éclairage RGB)
 { ... }:
 {
   services.udev.enable = true;

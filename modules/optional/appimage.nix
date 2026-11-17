@@ -1,3 +1,4 @@
+# desc: Support des AppImage
 { ... }:
 {
   # Appimage

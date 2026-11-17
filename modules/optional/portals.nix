@@ -1,3 +1,4 @@
+# desc: Portails XDG (GTK)
 { pkgs, ... }:
 {
   xdg.portal = {

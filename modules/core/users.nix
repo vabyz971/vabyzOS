@@ -2,18 +2,17 @@
   pkgs,
   lib,
   inputs,
-  variables,
+  settings,
   helpers,
   config,
-  hostname,
   ...
 }:
 
 let
   userRegistry = {
-    # Utilisateur 1
-    vabyz971 = {
-      description = "vabyz971";
+    # Utilisateur principal (défini dans hosts/<nom>/settings.nix)
+    ${settings.username} = {
+      description = settings.username;
       extraGroups = [
         "wheel"
         "networkmanager"
@@ -28,12 +27,7 @@ let
       homeModules = [
         helpers.homeCore
       ]
-      ++ helpers.homeMods [
-        "niri"
-        "noctalia"
-        "nautilus"
-        "virtmanager"
-      ];
+      ++ helpers.homeMods settings.homeModules;
     };
 
     # Exemple d'un deuxième utilisateur
@@ -60,8 +54,12 @@ in
       shell
       ;
 
-    # Le chemin du mot de passe est dynamique !
-    hashedPasswordFile = config.sops.secrets."secret/users/${username}".path;
+    # sops : secret chiffré du dépôt / local : fichier écrit par install.sh (hors git)
+    hashedPasswordFile =
+      if settings.passwordMode == "sops" then
+        config.sops.secrets."secret/users/${username}".path
+      else
+        "/var/lib/vabyzos/password.hash";
 
   }) userRegistry;
 
@@ -70,9 +68,8 @@ in
     useUserPackages = true;
     extraSpecialArgs = {
       inherit inputs;
-      inherit variables;
+      inherit settings;
       inherit helpers;
-      inherit hostname;
     };
 
     users = lib.mapAttrs (username: userConfig: {

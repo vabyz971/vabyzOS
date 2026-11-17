@@ -1,3 +1,4 @@
+# desc: Gestionnaire de fichiers Nautilus
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [

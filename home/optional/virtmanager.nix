@@ -1,3 +1,4 @@
+# desc: Connexion auto de virt-manager à qemu:///system
 { ... }:
 
 {

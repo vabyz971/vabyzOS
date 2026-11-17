@@ -1,3 +1,4 @@
+# desc: Blip (+ portails XDG)
 {
   inputs,
   helpers,

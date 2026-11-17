@@ -1,3 +1,4 @@
+# desc: Config Niri (raccourcis, règles de fenêtres, thème GTK)
 { inputs, ... }:
 
 {

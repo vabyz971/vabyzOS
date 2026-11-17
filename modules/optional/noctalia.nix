@@ -1,3 +1,4 @@
+# desc: Shell / barre Noctalia
 {
   pkgs,
   inputs,

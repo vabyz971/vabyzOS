@@ -58,43 +58,35 @@
         inherit system;
         config.allowUnfree = true;
       };
-      variables = import ./variables.nix inputs;
       helpers = import ./lib inputs;
 
-      # hostname = nom de la sortie du flake (utilisé par autoUpgrade et les alias nh)
+      # Une machine = un dossier hosts/<nom>/ avec settings.nix (généré par install.sh),
+      # hardware.nix et default.nix (réglages propres à la machine).
       mkHost =
         hostname:
-        {
-          isLaptop ? false,
-          extraModules ? [ ],
-        }:
+        let
+          settings = helpers.hostSettings hostname;
+        in
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit
               inputs
               pkgs-unstable
-              variables
               helpers
-              hostname
-              isLaptop
+              settings
               ;
           };
           modules = [
             { nixpkgs.hostPlatform = system; }
             ./hosts/${hostname}
+            ./hosts/${hostname}/hardware.nix
+            helpers.core
           ]
-          ++ extraModules;
+          ++ helpers.mods settings.modules;
         };
     in
     {
-      nixosConfigurations = {
-        workstation = mkHost "workstation" { };
-        vm = mkHost "vm" { };
-        chromebook = mkHost "chromebook" {
-          isLaptop = true;
-          extraModules = [ inputs.disko.nixosModules.disko ];
-        };
-      };
+      nixosConfigurations = nixpkgs.lib.genAttrs helpers.hostNames mkHost;
 
       formatter.${system} = pkgs.nixfmt-tree;
     };

@@ -1,8 +1,8 @@
-{ variables, ... }:
+{ settings, ... }:
 {
   programs.git = {
     enable = true;
-    settings.user.name = variables.gitUsername;
-    settings.user.email = variables.gitEmail;
+    settings.user.name = settings.gitUsername;
+    settings.user.email = settings.gitEmail;
   };
 }

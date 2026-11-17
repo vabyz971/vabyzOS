@@ -1,4 +1,4 @@
-{ isLaptop, ... }:
+{ settings, ... }:
 {
 
   # Bluetooth Support
@@ -6,7 +6,7 @@
   services.blueman.enable = true;
 
   services.upower.enable = true;
-  services.power-profiles-daemon.enable = !isLaptop;
+  services.power-profiles-daemon.enable = !settings.isLaptop;
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
@@ -32,4 +32,5 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.hostName = settings.hostName;
 }

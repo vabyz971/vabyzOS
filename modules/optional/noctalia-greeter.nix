@@ -1,7 +1,8 @@
+# desc: Écran de connexion Noctalia
 {
   pkgs,
   inputs,
-  variables,
+  settings,
   ...
 }:
 
@@ -27,7 +28,7 @@
     enable = true;
     extraConfig = ''
       polkit.addRule(function(action, subject) {
-        var allowedUsers = [ "${variables.username}" ];
+        var allowedUsers = [ "${settings.username}" ];
 
         if (action.id == "org.noctalia.greeter.sync-appearance" &&
             action.lookup("program") == "${pkgs.noctalia-greeter}/bin/noctalia-greeter-apply-appearance" &&

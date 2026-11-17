@@ -1,3 +1,4 @@
+# desc: Apps GNOME : secrets, disques, seahorse, warp
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [

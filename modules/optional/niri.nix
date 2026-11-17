@@ -1,3 +1,4 @@
+# desc: Compositeur Wayland Niri
 { inputs, pkgs, ... }:
 {
   # DOC : https://github.com/sodiboo/niri-flake/blob/main/docs.md#programsnirisettings

@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  hostname,
+  settings,
   ...
 }:
 {
@@ -36,12 +36,12 @@
       vupgrade = "
       cd ~/vabyzOS/
       nix flake update
-      nh os switch .#${hostname}";
-      vupdate = "nh os switch ~/vabyzOS#${hostname}";
+      nh os switch .#${settings.hostname}";
+      vupdate = "nh os switch ~/vabyzOS#${settings.hostname}";
       vgens = "nh os info";
       vcheck = "nix flake check";
-      vboot = "nh os boot ~/vabyzOS#${hostname}";
-      vtest = "nh os test ~/vabyzOS#${hostname}";
+      vboot = "nh os boot ~/vabyzOS#${settings.hostname}";
+      vtest = "nh os test ~/vabyzOS#${settings.hostname}";
       vgc = "nix store gc";
       vhelp = "
       echo '## Liste les commandes disponibles ##'

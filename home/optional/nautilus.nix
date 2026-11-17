@@ -1,3 +1,4 @@
+# desc: Dossiers utilisateur XDG (Documents, Images...)
 { ... }:
 
 {

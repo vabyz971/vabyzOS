@@ -1,3 +1,4 @@
+# desc: Navigateur Zen
 { inputs, pkgs, ... }:
 {
   environment.systemPackages = [

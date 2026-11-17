@@ -1,3 +1,4 @@
+# desc: Jeux : Steam, Proton-GE, Gamescope, Lutris, Bottles
 { pkgs, ... }:
 {
   programs = {

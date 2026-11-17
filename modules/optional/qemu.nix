@@ -1,3 +1,4 @@
+# desc: Virtualisation : libvirt, virt-manager, quickemu
 { pkgs, ... }:
 {
   virtualisation.libvirtd.enable = true;

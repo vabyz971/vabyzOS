@@ -1,12 +1,24 @@
 # https://github.com/mkellyxp/nixbook/blob/main/chromebook.nix
 
 {
-  helpers,
+  inputs,
   pkgs,
   lib,
+  settings,
   ...
 }:
 let
+  # Dossiers personnels stockés sur la carte SD (le reste du home reste sur l'eMMC, plus rapide)
+  home = "/home/${settings.username}";
+  sdHome = "/mnt/sd/${settings.username}";
+  sdDirs = [
+    "Documents"
+    "Downloads"
+    "Music"
+    "Pictures"
+    "Videos"
+  ];
+
   # Version corrigée du package alsa-ucm-conf pour fonctionner également sur de nombreux Chromebooks
   # L'inclusion de cela dans tous les ordinateurs ne devrait pas interrompre l'audio des non-Chromebooks
   chromebook-ucm-conf =
@@ -25,38 +37,56 @@ let
     };
 in
 {
-  imports = [
-    ./hardware.nix
-
-    # Core
-    helpers.core
-  ]
-  ++ helpers.mods [
-    # Pkgs
-    "zen-browser"
-    "fonts"
-    "gnome-app"
-    "yazi"
-    "pkgs-store"
-    "noctalia"
-    "noctalia-greeter"
-    "niri"
-    "blip"
-  ];
+  imports = [ inputs.disko.nixosModules.disko ];
 
   # Allègement 64 Go : pas de nautilus (yazi), pas de fwupd.
   programs.niri.useNautilus = lib.mkForce false;
   services.fwupd.enable = lib.mkForce false;
 
   # Carte SD 512 Go (label SD512, ext4) : stockage bulk, boot OK même absente.
-  fileSystems."/mnt/sd" = {
-    device = "/dev/disk/by-label/SD512";
-    fsType = "ext4";
-    options = [
-      "nofail"
-      "x-systemd.device-timeout=10"
-    ];
-  };
+  # Les dossiers de sdDirs sont montés (bind) depuis /mnt/sd/<user>/ vers le home :
+  # mêmes chemins pour les applis, contenu sur la carte. Sans carte, ils restent vides.
+  fileSystems = {
+    "/mnt/sd" = {
+      device = "/dev/disk/by-label/SD512";
+      fsType = "ext4";
+      options = [
+        "nofail"
+        "noatime" # moins d'écritures, préserve la carte
+        "x-systemd.device-timeout=10"
+      ];
+    };
+  }
+  // lib.listToAttrs (
+    map (
+      dir:
+      lib.nameValuePair "${home}/${dir}" {
+        device = "${sdHome}/${dir}";
+        fsType = "none";
+        options = [
+          "bind"
+          "nofail"
+        ];
+        depends = [ "/mnt/sd" ];
+      }
+    ) sdDirs
+  );
+
+  # Crée les dossiers sur la carte avec les bons droits
+  systemd.tmpfiles.settings."10-sd-home" = {
+    ${sdHome}.d = {
+      user = settings.username;
+      group = "users";
+      mode = "0700";
+    };
+  }
+  // lib.genAttrs (map (dir: "${sdHome}/${dir}") sdDirs) (_: {
+    d = {
+      user = settings.username;
+      group = "users";
+      mode = "0755";
+    };
+  });
 
   boot = {
     # Pour flasher le firmware sur les Chromebooks
@@ -70,8 +100,6 @@ in
       "uas"
     ];
   };
-
-  networking.hostName = "chromebook-vabyz";
 
   # Paramètre spécifique a l'hosts
 

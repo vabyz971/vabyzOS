@@ -1,3 +1,4 @@
+# desc: Flatpak + GNOME Logiciels
 { pkgs, ... }:
 {
   services = {

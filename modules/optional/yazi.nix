@@ -1,3 +1,4 @@
+# desc: Gestionnaire de fichiers terminal Yazi
 { ... }:
 {
   # Gestionnaire de fichiers terminal (remplace nautilus sur petits disques).
